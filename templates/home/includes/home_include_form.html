@@ -1,0 +1,147 @@
+{% block content %}
+
+
+        <div class="row">
+            <form method="post" action={% url 'home' %} xmlns="http://www.w3.org/1999/html">
+                <div class="col-sm-12" style="background-color: #ffffff; padding-top: 5px; padding-bottom: 10px">
+                    {% csrf_token %}
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label for="">Protocolo</label>
+                                <div>
+                                    {{ form.protocolo }}
+                                </div>
+                            </div>
+                        </div>
+                    <h2 class="display-1" style="text-shadow: 2px 2px 2px #000000; color: #ffffff"> <strong>Informações de Cadastro</strong> </h2>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label for="">Regional</label>
+                                <div>
+                                    {{ form.regional }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label for="">Filial</label>
+                                <div>
+                                    {{ form.filial }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label for="">Comercial</label>
+                                <div>
+                                    {{ form.comercial }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <div class="form-group">
+                                <label for="">Corretor</label>
+                                <div>
+                                    {{ form.corretor }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label for="">Produto</label>
+                                <div>
+                                    {{ form.produto }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label for="">Cliente</label>
+                                <div>
+                                    {{ form.cliente }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h2 class="display-1" style="text-shadow: 2px 2px 2px #000000; color: #ffffff"> <strong>Informações da Conta</strong> </h2>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label for="">Data de Recebimento</label>
+                                <div>
+                                    {{ form.recebimento }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label for="">Previsão de Fechamento</label>
+                                <div>
+                                    {{ form.fechamento }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label for="">Vencimento da Apólice</label>
+                                <div>
+                                    {{ form.vencimento }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label for="">Prêmio</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label for="">Tipo de Seguro</label>
+                                <div>
+                                    {{ form.tipo_de_seguro }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label for="">Expectativa</label>
+                                <div>
+                                    {{ form.expectativa }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label for="">Status</label>
+                                <div>
+                                    {{ form.status }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label for="">Subscritor</label>
+                                <div>
+                                    {{ form.subscritor }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <input type="submit" name="salvar" style="background-color: #FFDD00" class="btn btn-outline-secondary btn-block" value="Salvar"/>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+{% endblock %}
