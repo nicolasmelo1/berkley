@@ -3,7 +3,7 @@
 
         <div class="row">
             <form method="post" action={% url 'home' %} xmlns="http://www.w3.org/1999/html">
-                <div class="col-sm-12" style="background-color: #ffffff; padding-top: 5px; padding-bottom: 10px">
+                <div class="col-sm-12" style="background-color: #e6e6e6; padding-top: 5px; padding-bottom: 10px">
                     {% csrf_token %}
 
                     <div class="row">
@@ -16,12 +16,12 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-sm-6">
 
-                            <h2 class="display-1" style="text-shadow: 2px 2px 2px #000000; color: #ffffff"> <strong>Informações de Cadastro</strong> </h2>
+                        <div class="col-sm-12">
+
+                            <h2 class="display-1" style="color: #0e5741"> <strong>Informações Gerais</strong> </h2>
                             <div class="row">
-                                <div class="col-sm-12">
+                                <div class="col-sm-4">
                                     <div class="form-group">
                                         <label for="">Regional</label>
                                         <div>
@@ -29,7 +29,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-12">
+                                <div class="col-sm-4">
                                     <div class="form-group">
                                         <label for="">Filial</label>
                                         <div>
@@ -37,7 +37,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-12">
+                                <div class="col-sm-4">
                                     <div class="form-group">
                                         <label for="">Comercial</label>
                                         <div>
@@ -55,7 +55,16 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-12">
+
+                                <div class="col-sm-8">
+                                    <div class="form-group">
+                                        <label for="">Cliente</label>
+                                        <div>
+                                            {{ form.cliente }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
                                     <div class="form-group">
                                         <label for="">Produto</label>
                                         <div>
@@ -64,21 +73,12 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <div class="form-group">
-                                        <label for="">Cliente</label>
-                                        <div>
-                                            {{ form.cliente }}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
-                        <div class="col-sm-6">
-                            <h2 class="display-1" style="text-shadow: 2px 2px 2px #000000; color: #ffffff"> <strong>Informações da Conta</strong> </h2>
+                        <div class="col-sm-12">
                             <div class="row">
-                                <div class="col-sm-12">
+                            <h2 class="display-1" style="color: #0e5741"> <strong>Informações da Conta</strong> </h2>
+
+                                <div class="col-sm-3">
                                     <div class="form-group">
                                         <label for="">Data de Recebimento</label>
                                         <div>
@@ -100,7 +100,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-12">
+                                <div class="col-sm-3">
                                     <div class="form-group">
                                         <label for="">Previsão de Fechamento</label>
                                         <div>
@@ -122,7 +122,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-12">
+                                <div class="col-sm-3">
                                     <div class="form-group">
                                         <label for="">Vencimento da Apólice</label>
                                         <div>
@@ -144,9 +144,16 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-12">
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label for="">Prêmio</label>
+                                        <div>
+                                            {{ form.premio }}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-3">
                                     <div class="form-group">
                                         <label for="">Tipo de Seguro</label>
                                         <div>
@@ -154,7 +161,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-12">
+                                <div class="col-sm-3">
                                     <div class="form-group">
                                         <label for="">Expectativa</label>
                                         <div>
@@ -162,7 +169,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-12">
+                                <div class="col-sm-3">
                                     <div class="form-group">
                                         <label for="">Status</label>
                                         <div>
@@ -170,7 +177,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-12">
+                                <div class="col-sm-3">
                                     <div class="form-group">
                                         <label for="">Subscritor</label>
                                         <div>
@@ -180,8 +187,62 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <h2 class="display-1" style="color: #0e5741"> <strong>Histórico</strong> </h2>
 
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    {{ form.historico_1 }}
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    {{ form.historico_2 }}
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    {{ form.historico_3 }}
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    {{ form.historico_4 }}
+                                </div>
+                            </div><div class="col-sm-12">
+                                <div class="form-group">
+                                    {{ form.historico_5 }}
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    {{ form.historico_6 }}
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    {{ form.historico_7 }}
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    {{ form.historico_8 }}
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    {{ form.historico_9 }}
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    {{ form.historico_10 }}
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
                     <div class="row">
                         <div class="col-sm-12">
                             <input type="submit" name="salvar" style="background-color: #FFDD00" class="btn btn-outline-secondary btn-block" value="Salvar"/>

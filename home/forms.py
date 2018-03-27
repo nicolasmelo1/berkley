@@ -34,12 +34,22 @@ class PipelineComercial(forms.ModelForm):
         attrs={
             'class': 'form-control',
             'id': 'corretor',
+            'placeholder': 'Escreva aqui o nome do corretor',
+            'type': 'text'
+        }
+    ))
+    premio = forms.CharField(max_length=200, widget=forms.TextInput(
+        attrs={
+            'class': 'form-control',
+            'id': 'premio',
+            'placeholder': 'Insira o valor mensal da conta',
             'type': 'text'
         }
     ))
     produto = forms.ModelChoiceField(queryset=Produto.objects.all(), widget=forms.Select(
         attrs={
             'class': 'form-control',
+            'placeholder': 'Esolha o produto',
             'id': 'produto'
         }
     ))
@@ -47,6 +57,14 @@ class PipelineComercial(forms.ModelForm):
         attrs={
             'class': 'form-control',
             'id': 'cliente',
+            'placeholder': 'Escreva aqui o nome da empresa cliente',
+            'type': 'text'
+        }
+    ))
+    subscritor = forms.CharField(max_length=200, widget=forms.TextInput(
+        attrs={
+            'class': 'form-control',
+            'id': 'subscritor',
             'type': 'text'
         }
     ))
@@ -61,6 +79,7 @@ class PipelineComercial(forms.ModelForm):
         attrs={
             'class': 'form-control',
             'id': 'fechamento',
+            'placeholder': 'Data prevista para fechamento',
             'type': 'text'
         }
     ))
@@ -68,6 +87,7 @@ class PipelineComercial(forms.ModelForm):
         attrs={
             'class': 'form-control',
             'id': 'vencimento',
+            'placeholder': 'Data de vencimento da apólice',
             'type': 'text'
         }
     ))
@@ -89,9 +109,98 @@ class PipelineComercial(forms.ModelForm):
             'id': 'status'
         }
     ))
-    subscritor = forms.CharField(max_length=200, widget=forms.TextInput)
     motivo_perda = forms.ModelChoiceField(queryset=MotivoPerda.objects.all())
 
+    historico_1 = forms.CharField(max_length=3000, widget=forms.Textarea(
+        attrs={
+            'class': 'form-control',
+            'id': 'historico_1',
+            'rows': '2',
+            'placeholder': 'Historico 1',
+            'style': 'resize: none'
+        }
+    ))
+    historico_2 = forms.CharField(max_length=3000, widget=forms.Textarea(
+        attrs={
+            'class': 'form-control',
+            'id': 'historico_2',
+            'rows': '2',
+            'placeholder': 'Historico 2',
+            'style': 'resize: none'
+        }
+    ))
+    historico_3 = forms.CharField(max_length=3000, widget=forms.Textarea(
+        attrs={
+            'class': 'form-control',
+            'id': 'historico_3',
+            'rows': '2',
+            'placeholder': 'Historico 3',
+            'style': 'resize: none'
+        }
+    ))
+    historico_4 = forms.CharField(max_length=3000, widget=forms.Textarea(
+        attrs={
+            'class': 'form-control',
+            'id': 'historico_4',
+            'rows': '2',
+            'placeholder': 'Historico 4',
+            'style': 'resize: none'
+        }
+    ))
+    historico_5 = forms.CharField(max_length=3000, widget=forms.Textarea(
+        attrs={
+            'class': 'form-control',
+            'id': 'historico_5',
+            'rows': '2',
+            'placeholder': 'Historico 5',
+            'style': 'resize: none'
+        }
+    ))
+    historico_6 = forms.CharField(max_length=3000, widget=forms.Textarea(
+        attrs={
+            'class': 'form-control',
+            'id': 'historico_6',
+            'rows': '2',
+            'placeholder': 'Historico 6',
+            'style': 'resize: none'
+        }
+    ))
+    historico_7 = forms.CharField(max_length=3000, widget=forms.Textarea(
+        attrs={
+            'class': 'form-control',
+            'id': 'historico_7',
+            'rows': '2',
+            'placeholder': 'Historico 7',
+            'style': 'resize: none'
+        }
+    ))
+    historico_8 = forms.CharField(max_length=3000, widget=forms.Textarea(
+        attrs={
+            'class': 'form-control',
+            'id': 'historico_8',
+            'rows': '2',
+            'placeholder': 'Historico 8',
+            'style': 'resize: none'
+        }
+    ))
+    historico_9 = forms.CharField(max_length=3000, widget=forms.Textarea(
+        attrs={
+            'class': 'form-control',
+            'id': 'historico_9',
+            'rows': '2',
+            'placeholder': 'Historico 9',
+            'style': 'resize: none'
+        }
+    ))
+    historico_10 = forms.CharField(max_length=3000, widget=forms.Textarea(
+        attrs={
+            'class': 'form-control',
+            'id': 'historico_10',
+            'rows': '2',
+            'placeholder': 'Historico 10',
+            'style': 'resize: none'
+        }
+    ))
     class Meta:
         model=Protocolos
         fields = '__all__'
