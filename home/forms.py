@@ -4,14 +4,6 @@ from .models import Regional, Filial, Comercial, Produto, MotivoPerda,TipodeSegu
 class PipelineComercial(forms.ModelForm):
     error_css_class='error'
 
-    protocolo = forms.CharField(max_length=20, widget=forms.TextInput(
-        attrs={
-            'class': 'form-control',
-            'id': 'protocolo',
-            'type': 'text',
-            'placeholder': 'Protocolo para editar'
-        }
-    ))
     regional = forms.ModelChoiceField(queryset=Regional.objects.all(), widget=forms.Select(
         attrs={
             'class': 'form-control',
@@ -43,7 +35,8 @@ class PipelineComercial(forms.ModelForm):
             'class': 'form-control',
             'id': 'premio',
             'placeholder': 'Insira o valor mensal da conta',
-            'type': 'text'
+            'type': 'number',
+            'style': '-webkit-appearance: none;-moz-appearance: textfield;'
         }
     ))
     produto = forms.ModelChoiceField(queryset=Produto.objects.all(), widget=forms.Select(
@@ -68,14 +61,14 @@ class PipelineComercial(forms.ModelForm):
             'type': 'text'
         }
     ))
-    recebimento = forms.DateField(widget=forms.TextInput(
+    recebimento = forms.DateField(input_formats=['%d/%m/%Y'], widget=forms.TextInput(
         attrs={
             'class': 'form-control',
             'id': 'recebimento',
             'type': 'text'
         }
     ))
-    fechamento = forms.DateField(widget=forms.TextInput(
+    fechamento = forms.DateField(input_formats=['%d/%m/%Y'], widget=forms.TextInput(
         attrs={
             'class': 'form-control',
             'id': 'fechamento',
@@ -83,7 +76,7 @@ class PipelineComercial(forms.ModelForm):
             'type': 'text'
         }
     ))
-    vencimento = forms.DateField(widget=forms.TextInput(
+    vencimento = forms.DateField(input_formats=['%d/%m/%Y'], widget=forms.TextInput(
         attrs={
             'class': 'form-control',
             'id': 'vencimento',
@@ -109,9 +102,9 @@ class PipelineComercial(forms.ModelForm):
             'id': 'status'
         }
     ))
-    motivo_perda = forms.ModelChoiceField(queryset=MotivoPerda.objects.all())
+    motivo_perda = forms.ModelChoiceField(required=False, queryset=MotivoPerda.objects.all())
 
-    historico_1 = forms.CharField(max_length=3000, widget=forms.Textarea(
+    historico_1 = forms.CharField(required=False,max_length=3000, widget=forms.Textarea(
         attrs={
             'class': 'form-control',
             'id': 'historico_1',
@@ -120,7 +113,7 @@ class PipelineComercial(forms.ModelForm):
             'style': 'resize: none'
         }
     ))
-    historico_2 = forms.CharField(max_length=3000, widget=forms.Textarea(
+    historico_2 = forms.CharField(required=False,max_length=3000, widget=forms.Textarea(
         attrs={
             'class': 'form-control',
             'id': 'historico_2',
@@ -129,7 +122,7 @@ class PipelineComercial(forms.ModelForm):
             'style': 'resize: none'
         }
     ))
-    historico_3 = forms.CharField(max_length=3000, widget=forms.Textarea(
+    historico_3 = forms.CharField(required=False,max_length=3000, widget=forms.Textarea(
         attrs={
             'class': 'form-control',
             'id': 'historico_3',
@@ -138,7 +131,7 @@ class PipelineComercial(forms.ModelForm):
             'style': 'resize: none'
         }
     ))
-    historico_4 = forms.CharField(max_length=3000, widget=forms.Textarea(
+    historico_4 = forms.CharField(required=False,max_length=3000, widget=forms.Textarea(
         attrs={
             'class': 'form-control',
             'id': 'historico_4',
@@ -147,7 +140,7 @@ class PipelineComercial(forms.ModelForm):
             'style': 'resize: none'
         }
     ))
-    historico_5 = forms.CharField(max_length=3000, widget=forms.Textarea(
+    historico_5 = forms.CharField(required=False,max_length=3000, widget=forms.Textarea(
         attrs={
             'class': 'form-control',
             'id': 'historico_5',
@@ -156,7 +149,7 @@ class PipelineComercial(forms.ModelForm):
             'style': 'resize: none'
         }
     ))
-    historico_6 = forms.CharField(max_length=3000, widget=forms.Textarea(
+    historico_6 = forms.CharField(required=False,max_length=3000, widget=forms.Textarea(
         attrs={
             'class': 'form-control',
             'id': 'historico_6',
@@ -165,7 +158,7 @@ class PipelineComercial(forms.ModelForm):
             'style': 'resize: none'
         }
     ))
-    historico_7 = forms.CharField(max_length=3000, widget=forms.Textarea(
+    historico_7 = forms.CharField(required=False,max_length=3000, widget=forms.Textarea(
         attrs={
             'class': 'form-control',
             'id': 'historico_7',
@@ -174,7 +167,7 @@ class PipelineComercial(forms.ModelForm):
             'style': 'resize: none'
         }
     ))
-    historico_8 = forms.CharField(max_length=3000, widget=forms.Textarea(
+    historico_8 = forms.CharField(required=False,max_length=3000, widget=forms.Textarea(
         attrs={
             'class': 'form-control',
             'id': 'historico_8',
@@ -183,7 +176,7 @@ class PipelineComercial(forms.ModelForm):
             'style': 'resize: none'
         }
     ))
-    historico_9 = forms.CharField(max_length=3000, widget=forms.Textarea(
+    historico_9 = forms.CharField(required=False,max_length=3000, widget=forms.Textarea(
         attrs={
             'class': 'form-control',
             'id': 'historico_9',
@@ -192,7 +185,7 @@ class PipelineComercial(forms.ModelForm):
             'style': 'resize: none'
         }
     ))
-    historico_10 = forms.CharField(max_length=3000, widget=forms.Textarea(
+    historico_10 = forms.CharField(required=False,max_length=3000, widget=forms.Textarea(
         attrs={
             'class': 'form-control',
             'id': 'historico_10',
@@ -202,5 +195,5 @@ class PipelineComercial(forms.ModelForm):
         }
     ))
     class Meta:
-        model=Protocolos
-        fields = '__all__'
+        model = Protocolos
+        exclude = ('comentario_perda', 'motivo_perda')
