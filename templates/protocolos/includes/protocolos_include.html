@@ -1,0 +1,32 @@
+{% block content %}
+    <div class="row" style="background-color: #e6e6e6">
+    <h1>Protocolos</h1>
+    </div>
+        <div class="row">
+            {% csrf_token %}
+            <div class="col-sm-12" style="padding-top: 5px; padding-bottom: 10px">
+                <table class="table">
+                  <thead class="thead-dark" style="background-color: #0e5741;">
+                    <tr>
+                      <th style="color: #ffffff" scope="col">Nº Protocolo</th>
+                      <th style="color: #ffffff" scope="col">Regional</th>
+                      <th style="color: #ffffff" scope="col">Filial</th>
+                      <th style="color: #ffffff" scope="col">Comercial</th>
+                      <th style="color: #ffffff" scope="col">Comercial</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  {% for protocolo in protocolos %}
+                        <tr>
+                          <td> {{ protocolo.id }}</td>
+                          <td>{{ protocolo.regional }}</td>
+                          <td>Otto</td>
+                          <td>@mdo</td>
+                          <td>@mdo</td>
+                        </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+            </div>
+        </div>
+{% endblock %}
