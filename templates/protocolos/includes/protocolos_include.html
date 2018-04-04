@@ -1,28 +1,38 @@
 {% block content %}
     <div class="row" style="background-color: #e6e6e6">
-    <h1>Protocolos</h1>
+    <h2 class="display-1" style="color: #0e5741"> <strong>Protocolos</strong> </h2>
     </div>
         <div class="row">
             {% csrf_token %}
             <div class="col-sm-12" style="padding-top: 5px; padding-bottom: 10px;background-color: #ffffff">
-                <table class="table" style="background-color: #ffffff;">
-                  <thead class="thead-dark" style="background-color: #0e5741;">
+                <table class="table table-hover" style="background-color: #ffffff;">
+                  <thead "thead-dark" style="background-color: #0e5741;">
                     <tr>
-                      <th style="color: #ffffff" scope="col">Nº Protocolo</th>
-                      <th style="color: #ffffff" scope="col">Regional</th>
-                      <th style="color: #ffffff" scope="col">Filial</th>
-                      <th style="color: #ffffff" scope="col">Comercial</th>
-                      <th style="color: #ffffff" scope="col">Comercial</th>
+                      <th class="text-center" style="color: #ffffff" scope="col">Nº Protocolo</th>
+                      <th class="text-center" style="color: #ffffff" scope="col">Regional</th>
+                      <th class="text-center" style="color: #ffffff" scope="col">Filial</th>
+                      <th class="text-center" style="color: #ffffff" scope="col">Comercial</th>
+                      <th class="text-center" style="color: #ffffff" scope="col">Cliente</th>
+                      <th class="text-center" style="color: #ffffff" scope="col">Produto</th>
+                      <th class="text-center" style="color: #ffffff" scope="col">Previsão de Fechamento</th>
+                      <th class="text-center" style="color: #ffffff" scope="col">Prêmio</th>
+                      <th class="text-center" style="color: #ffffff" scope="col">Status</th>
+                      <th class="text-center" style="color: #ffffff" scope="col">Expectativa</th>
                     </tr>
                   </thead>
                   <tbody>
                   {% for protocolo in protocolos %}
-                        <tr>
-                          <td> {{ protocolo.id }}</td>
-                          <td>{{ protocolo.regional }}</td>
-                          <td>Otto</td>
-                          <td>@mdo</td>
-                          <td>@mdo</td>
+                        <tr class="active">
+                            <td><center>{{ protocolo.id }}</center></td>
+                            <td><center>{{ protocolo.regional }}</center></td>
+                            <td><center>{{ protocolo.filial }}</center></td>
+                            <td><center>{{ protocolo.comercial }}</center></td>
+                            <td><center>{{ protocolo.cliente }}</center></td>
+                            <td><center>{{ protocolo.produto }}</center></td>
+                            <td><center>{{ protocolo.fechamento }}</center></td>
+                            <td><center>{{ protocolo.premio }}</center></td>
+                            <td><center>{{ protocolo.status }}</center></td>
+                            <td class="danger"><center>{{ protocolo.expectativa }}</center></td>
                         </tr>
                     {% endfor %}
                   </tbody>
