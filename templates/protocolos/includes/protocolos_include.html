@@ -1,12 +1,24 @@
 {% block content %}
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Quicksearch e bootstrap</title>
+        <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.quicksearch/2.3.1/jquery.quicksearch.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    </head>
+    <div class="form-group input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+        <input name="consulta" id="txt_consulta" placeholder="Consultar" type="text" class="form-control">
+    </div>
     <div class="row" style="background-color: #e6e6e6">
     <h2 class="display-1" style="color: #0e5741"> <strong>Protocolos</strong> </h2>
     </div>
         <div class="row">
             {% csrf_token %}
             <div class="col-sm-12" style="padding-top: 5px; padding-bottom: 10px;background-color: #ffffff">
-                <table class="table table-hover" style="background-color: #ffffff;">
-                  <thead "thead-dark" style="background-color: #0e5741;">
+                <table id="tabela" class="table table-hover" style="background-color: #ffffff;">
+                  <thead "thead-dark" style="background-color: #aca753;">
                     <tr>
                       <th class="text-center" style="color: #ffffff" scope="col">Nº Protocolo</th>
                       <th class="text-center" style="color: #ffffff" scope="col">Regional</th>
@@ -35,6 +47,9 @@
                             <td class="danger"><center>{{ protocolo.expectativa }}</center></td>
                         </tr>
                     {% endfor %}
+                        <script>
+                            $('input#txt_consulta').quicksearch('table#tabela tbody tr');
+                        </script>
                   </tbody>
                 </table>
             </div>
