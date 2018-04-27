@@ -6,5 +6,5 @@ from django.conf.urls.static import static
 
 
 urlpatterns = [
-    url(r'^protocolos/$', views.protocolos, name='protocolos')
+    url(r'^$', views.protocolos, name='protocolos'),
 ]

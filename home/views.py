@@ -5,6 +5,7 @@ from .forms import PipelineComercial
 from django.shortcuts import render
 from .models import Regional,Filial,Comercial,Protocolos,TipodeSeguro,Produto,Expectativa,Status,MotivoPerda
 from django.http import HttpResponseRedirect
+from datetime import datetime, timedelta
 
 def temp(request):
     if request.method == 'POST':
@@ -59,3 +60,37 @@ def temp(request):
         form = PipelineComercial()
         return render(request, 'home/home_base.html', {'form': form})
 # Create your views here.
+
+def consulta(request, pk):
+    consulta = Protocolos.objects.get(pk=pk)
+
+
+    form = PipelineComercial(initial={
+        'regional': consulta.regional,
+        'filial': consulta.filial,
+        'comercial': consulta.comercial,
+        'corretor': consulta.corretor,
+        'cliente': consulta.cliente,
+        'produto': consulta.produto,
+        'recebimento': consulta.recebimento.strftime('%d/%m/%Y'),
+        'fechamento': consulta.fechamento.strftime('%d/%m/%Y'),
+        'vencimento': consulta.vencimento.strftime('%d/%m/%Y'),
+        'premio': consulta.premio,
+        'tipo_de_seguro': consulta.tipo_de_seguro,
+        'expectativa': consulta.expectativa,
+        'status': consulta.status,
+        'subscritor': consulta.subscritor,
+        'historico_1': consulta.historico_1,
+        'historico_2': consulta.historico_2,
+        'historico_3': consulta.historico_3,
+        'historico_4': consulta.historico_4,
+        'historico_5': consulta.historico_5,
+        'historico_6': consulta.historico_6,
+        'historico_7': consulta.historico_7,
+        'historico_8': consulta.historico_8,
+        'historico_9': consulta.historico_9,
+        'historico_10': consulta.historico_10,
+        })
+
+
+    return render(request, 'home/home_base.html', {'form': form})

@@ -18,7 +18,7 @@
             {% csrf_token %}
             <div class="col-sm-12" style="padding-top: 5px; padding-bottom: 10px;background-color: #ffffff">
                 <table id="tabela" class="table table-hover" style="background-color: #ffffff;">
-                  <thead "thead-dark" style="background-color: #ff9900;">
+                  <thead class="thead-dark" style="background-color: #ff9900;">
                     <tr>
                       <th class="text-center" style="color: #ffffff" scope="col">Nº Protocolo</th>
                       <th class="text-center" style="color: #ffffff" scope="col">Regional</th>
@@ -34,7 +34,7 @@
                   </thead>
                   <tbody>
                   {% for protocolo in protocolos %}
-                        <tr class="active">
+                        <tr class="clickable-row" onclick="window.location='/home/{{ protocolo.id }}'">
                             <td><center>{{ protocolo.id }}</center></td>
                             <td><center>{{ protocolo.regional }}</center></td>
                             <td><center>{{ protocolo.filial }}</center></td>
