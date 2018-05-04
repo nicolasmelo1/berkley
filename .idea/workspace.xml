@@ -2,15 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bd7d46d8-5868-4dbe-97db-308bfd6a3180" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/berkley.iml" afterPath="$PROJECT_DIR$/.idea/berkley.iml" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
-      <change beforePath="$PROJECT_DIR$/home/urls.py" afterPath="$PROJECT_DIR$/home/urls.py" />
-      <change beforePath="$PROJECT_DIR$/protocolos/urls.py" afterPath="$PROJECT_DIR$/protocolos/urls.py" />
-      <change beforePath="$PROJECT_DIR$/protocolos/views.py" afterPath="$PROJECT_DIR$/protocolos/views.py" />
-      <change beforePath="$PROJECT_DIR$/templates/home/includes/home_include_form.html" afterPath="$PROJECT_DIR$/templates/home/includes/home_include_form.html" />
-      <change beforePath="$PROJECT_DIR$/templates/protocolos/includes/protocolos_include.html" afterPath="$PROJECT_DIR$/templates/protocolos/includes/protocolos_include.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -108,7 +100,7 @@
         <entry file="file://$PROJECT_DIR$/templates/home/includes/home_include_form.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="294">
-              <caret line="176" column="24" lean-forward="true" selection-start-line="176" selection-start-column="24" selection-end-line="176" selection-end-column="24" />
+              <caret line="176" column="0" lean-forward="true" selection-start-line="176" selection-start-column="0" selection-end-line="176" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -357,7 +349,14 @@
       <option name="project" value="LOCAL" />
       <updated>1524799723864</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Criação de botões editar e delete">
+      <created>1525404457076</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1525404457076</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -421,7 +420,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="mudanças no layout do pipeline." />
     <MESSAGE value="Criei um novo app e tabela protocolos" />
-    <option name="LAST_COMMIT_MESSAGE" value="Criei um novo app e tabela protocolos" />
+    <MESSAGE value="Criação de botões editar e delete" />
+    <option name="LAST_COMMIT_MESSAGE" value="Criação de botões editar e delete" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -823,7 +823,7 @@
     <entry file="file://$PROJECT_DIR$/templates/home/includes/home_include_form.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="294">
-          <caret line="176" column="24" lean-forward="true" selection-start-line="176" selection-start-column="24" selection-end-line="176" selection-end-column="24" />
+          <caret line="176" column="0" lean-forward="true" selection-start-line="176" selection-start-column="0" selection-end-line="176" selection-end-column="0" />
           <folding />
         </state>
       </provider>
