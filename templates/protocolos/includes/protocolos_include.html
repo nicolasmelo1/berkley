@@ -1,26 +1,20 @@
 {% block content %}
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Quicksearch e bootstrap</title>
-        <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.quicksearch/2.3.1/jquery.quicksearch.js"></script>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    </head>
-    <div class="form-group input-group">
-        <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
-        <input name="consulta" id="txt_consulta" placeholder="Consultar" type="text" class="form-control">
-    </div>
+
     <div class="row" style="background-color: #e6e6e6">
     <h2 class="display-1" style="color: #0e5741"> <strong>Protocolos</strong> </h2>
     </div>
         <div class="row">
             {% csrf_token %}
             <div class="col-sm-12" style="padding-top: 5px; padding-bottom: 10px;background-color: #ffffff">
+                <div class="form-group input-group" style="padding-top: 10px">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+                    <input name="consulta" id="txt_consulta" placeholder="Consultar" type="text" class="form-control">
+                </div>
+                <form method="post" action="/protocolos/delete/">
+            {% csrf_token %}
                 <table id="tabela" class="table table-hover" style="background-color: #ffffff;">
                   <thead class="thead-dark" style="background-color: #ff9900;">
                     <tr>
-                      <th class="text-center" style="color: #ffffff" scope="col">Nº Protocolo</th>
                       <th class="text-center" style="color: #ffffff" scope="col">Regional</th>
                       <th class="text-center" style="color: #ffffff" scope="col">Filial</th>
                       <th class="text-center" style="color: #ffffff" scope="col">Comercial</th>
@@ -30,12 +24,13 @@
                       <th class="text-center" style="color: #ffffff" scope="col">Prêmio</th>
                       <th class="text-center" style="color: #ffffff" scope="col">Status</th>
                       <th class="text-center" style="color: #ffffff" scope="col">Expectativa</th>
+                      <th class="text-center" style="color: #ffffff" scope="col">Editar</th>
+                      <th class="text-center" style="color: #ffffff" scope="col">Deletar</th>
                     </tr>
                   </thead>
                   <tbody>
                   {% for protocolo in protocolos %}
                         <tr class="clickable-row" onclick="window.location='/home/{{ protocolo.id }}'">
-                            <td><center>{{ protocolo.id }}</center></td>
                             <td><center>{{ protocolo.regional }}</center></td>
                             <td><center>{{ protocolo.filial }}</center></td>
                             <td><center>{{ protocolo.comercial }}</center></td>
@@ -45,6 +40,8 @@
                             <td><center>{{ protocolo.premio }}</center></td>
                             <td><center>{{ protocolo.status }}</center></td>
                             <td class="danger"><center>{{ protocolo.expectativa }}</center></td>
+                            <td><center><button type="button" class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="glyphicon glyphicon-pencil"></span></button></center></td>
+                            <td><center><button name="delete" class="btn btn-danger btn-xs" value="{{ protocolo.id }}" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></center></td>
                         </tr>
                     {% endfor %}
                         <script>
@@ -52,6 +49,7 @@
                         </script>
                   </tbody>
                 </table>
+            </form>
             </div>
         </div>
 {% endblock %}
