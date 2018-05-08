@@ -1,0 +1,36 @@
+{% block content %}
+    <script>
+        $(document).ready(function(){
+          $("#txt_consulta").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $("#tabela tr").filter(function() {
+              $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+                sumPremios();
+            });
+          });
+        });
+        function sumPremios(){
+            var cls = document.getElementsByName("premio");
+            var row = document.getElementsByName("table-row");
+            var everythingShown = true;
+            var sum = 0;
+            for (var i = 0; i < cls.length; i++){
+                if (row[i].style.display !== "none"){
+                    sum += isNaN(cls[i].innerText) ? 0 : parseInt(cls[i].innerText);
+                } else {
+                    everythingShown = false;
+                }
+            }
+            var valorPremio = document.getElementById("valorPremio");
+            var valorPremioText = valorPremio.getElementsByTagName("p")[0];
+
+            if (everythingShown){
+                valorPremio.style.display = "none";
+                valorPremioText.innerHTML = "";
+            } else {
+                valorPremio.style.display = "";
+                valorPremioText.innerHTML = "O total de prêmios é: " + sum;
+            }
+        }
+    </script>
+{% endblock %}

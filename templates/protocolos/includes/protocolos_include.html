@@ -10,9 +10,12 @@
                     <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
                     <input name="consulta" id="txt_consulta" placeholder="Consultar" type="text" class="form-control">
                 </div>
+                <div id="valorPremio" style="margin-bottom: 20px; display: none">
+                    <p style="color: #000000"></p>
+                </div>
                 <form method="post" action="/protocolos/delete/">
             {% csrf_token %}
-                <table id="tabela" class="table table-hover" style="background-color: #ffffff;">
+                <table id="full-table" class="table table-hover" style="background-color: #ffffff;">
                   <thead class="thead-dark" style="background-color: #ff9900;">
                     <tr>
                       <th class="text-center" style="color: #ffffff" scope="col">Regional</th>
@@ -28,28 +31,26 @@
                       <th class="text-center" style="color: #ffffff" scope="col">Deletar</th>
                     </tr>
                   </thead>
-                  <tbody>
+                  <tbody id="tabela">
                   {% for protocolo in protocolos %}
-                        <tr class="clickable-row" onclick="window.location='/home/{{ protocolo.id }}'">
+                        <tr class="clickable-row" name="table-row" onclick="window.location='/home/{{ protocolo.id }}'">
                             <td><center>{{ protocolo.regional }}</center></td>
                             <td><center>{{ protocolo.filial }}</center></td>
                             <td><center>{{ protocolo.comercial }}</center></td>
                             <td><center>{{ protocolo.cliente }}</center></td>
                             <td><center>{{ protocolo.produto }}</center></td>
                             <td><center>{{ protocolo.fechamento }}</center></td>
-                            <td><center>{{ protocolo.premio }}</center></td>
+                            <td id="premio" name="premio"><center>{{ protocolo.premio }}</center></td>
                             <td><center>{{ protocolo.status }}</center></td>
                             <td class="danger"><center>{{ protocolo.expectativa }}</center></td>
                             <td><center><button type="button" class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="glyphicon glyphicon-pencil"></span></button></center></td>
                             <td><center><button name="delete" class="btn btn-danger btn-xs" value="{{ protocolo.id }}" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></center></td>
                         </tr>
                     {% endfor %}
-                        <script>
-                            $('input#txt_consulta').quicksearch('table#tabela tbody tr');
-                        </script>
                   </tbody>
                 </table>
             </form>
             </div>
         </div>
+    {% include 'protocolos/includes/protocolos_scripts.html' %}
 {% endblock %}
