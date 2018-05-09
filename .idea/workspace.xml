@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bd7d46d8-5868-4dbe-97db-308bfd6a3180" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/templates/protocolos/includes/protocolos_scripts.html" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
       <change beforePath="$PROJECT_DIR$/templates/protocolos/includes/protocolos_include.html" afterPath="$PROJECT_DIR$/templates/protocolos/includes/protocolos_include.html" />
+      <change beforePath="$PROJECT_DIR$/templates/protocolos/includes/protocolos_scripts.html" afterPath="$PROJECT_DIR$/templates/protocolos/includes/protocolos_scripts.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -77,25 +77,28 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="protocolos_include.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="protocolos_include.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/protocolos/includes/protocolos_include.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="15" column="49" lean-forward="false" selection-start-line="15" selection-start-column="49" selection-end-line="15" selection-end-column="49" />
+            <state relative-caret-position="168">
+              <caret line="8" column="78" lean-forward="true" selection-start-line="8" selection-start-column="78" selection-end-line="8" selection-end-column="78" />
               <folding>
-                <element signature="e#103#125#0#HTML" expanded="true" />
-                <element signature="e#697#739#0#HTML" expanded="true" />
-                <element signature="e#764#786#0#HTML" expanded="true" />
+                <element signature="e#103#145#0#HTML" expanded="true" />
+                <element signature="e#282#354#0#HTML" expanded="true" />
+                <element signature="e#408#433#0#HTML" expanded="true" />
+                <element signature="e#717#759#0#HTML" expanded="true" />
+                <element signature="e#796#818#0#HTML" expanded="true" />
+                <element signature="e#1789#1811#0#HTML" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="protocolos_scripts.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="protocolos_scripts.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/protocolos/includes/protocolos_scripts.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="232">
-              <caret line="22" column="13" lean-forward="false" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
+            <state relative-caret-position="526">
+              <caret line="35" column="14" lean-forward="false" selection-start-line="35" selection-start-column="14" selection-end-line="35" selection-end-column="14" />
               <folding />
             </state>
           </provider>
@@ -104,9 +107,11 @@
       <file leaf-file-name="home_include_form.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/home/includes/home_include_form.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="987">
-              <caret line="176" column="0" lean-forward="false" selection-start-line="176" selection-start-column="0" selection-end-line="176" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="441">
+              <caret line="66" column="57" lean-forward="false" selection-start-line="66" selection-start-column="57" selection-end-line="66" selection-end-column="57" />
+              <folding>
+                <element signature="e#3301#3323#0#HTML" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -114,9 +119,13 @@
       <file leaf-file-name="home_base.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/home/home_base.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-185">
-              <caret line="19" column="195" lean-forward="false" selection-start-line="19" selection-start-column="195" selection-end-line="19" selection-end-column="195" />
-              <folding />
+            <state relative-caret-position="399">
+              <caret line="19" column="53" lean-forward="false" selection-start-line="19" selection-start-column="53" selection-end-line="19" selection-end-column="53" />
+              <folding>
+                <element signature="n#style#0;n#button#0;n#div#0;n#nav#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#ul#0;n#div#0;n#div#0;n#nav#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#p#0;n#a#0;n#li#2;n#ul#0;n#div#0;n#div#0;n#nav#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -124,7 +133,7 @@
       <file leaf-file-name="protocolos_base.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/protocolos/protocolos_base.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-419">
+            <state relative-caret-position="148">
               <caret line="8" column="139" lean-forward="false" selection-start-line="8" selection-start-column="139" selection-end-line="8" selection-end-column="139" />
               <folding />
             </state>
@@ -161,8 +170,8 @@
         <option value="$PROJECT_DIR$/templates/home/includes/home_include_form.html" />
         <option value="$PROJECT_DIR$/templates/home/home_base.html" />
         <option value="$PROJECT_DIR$/templates/protocolos/protocolos_base.html" />
-        <option value="$PROJECT_DIR$/templates/protocolos/includes/protocolos_include.html" />
         <option value="$PROJECT_DIR$/templates/protocolos/includes/protocolos_scripts.html" />
+        <option value="$PROJECT_DIR$/templates/protocolos/includes/protocolos_include.html" />
       </list>
     </option>
   </component>
@@ -369,7 +378,14 @@
       <option name="project" value="LOCAL" />
       <updated>1525404469801</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="pagina de protocolos, arrumei a consulta e adicionei um script que soma os valores da tabela premio quando é filtrado">
+      <created>1525755522447</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1525755522447</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -434,7 +450,8 @@
     <MESSAGE value="mudanças no layout do pipeline." />
     <MESSAGE value="Criei um novo app e tabela protocolos" />
     <MESSAGE value="Criação de botões editar e delete" />
-    <option name="LAST_COMMIT_MESSAGE" value="Criação de botões editar e delete" />
+    <MESSAGE value="pagina de protocolos, arrumei a consulta e adicionei um script que soma os valores da tabela premio quando é filtrado" />
+    <option name="LAST_COMMIT_MESSAGE" value="pagina de protocolos, arrumei a consulta e adicionei um script que soma os valores da tabela premio quando é filtrado" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -506,7 +523,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4012">
           <caret line="236" column="95" lean-forward="false" selection-start-line="236" selection-start-column="95" selection-end-line="236" selection-end-column="95" />
-          <folding />
+          <folding>
+            <element signature="e#3301#3323#0#HTML" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -523,9 +542,12 @@
         <state relative-caret-position="323">
           <caret line="19" column="46" lean-forward="false" selection-start-line="19" selection-start-column="46" selection-end-line="19" selection-end-column="46" />
           <folding>
-            <element signature="e#103#125#0#HTML" expanded="true" />
-            <element signature="e#697#739#0#HTML" expanded="true" />
-            <element signature="e#764#786#0#HTML" expanded="true" />
+            <element signature="e#103#145#0#HTML" expanded="true" />
+            <element signature="e#282#354#0#HTML" expanded="true" />
+            <element signature="e#408#433#0#HTML" expanded="true" />
+            <element signature="e#717#759#0#HTML" expanded="true" />
+            <element signature="e#796#818#0#HTML" expanded="true" />
+            <element signature="e#1789#1811#0#HTML" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -563,7 +585,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4012">
           <caret line="236" column="95" lean-forward="false" selection-start-line="236" selection-start-column="95" selection-end-line="236" selection-end-column="95" />
-          <folding />
+          <folding>
+            <element signature="e#3301#3323#0#HTML" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -580,9 +604,12 @@
         <state relative-caret-position="323">
           <caret line="19" column="46" lean-forward="false" selection-start-line="19" selection-start-column="46" selection-end-line="19" selection-end-column="46" />
           <folding>
-            <element signature="e#103#125#0#HTML" expanded="true" />
-            <element signature="e#697#739#0#HTML" expanded="true" />
-            <element signature="e#764#786#0#HTML" expanded="true" />
+            <element signature="e#103#145#0#HTML" expanded="true" />
+            <element signature="e#282#354#0#HTML" expanded="true" />
+            <element signature="e#408#433#0#HTML" expanded="true" />
+            <element signature="e#717#759#0#HTML" expanded="true" />
+            <element signature="e#796#818#0#HTML" expanded="true" />
+            <element signature="e#1789#1811#0#HTML" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -613,7 +640,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="5" column="113" lean-forward="false" selection-start-line="3" selection-start-column="8" selection-end-line="5" selection-end-column="113" />
-          <folding />
+          <folding>
+            <element signature="e#3301#3323#0#HTML" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -630,9 +659,12 @@
         <state relative-caret-position="374">
           <caret line="22" column="30" lean-forward="false" selection-start-line="22" selection-start-column="30" selection-end-line="22" selection-end-column="30" />
           <folding>
-            <element signature="e#103#125#0#HTML" expanded="true" />
-            <element signature="e#697#739#0#HTML" expanded="true" />
-            <element signature="e#764#786#0#HTML" expanded="true" />
+            <element signature="e#103#145#0#HTML" expanded="true" />
+            <element signature="e#282#354#0#HTML" expanded="true" />
+            <element signature="e#408#433#0#HTML" expanded="true" />
+            <element signature="e#717#759#0#HTML" expanded="true" />
+            <element signature="e#796#818#0#HTML" expanded="true" />
+            <element signature="e#1789#1811#0#HTML" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -678,9 +710,12 @@
         <state relative-caret-position="374">
           <caret line="22" column="30" lean-forward="false" selection-start-line="22" selection-start-column="30" selection-end-line="22" selection-end-column="30" />
           <folding>
-            <element signature="e#103#125#0#HTML" expanded="true" />
-            <element signature="e#697#739#0#HTML" expanded="true" />
-            <element signature="e#764#786#0#HTML" expanded="true" />
+            <element signature="e#103#145#0#HTML" expanded="true" />
+            <element signature="e#282#354#0#HTML" expanded="true" />
+            <element signature="e#408#433#0#HTML" expanded="true" />
+            <element signature="e#717#759#0#HTML" expanded="true" />
+            <element signature="e#796#818#0#HTML" expanded="true" />
+            <element signature="e#1789#1811#0#HTML" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -787,30 +822,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/home/home_base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-185">
-          <caret line="19" column="195" lean-forward="false" selection-start-line="19" selection-start-column="195" selection-end-line="19" selection-end-column="195" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/protocolos/protocolos_base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-419">
-          <caret line="8" column="139" lean-forward="false" selection-start-line="8" selection-start-column="139" selection-end-line="8" selection-end-column="139" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/home/includes/home_include_form.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="987">
-          <caret line="176" column="0" lean-forward="false" selection-start-line="176" selection-start-column="0" selection-end-line="176" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/protocolos/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="273">
@@ -831,23 +842,56 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/protocolos/includes/protocolos_include.html">
+    <entry file="file://$PROJECT_DIR$/templates/home/home_base.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="15" column="49" lean-forward="false" selection-start-line="15" selection-start-column="49" selection-end-line="15" selection-end-column="49" />
+        <state relative-caret-position="399">
+          <caret line="19" column="53" lean-forward="false" selection-start-line="19" selection-start-column="53" selection-end-line="19" selection-end-column="53" />
           <folding>
-            <element signature="e#103#125#0#HTML" expanded="true" />
-            <element signature="e#697#739#0#HTML" expanded="true" />
-            <element signature="e#764#786#0#HTML" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#div#0;n#nav#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#ul#0;n#div#0;n#div#0;n#nav#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#a#0;n#li#2;n#ul#0;n#div#0;n#div#0;n#nav#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/protocolos/protocolos_base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="148">
+          <caret line="8" column="139" lean-forward="false" selection-start-line="8" selection-start-column="139" selection-end-line="8" selection-end-column="139" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/protocolos/includes/protocolos_scripts.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="232">
-          <caret line="22" column="13" lean-forward="false" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
+        <state relative-caret-position="526">
+          <caret line="35" column="14" lean-forward="false" selection-start-line="35" selection-start-column="14" selection-end-line="35" selection-end-column="14" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/home/includes/home_include_form.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="441">
+          <caret line="66" column="57" lean-forward="false" selection-start-line="66" selection-start-column="57" selection-end-line="66" selection-end-column="57" />
+          <folding>
+            <element signature="e#3301#3323#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/protocolos/includes/protocolos_include.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="8" column="78" lean-forward="true" selection-start-line="8" selection-start-column="78" selection-end-line="8" selection-end-column="78" />
+          <folding>
+            <element signature="e#103#145#0#HTML" expanded="true" />
+            <element signature="e#282#354#0#HTML" expanded="true" />
+            <element signature="e#408#433#0#HTML" expanded="true" />
+            <element signature="e#717#759#0#HTML" expanded="true" />
+            <element signature="e#796#818#0#HTML" expanded="true" />
+            <element signature="e#1789#1811#0#HTML" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

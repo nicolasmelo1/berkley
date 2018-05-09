@@ -1,7 +1,7 @@
 {% block content %}
 
     <div class="row" style="background-color: #e6e6e6">
-    <h2 class="display-1" style="color: #0e5741"> <strong>Protocolos</strong> </h2>
+    <h2 class="display-1" style="color: #0e5741; padding-left: 15px"> <strong>Protocolos</strong> </h2>
     </div>
         <div class="row">
             {% csrf_token %}
@@ -11,7 +11,7 @@
                     <input name="consulta" id="txt_consulta" placeholder="Consultar" type="text" class="form-control">
                 </div>
                 <div id="valorPremio" style="margin-bottom: 20px; display: none">
-                    <p style="color: #000000"></p>
+                    <em><strong><p style="color: #ff8000"></p></strong></em>
                 </div>
                 <form method="post" action="/protocolos/delete/">
             {% csrf_token %}
