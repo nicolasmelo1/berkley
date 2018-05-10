@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+    <html lang="pt">
+        {% block content %}
+        <head>
+            <title> Pipeline - {{ account_name }} </title>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width-device-width, initial-scale=1">
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+
+        </head>
+
+        <body>
+            <div class="container-fluid" style="background-color: #0e5741">
+                <nav class="navbar navbar-default" style="background-color: #0e5741;border-color: #0e5741;">
+                    <div class="container-fluid">
+                        <button type="button" style="border-width: 0px; padding-top: 30px; background-color: #0e5741" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="icon-bar" style="background-color: #000000"></span>
+                            <span class="icon-bar" style="background-color: #000000"></span>
+                            <span class="icon-bar" style="background-color: #000000"></span>
+                        </button>
+                        {% load static %}
+                        <a class="navbar-brand" href="{% url 'home' %}" style="text-decoration: none"><img src="https://www.berkley.com.br/Institucional/img/logo.png" style="display: inline-block;border-radius: 20px" alt="" width="340" height="76"><strong style="color: #ffffff"><p style="display: inline-block; margin-left:20px">Pipeline Comercial</p></strong></a>
+
+                        <div id="navbar" class="navbar-collapse collapse" aria-expanded="false" style="border-width: 0px";>
+                            <ul class="nav navbar-nav navbar-right" style="padding-top: 10px">
+                                <li class="active">
+                                    <a href="{% url 'home' %}" style="background-color: #0e5741"><p style="padding-top: 10px; color: #ffffff">Formulário</p></a>
+                                <li class="active">
+                                    <a href="{% url 'protocolos' %}" style="background-color: #0e5741"><p style="padding-top: 10px; color: #ffffff">Protocolos</p></a>
+                                <li class="active">
+                                    <a href="{% url 'dashboard' %}" style="background-color: #0e5741"><p style="padding-top: 10px; color: #ffffff">Dashboard</p></a>
+                                <li class="active">
+                                    <a href="{% url 'logout' %}" style="background-color: #0e5741"><p style="padding-top: 10px; color: #ffffff">Logout</p></a>
+                                </li>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+            {% include 'dashboard/includes/dashboard_include.html' %}
+        </body>
+        {% endblock %}
+    </html>
