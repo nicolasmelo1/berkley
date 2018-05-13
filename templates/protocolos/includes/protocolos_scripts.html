@@ -1,5 +1,26 @@
 {% block content %}
     <script>
+        //onload function
+        window.onload = onLoad();
+        function onLoad(){
+            expectativaColors();
+            sumPremios();
+        }
+        function expectativaColors(){
+            var expectativa = document.getElementsByName("expectativa");
+            var premio = document.getElementsByName("premio");
+            for (var i = 0; i < expectativa.length; i++){
+                premio[i].innerText = VMasker.toMoney(premio[i].innerText,);
+        	    if (expectativa[i].innerText == "Alta" || expectativa[i].textContent == "Alta"){
+                	expectativa[i].className = "success"
+        	    } else if (expectativa[i].innerText == "Média" || expectativa[i].textContent == "Média"){
+        	    	expectativa[i].className = "warning"
+        	    }
+            }
+
+        }
+
+        //searchbar function
         $(document).ready(function(){
           $("#txt_consulta").on("keyup", function() {
             var value = $(this).val().toLowerCase();
@@ -12,25 +33,17 @@
         function sumPremios(){
             var cls = document.getElementsByName("premio");
             var row = document.getElementsByName("table-row");
-            var everythingShown = true;
             var sum = 0;
             for (var i = 0; i < cls.length; i++){
                 if (row[i].style.display !== "none"){
-                    sum += isNaN(cls[i].innerText) ? 0 : parseInt(cls[i].innerText);
-                } else {
-                    everythingShown = false;
+                    sum += isNaN(VMasker.toNumber(cls[i].innerText)) ? 0 : parseInt(VMasker.toNumber(cls[i].innerText));
                 }
             }
             var valorPremio = document.getElementById("valorPremio");
             var valorPremioText = valorPremio.getElementsByTagName("p")[0];
 
-            if (everythingShown){
-                valorPremio.style.display = "none";
-                valorPremioText.innerHTML = "";
-            } else {
-                valorPremio.style.display = "";
-                valorPremioText.innerHTML = "O valor total de prêmios é: R$" + sum + ",00";
-            }
+            valorPremioText.innerHTML = "O valor total de prêmios é: R$ " + VMasker.toMoney(sum);
         }
+
     </script>
 {% endblock %}

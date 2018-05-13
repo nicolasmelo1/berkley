@@ -10,7 +10,7 @@
                     <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
                     <input name="consulta" id="txt_consulta" placeholder="Consultar" type="text" class="form-control">
                 </div>
-                <div id="valorPremio" style="margin-bottom: 20px; display: none">
+                <div id="valorPremio" style="margin-bottom: 20px">
                     <em><strong><p style="color: #ff8000"></p></strong></em>
                 </div>
                 <form method="post" action="/protocolos/delete/">
@@ -42,7 +42,7 @@
                             <td><center>{{ protocolo.fechamento }}</center></td>
                             <td id="premio" name="premio"><center>{{ protocolo.premio }}</center></td>
                             <td><center>{{ protocolo.status }}</center></td>
-                            <td class="danger"><center>{{ protocolo.expectativa }}</center></td>
+                            <td class="danger" name="expectativa"><center>{{ protocolo.expectativa }}</center></td>
                             <td><center><button type="button" class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="glyphicon glyphicon-pencil"></span></button></center></td>
                             <td><center><button name="delete" class="btn btn-danger btn-xs" value="{{ protocolo.id }}" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></center></td>
                         </tr>
