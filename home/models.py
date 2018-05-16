@@ -48,6 +48,11 @@ class MotivoPerda(models.Model):
     def __str__(self):
         return self.motivo
 
+class Congenere(models.Model):
+    congenere = models.CharField(max_length=200)
+    def __str__(self):
+        return self.congenere
+
 class Protocolos(models.Model):
     regional = models.ForeignKey(Regional, on_delete=models.CASCADE)
     filial = models.ForeignKey(Filial, on_delete=models.CASCADE)
@@ -66,6 +71,7 @@ class Protocolos(models.Model):
     status = models.ForeignKey(Status, on_delete=models.CASCADE)
     subscritor = models.CharField(max_length=250)
     motivo_perda = models.ForeignKey(MotivoPerda, on_delete=models.CASCADE, null=True, blank=True)
+    congenere = models.ForeignKey(Congenere, on_delete=models.CASCADE, null=True, blank=True)
     comentario_perda = models.CharField(max_length=250, null=True, blank=True)
     historico_1 = models.CharField(max_length=4000, null=True, blank=True)
     historico_2 = models.CharField(max_length=4000, null=True, blank=True)
