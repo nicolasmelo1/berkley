@@ -21,15 +21,18 @@
         }
 
         //searchbar function
-        $(document).ready(function(){
-          $("#txt_consulta").on("keyup", function() {
-            var value = $(this).val().toLowerCase();
-            $("#tabela tr").filter(function() {
-              $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
-                sumPremios();
+
+
+        $(document).ready(function() {
+            $('#full-table').DataTable();
+
+            $('#txt_consulta').on( 'keyup click', function () {
+                $('#full-table').DataTable().search(
+                    $('#txt_consulta').val()
+                ).draw();
             });
-          });
         });
+
         function sumPremios(){
             var cls = document.getElementsByName("premio");
             var row = document.getElementsByName("table-row");
@@ -44,6 +47,16 @@
 
             valorPremioText.innerHTML = "O valor total de prêmios é: R$ " + VMasker.toMoney(sum);
         }
+
+        // Filter Function
+        $(document).ready(function(){
+          $("#myInput").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $(".dropdown-menu li").filter(function() {
+              $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+          });
+        });
 
     </script>
 {% endblock %}
