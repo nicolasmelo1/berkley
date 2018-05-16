@@ -27,6 +27,7 @@ def temp(request):
                 save.tipo_de_seguro = form.cleaned_data['tipo_de_seguro']
                 save.expectativa = form.cleaned_data['expectativa']
                 save.status = form.cleaned_data['status']
+                save.status = form.cleaned_data['status']
                 save.subscritor = form['subscritor'].value()
                 save.save()
                 form = PipelineComercial(initial={

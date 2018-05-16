@@ -102,8 +102,12 @@ class PipelineComercial(forms.ModelForm):
             'id': 'status'
         }
     ))
-    motivo_perda = forms.ModelChoiceField(required=False, queryset=MotivoPerda.objects.all())
-
+    motivo_perda = forms.ModelChoiceField(required=False, queryset=MotivoPerda.objects.all(), widget=forms.Select(
+        attrs={
+            'class': 'form-control',
+            'id': 'motivo_perda'
+        }
+    ))
     historico_1 = forms.CharField(required=False,max_length=3000, widget=forms.Textarea(
         attrs={
             'class': 'form-control',
