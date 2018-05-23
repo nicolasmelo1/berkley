@@ -1,11 +1,13 @@
 {% block content %}
     <script>
-        //onload function
+        // onload function
         window.onload = onLoad();
         function onLoad(){
             expectativaColors();
             sumPremios();
         }
+
+        // Add colors for expectativa
         function expectativaColors(){
             var expectativa = document.getElementsByName("expectativa");
             var premio = document.getElementsByName("premio");
@@ -20,19 +22,7 @@
 
         }
 
-        //searchbar function
-
-
-        $(document).ready(function() {
-            $('#full-table').DataTable();
-
-            $('#txt_consulta').on( 'keyup click', function () {
-                $('#full-table').DataTable().search(
-                    $('#txt_consulta').val()
-                ).draw();
-            });
-        });
-
+        // Searchbar function
         function sumPremios(){
             var cls = document.getElementsByName("premio");
             var row = document.getElementsByName("table-row");
@@ -48,11 +38,66 @@
             valorPremioText.innerHTML = "O valor total de prêmios é: R$ " + VMasker.toMoney(sum);
         }
 
+        function sortTable(n) {
+            var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+            table = document.getElementById("full-table");
+            switching = true;
+
+            dir = "asc";
+
+            while (switching) {
+                switching = false;
+                rows = table.getElementsByTagName("tr");
+                for (i = 1; i < (rows.length - 1); i++) {
+                    shouldSwitch = false;
+                    x = rows[i].getElementsByTagName("td")[n];
+                    y = rows[i + 1].getElementsByTagName("td")[n];
+                    if (dir == "asc") {
+                        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                            shouldSwitch = true;
+                            break;
+                        }
+                    } else if (dir == "desc") {
+                        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                            shouldSwitch = true;
+                            break;
+                        }
+                    }
+                }
+                if (shouldSwitch) {
+                    rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                    switching = true;
+                    switchcount ++;
+                } else {
+                    if (switchcount == 0 && dir == "asc") {
+                        dir = "desc";
+                        switching = true;
+                    }
+                }
+                if (dir == "asc"){
+                    rows = table.getElementsByTagName("tr");
+                    header = rows[0].getElementsByTagName("th")[n];
+                    img = header.getElementsByTagName("img")[0];
+                    img.style.display = "";
+                    img.src = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFBSURBVGhD7dcxKEVRHMfxKzEYeCUmC0oZXjYmZVE22Ty7UdksNoNRGZVN2ZRJWZSJTQalbCZKj8FAwvc/KOkf99137r3n5vetz3KHc/5nOucmSimllFJKKRVRwxiJXD/+bAUfEbvFKFK1Bm+Rst1jHC21AW+xsjQxgUxtwVu0aE+YQuY6sANv8aI8YwZt14k9eJvk7QVzCJYd5gDeZnl5wwKC140jeJuGZodYQm714ATe5qG8Yxm514szeEOEsIrCquEC3iDtWEfhDeAK3kBZbKK0hnADb7BWbKP07LVsDzlvwDR2YRdvFI3hDt6gv9mH3VFRVccDvIE9h+hClE3iEd7g3x3DLtiom4Y99LwDmFPYxVqJZmEPvp+HOEcfKtU8XvF1iEuk+teOsUXYA/Aag/ahyjVgF6dSSiml1P8qST4BgcHE7LLrfy0AAAAASUVORK5CYII="
+
+                } else {
+                    rows = table.getElementsByTagName("tr");
+                    header = rows[0].getElementsByTagName("th")[n];
+                    img = header.getElementsByTagName("img")[0];
+                    img.style.display = "";
+                    img.src = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAE8SURBVGhD7dY/KEZRGMfxi1KUTAYlGdhYlJRMsimbjDK+s8EqVmUz2GRUJmWgrBYZlMVGSTJYiBK+j9ySHrne+++c+n3r09u7nPOc6bmJUkoppZSKutav36jrwBEWP/9FWjv28Y5XzCO62rALe0TqBbOIphZs4/sjUs+YRvDZIzbhPSL1iEkE3Tq84X96wBiCbAXe0L+5xwiCagnesH+5xRCCqIE3eINmcY0B1NoC8jwidYk+1NIcbNF5gzXjAj2otBnYgvMGyuMM3aikKTzBG6QIJ+hCqU3AFpo3QJGO0YlSGoUtMu/iMhzAPjwLbRh38C4s0x7sA7SQBnED76Iq7CD3Y/pxBe+CKm3BPkibqhe2qLyD67CBf2eL6RzegXVaQ+ZsIZ3COygEy8jUKg4DNw6llFJKKaVUzCXJB0d+xWvPLoLvAAAAAElFTkSuQmCC"
+
+                }
+            }
+        }
+
+
         // Filter Function
         $(document).ready(function(){
-          $("#myInput").on("keyup", function() {
+          $("#txt_consulta").on("keyup", function() {
             var value = $(this).val().toLowerCase();
-            $(".dropdown-menu li").filter(function() {
+            $("#tabela tr").filter(function() {
               $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
             });
           });

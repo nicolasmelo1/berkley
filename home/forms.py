@@ -90,6 +90,12 @@ class PipelineComercial(forms.ModelForm):
             'id': 'tipo_de_seguro'
         }
     ))
+    congenere = forms.ModelChoiceField(required=False, queryset=TipodeSeguro.objects.all(), widget=forms.Select(
+        attrs={
+            'class': 'form-control',
+            'id': 'congenere'
+        }
+    ))
     expectativa = forms.ModelChoiceField(queryset=Expectativa.objects.all(), widget=forms.Select(
         attrs={
             'class': 'form-control',
@@ -200,4 +206,4 @@ class PipelineComercial(forms.ModelForm):
     ))
     class Meta:
         model = Protocolos
-        exclude = ('comentario_perda', 'motivo_perda')
+        exclude = ('comentario_perda', 'motivo_perda', 'congenere')

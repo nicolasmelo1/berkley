@@ -49,7 +49,7 @@ class MotivoPerda(models.Model):
         return self.motivo
 
 class Congenere(models.Model):
-    congenere = models.CharField(max_length=200)
+    congenere = models.CharField(max_length=300)
     def __str__(self):
         return self.congenere
 
