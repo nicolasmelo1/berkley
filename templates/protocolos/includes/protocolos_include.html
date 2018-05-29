@@ -6,12 +6,12 @@
         <div class="row">
             {% csrf_token %}
             <div class="col-sm-12" style="padding-top: 5px; padding-bottom: 10px;background-color: #ffffff">
-                <div class="form-group input-group" id="procurar" style="padding-top: 10px">
+                <div class="form-group input-group" id="duplicate" style="padding-top: 10px">
                     <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
                     <input name="consulta" id="txt_consulta" placeholder="Consultar" type="text" class="form-control">
                 </div>
-                <input type="button" value="Add" id="duplicate" class="btn btn-success">
-                <div id="valorPremio" style="margin-bottom: 20px">
+                <div><button id="button" onclick="duplicate()" class="btn btn-success">Add</button></div>
+                <br><div id="valorPremio" style="margin-bottom: 20px">
                     <em><strong><p style="color: #ff8000"></p></strong></em>
                 </div>
                 <form method="post" action="/protocolos/delete/">
