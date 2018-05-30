@@ -94,12 +94,27 @@
 
 
         // Filter Function
-        function searchTable(consulta){
-            console.log(consulta);
-            var value = consulta.value.toLowerCase();
-            $("#tabela tr").filter(function() {
-              $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-            });
+        function searchTable(){
+            var x = 0;
+            var listConstulta = document.getElementsByName("consulta");
+
+            for (i=0; i<listConstulta.length;i++) {
+                if (listConstulta[i].value != ""){
+                    x = x + 1;
+                     $("#tabela tr").filter(function() {
+                         if (x > 1) {
+                             if ($(this).is(":visible")) {
+                                 $(this).toggle($(this).text().toLowerCase().indexOf(listConstulta[i].value.toLowerCase()) > -1)
+                                 sumPremios();
+                             }
+                         } else {
+                             $(this).toggle($(this).text().toLowerCase().indexOf(listConstulta[i].value.toLowerCase()) > -1)
+                             sumPremios();
+                         }
+                     });
+                }
+            }
+
         }
 
         var i = 0;
@@ -107,8 +122,9 @@
 
         function duplicate() {
             i = i +1;
-            var input = "<input name=\"consulta\" id=\"txt_consulta_"+ i +"\" placeholder=\"Consultar\" type=\"text\" class=\"form-control\" onkeyup=\"searchTable(document.getElementById('txt_consulta_" + i + "'))\">"
-            original.innerHTML = original.innerHTML + input;
+            var input = document.createElement('div');
+            input.innerHTML = "<input name=\"consulta\" id=\"txt_consulta_"+ i +"\" placeholder=\"Consultar\" type=\"text\" class=\"form-control\" onkeyup=\"searchTable()\">"
+            original.appendChild(input);
         }
 
     </script>
