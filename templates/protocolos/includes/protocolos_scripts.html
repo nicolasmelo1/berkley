@@ -94,23 +94,21 @@
 
 
         // Filter Function
-        $(document).ready(function(){
-          $("#txt_consulta").on("keyup", function() {
-            var value = $(this).val().toLowerCase();
+        function searchTable(consulta){
+            console.log(consulta);
+            var value = consulta.value.toLowerCase();
             $("#tabela tr").filter(function() {
               $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
             });
-          });
-        });
+        }
 
         var i = 0;
         var original = document.getElementById('duplicate');
 
         function duplicate() {
-            var clone = original.cloneNode(true); // "deep" clone
-            clone.id = "duplicate" + ++i;
-            // or clone.id = ""; if the divs don't need an ID
-            original.parentNode.appendChild(clone);
+            i = i +1;
+            var input = "<input name=\"consulta\" id=\"txt_consulta_"+ i +"\" placeholder=\"Consultar\" type=\"text\" class=\"form-control\" onkeyup=\"searchTable(document.getElementById('txt_consulta_" + i + "'))\">"
+            original.innerHTML = original.innerHTML + input;
         }
 
     </script>
