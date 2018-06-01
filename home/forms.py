@@ -1,5 +1,5 @@
 from django import forms
-from .models import Regional, Filial, Comercial, Produto, MotivoPerda,TipodeSeguro, Status, Expectativa, Protocolos
+from .models import Regional, Filial, Comercial, Produto, MotivoPerda,TipodeSeguro, Status, Expectativa, Protocolos, Congenere
 
 class PipelineComercial(forms.ModelForm):
     error_css_class='error'
@@ -90,7 +90,7 @@ class PipelineComercial(forms.ModelForm):
             'id': 'tipo_de_seguro'
         }
     ))
-    congenere = forms.ModelChoiceField(required=False, queryset=TipodeSeguro.objects.all(), widget=forms.Select(
+    congenere = forms.ModelChoiceField(required=False, queryset=Congenere.objects.all(), widget=forms.Select(
         attrs={
             'class': 'form-control',
             'id': 'congenere'
