@@ -1,6 +1,7 @@
 {% block content %}
 <!-- Chart code -->
 <script>
+
 var myPlot = document.getElementById('myDiv'),
     x = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
     y = [1, 2, 3, 2, 3, 4, 3, 6, 7, 8, 9, 3],
@@ -14,7 +15,7 @@ var layout = {
   title:'Evolução do Pipeline',
   titlefont:{color: '#0e5741', size: 24 },
   hovermode:'closest',
-  autosize: false,
+  autosize: true,
   width: 700,
   height: 400,
   margin: {
@@ -77,6 +78,7 @@ myPlot.on('plotly_unhover', function(data){
   var update = {'marker':{color: colors, size:16}};
   Plotly.restyle('myDiv', update, [tn]);
 });
+
 
 </script>
 {% endblock %}
