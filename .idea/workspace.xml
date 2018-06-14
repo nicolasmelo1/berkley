@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="bd7d46d8-5868-4dbe-97db-308bfd6a3180" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/templates/dashboard/includes/dashboard_include.html" afterPath="$PROJECT_DIR$/templates/dashboard/includes/dashboard_include.html" />
-      <change beforePath="$PROJECT_DIR$/templates/dashboard/includes/dashboard_scripts.html" afterPath="$PROJECT_DIR$/templates/dashboard/includes/dashboard_scripts.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -537,7 +535,14 @@
       <option name="project" value="LOCAL" />
       <updated>1528803810484</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Atualização na página de dashboard">
+      <created>1528974654781</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1528974654781</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -608,7 +613,8 @@
     <MESSAGE value="Adicionei o botao ADD no procotolos" />
     <MESSAGE value="Comecei a fazer a página de dashboard e acertei a lacuna de congenere" />
     <MESSAGE value="Criamos o primeiro grafico e estamos acertando a responsividade da pagina de dashboard" />
-    <option name="LAST_COMMIT_MESSAGE" value="Criamos o primeiro grafico e estamos acertando a responsividade da pagina de dashboard" />
+    <MESSAGE value="Atualização na página de dashboard" />
+    <option name="LAST_COMMIT_MESSAGE" value="Atualização na página de dashboard" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
