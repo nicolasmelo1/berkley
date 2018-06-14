@@ -2,15 +2,37 @@
 <!-- Chart code -->
 <script>
 
-var myPlot = document.getElementById('myDiv'),
-    x = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
-    y = [1, 2, 3, 2, 3, 4, 3, 6, 7, 8, 9, 3],
-    colors =['#00cc66','#00cc66','#00cc66',
-             '#00cc66','#00cc66','#00cc66',
-             '#00cc66', '#00cc66', '#00cc66', '#00cc66', '#00cc66', '#00cc66'],
-    data = [{x:x, y:y,
-             type:'bar',
-             mode:'markers', marker:{size:16, color:colors}}]
+   var xValue = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
+   var yValue = [1, 2, 3, 2, 3, 4, 3, 6, 7, 8, 9, 3];
+
+   var trace1 ={
+  x: xValue,
+  y: yValue,
+  type: 'bar',
+  text: yValue,
+       font: {
+      family: 'Arial',
+      size: 29,
+      color: 'rgba(245,246,249,1)'
+    },
+  textposition: 'outside',
+  hovertext: ['Ganho: 1.000.000<br>Perdido: 200.000<br>Pendente: 1.400.000', 'Ganho: 1.000.000<br>Perdido: 200.000<br>Pendente: 1.400.000', 'Ganho: 1.000.000<br>Perdido: 200.000<br>Pendente: 1.400.000', 'Ganho: 1.000.000<br>Perdido: 200.000<br>Pendente: 1.400.000', 'Ganho: 1.000.000<br>Perdido: 200.000<br>Pendente: 1.400.000', 'Ganho: 1.000.000<br>Perdido: 200.000<br>Pendente: 1.400.000', 'Ganho: 1.000.000<br>Perdido: 200.000<br>Pendente: 1.400.000', 'Ganho: 1.000.000<br>Perdido: 200.000<br>Pendente: 1.400.000', 'Ganho: 1.000.000<br>Perdido: 200.000<br>Pendente: 1.400.000', 'Ganho: 1.000.000<br>Perdido: 200.000<br>Pendente: 1.400.000', 'Ganho: 1.000.000<br>Perdido: 200.000<br>Pendente: 1.400.000', 'Ganho: 1.000.000<br>Perdido: 200.000<br>Pendente: 1.400.000', 'Ganho: 1.000.000<br>Perdido: 200.000<br>Pendente: 1.400.000'],
+  hoverinfo: 'text',
+  hoverlabel: {
+    bgcolor: '#404040',
+    font: {color: '#e6e6e6'}
+  },
+  marker: {
+    color: '#0e5741',
+    opacity: 0.5,
+    line: {
+      color: '#003300',
+      width: 2
+    }
+  }
+};
+var data1 = [trace1];
+
 var layout = {
   title:'Evolução do Pipeline',
   titlefont:{color: '#0e5741', size: 24 },
@@ -20,7 +42,7 @@ var layout = {
   height: 400,
   margin: {
     l: 20,
-    r: 0,
+    r: 30,
     b: 50,
     t: 50,
     pad: 4
@@ -47,9 +69,9 @@ var layout = {
   }
 };
 
-Plotly.newPlot('myDiv', data, layout, {displayModeBar: false});
+Plotly.newPlot('myDiv', data1, layout, {displayModeBar: false});
 
-myPlot.on('plotly_hover', function(data){
+/*myPlot.on('plotly_hover', function(data){
   var pn='',
       tn='',
       colors=[];
@@ -78,6 +100,73 @@ myPlot.on('plotly_unhover', function(data){
   var update = {'marker':{color: colors, size:16}};
   Plotly.restyle('myDiv', update, [tn]);
 });
+*/
+
+//Gráfico 2
+   var xValue2 = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
+   var yValue2 = [1, 2, 3, 2, 3, 4, 3, 6, 7, 8, 9, 3];
+
+   var trace2 ={
+       x: xValue2,
+  y: yValue2,
+  type: 'bar',
+  text: yValue2,
+  textposition: 'outside',
+  hovertext: ['Ganho: 1.000.000<br>Perdido: 200.000<br>Pendente: 1.400.000', 'Ganho: 1.000.000<br>Perdido: 200.000<br>Pendente: 1.400.000', 'Ganho: 1.000.000<br>Perdido: 200.000<br>Pendente: 1.400.000', 'Ganho: 1.000.000<br>Perdido: 200.000<br>Pendente: 1.400.000', 'Ganho: 1.000.000<br>Perdido: 200.000<br>Pendente: 1.400.000', 'Ganho: 1.000.000<br>Perdido: 200.000<br>Pendente: 1.400.000', 'Ganho: 1.000.000<br>Perdido: 200.000<br>Pendente: 1.400.000', 'Ganho: 1.000.000<br>Perdido: 200.000<br>Pendente: 1.400.000', 'Ganho: 1.000.000<br>Perdido: 200.000<br>Pendente: 1.400.000', 'Ganho: 1.000.000<br>Perdido: 200.000<br>Pendente: 1.400.000', 'Ganho: 1.000.000<br>Perdido: 200.000<br>Pendente: 1.400.000', 'Ganho: 1.000.000<br>Perdido: 200.000<br>Pendente: 1.400.000', 'Ganho: 1.000.000<br>Perdido: 200.000<br>Pendente: 1.400.000'],
+  hoverinfo: 'text',
+  hoverlabel: {
+    bgcolor: '#404040',
+    font: {color: '#e6e6e6'}
+  },
+  marker: {
+    color: '#0e5741',
+    opacity: 0.5,
+    line: {
+      color: '#003300',
+      width: 2
+    }
+  }
+};
+var data2 = [trace2];
+
+var layout2 = {
+  title:'Quantidade de Contas por dia Útil',
+  titlefont:{color: '#0e5741', size: 24 },
+  hovermode:'closest',
+  autosize: true,
+  width: 700,
+  height: 400,
+  margin: {
+    l: 20,
+    r: 30,
+    b: 50,
+    t: 50,
+    pad: 4
+  },
+  paper_bgcolor: '#f2f2f2',
+  plot_bgcolor: '#f2f2f2',
+  xaxis: {
+    autorange: true,
+    showgrid: false,
+    zeroline: false,
+    showline: true,
+    autotick: true,
+    ticks: '',
+    showticklabels: true
+  },
+  yaxis: {
+    autorange: true,
+    showgrid: false,
+    zeroline: false,
+    showline: false,
+    autotick: true,
+    ticks: '',
+    showticklabels: false
+  }
+};
+
+Plotly.newPlot('myDiv2', data2, layout2, {displayModeBar: false});
+
 
 
 </script>
