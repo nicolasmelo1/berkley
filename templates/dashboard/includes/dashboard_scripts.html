@@ -8,6 +8,11 @@
    var trace1 ={
   x: xValue,
   y: yValue,
+    textfont: {
+    family: 'sans serif',
+    size: 18,
+    color: 'rgba(245,246,249)'
+  },
   type: 'bar',
   text: yValue,
        font: {
@@ -34,11 +39,11 @@
 var data1 = [trace1];
 
 var layout = {
-  title:'Evolução do Pipeline',
+  title:'Número de Contas por Previsão de Fechamento',
   titlefont:{color: '#0e5741', size: 24 },
   hovermode:'closest',
   autosize: true,
-  width: 700,
+  width: 1410,
   height: 400,
   margin: {
     l: 20,
@@ -79,7 +84,7 @@ Plotly.newPlot('myDiv', data1, layout, {displayModeBar: false});
     pn = data.points[i].pointNumber;
     tn = data.points[i].curveNumber;
     colors = data.points[i].data.marker.color;
-  };
+  }
   colors[pn] = '#0e5741';
 
   var update = {'marker':{color: colors, size:16}};
@@ -94,7 +99,7 @@ myPlot.on('plotly_unhover', function(data){
     pn = data.points[i].pointNumber;
     tn = data.points[i].curveNumber;
     colors = data.points[i].data.marker.color;
-  };
+  }
   colors[pn] = '#00cc66';
 
   var update = {'marker':{color: colors, size:16}};
@@ -103,8 +108,8 @@ myPlot.on('plotly_unhover', function(data){
 */
 
 //Gráfico 2
-   var xValue2 = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
-   var yValue2 = [1, 2, 3, 2, 3, 4, 3, 6, 7, 8, 9, 3];
+   var xValue2 = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31'];
+   var yValue2 = [1, 2, 3, 2, 3, 4, 3, 6, 7, 8, 9, 3, 1, 2, 3, 2, 3, 4, 3, 6, 7, 8, 9, 3, 1, 2, 3, 2, 3, 4, 3, 6, 7];
 
    var trace2 ={
        x: xValue2,
@@ -130,7 +135,7 @@ myPlot.on('plotly_unhover', function(data){
 var data2 = [trace2];
 
 var layout2 = {
-  title:'Quantidade de Contas por dia Útil',
+  title:'Contas por Dia',
   titlefont:{color: '#0e5741', size: 24 },
   hovermode:'closest',
   autosize: true,
@@ -150,7 +155,7 @@ var layout2 = {
     showgrid: false,
     zeroline: false,
     showline: true,
-    autotick: true,
+    autotick: false,
     ticks: '',
     showticklabels: true
   },
@@ -167,6 +172,116 @@ var layout2 = {
 
 Plotly.newPlot('myDiv2', data2, layout2, {displayModeBar: false});
 
+//Gráfico 3
+var data = [{
+  values: [20, 10, 20, 40, 10 ],
+  labels: ['Em negociação', 'Análise Técnica', 'Prospecção', 'Perdido', 'Fechado'],
+  marker: {
+      colors: ['#ff8000', '#003300', '#999999', '#cca300', '#ffb84d'],
+  },
+  textfont: {
+    family: 'sans serif',
+    size: 18,
+    color: '#ffffff'
+  },
+  type: 'pie'
+}];
+
+var layout3 = {
+  showlegend: true,
+    legend: {"orientation": "h"},
+  title:'Share por Status',
+  titlefont:{color: '#0e5741', size: 24 },
+  hovermode:'closest',
+  autosize: true,
+  width: 310,
+  height: 400,
+  margin: {
+    l: 10,
+    r: 30,
+    b: 5,
+    t: 50,
+    pad: 4
+  },
+  paper_bgcolor: '#f2f2f2',
+  plot_bgcolor: '#f2f2f2',
+  xaxis: {
+    autorange: true,
+    showgrid: false,
+    zeroline: false,
+    showline: true,
+    autotick: false,
+    ticks: '',
+    showticklabels: true
+  },
+  yaxis: {
+    autorange: true,
+    showgrid: false,
+    zeroline: false,
+    showline: false,
+    autotick: true,
+    ticks: '',
+    showticklabels: false
+  }
+};
+
+Plotly.newPlot('myDiv3', data, layout3);
+
+
+//Gráfico 4
+var data4 = [{
+  values: [20, 10, 20 ],
+  labels: ['Alta', 'Média', 'Baixa'],
+  marker: {
+      colors: ['#ff8000', '#003300', '#999999'],
+  },
+  textfont: {
+    family: 'sans serif',
+    size: 18,
+    color: '#ffffff'
+  },
+  type: 'pie'
+}];
+
+var layout4 = {
+  showlegend: true,
+    legend: {"orientation": "h"},
+  title:'Share por Expectativa',
+  titlefont:{color: '#0e5741', size: 24 },
+  hovermode:'closest',
+  autosize: true,
+  width: 315,
+  height: 400,
+  margin: {
+    l: 10,
+    r: 30,
+    b: 5,
+    t: 50,
+    pad: 4
+  },
+  paper_bgcolor: '#f2f2f2',
+  plot_bgcolor: '#f2f2f2',
+  xaxis: {
+    autorange: true,
+    showgrid: false,
+    zeroline: false,
+    showline: true,
+    autotick: false,
+    ticks: '',
+    showticklabels: true
+  },
+  yaxis: {
+    autorange: true,
+    showgrid: false,
+    zeroline: false,
+    showline: false,
+    autotick: true,
+    ticks: '',
+    showticklabels: false
+  }
+};
+
+Plotly.newPlot('myDiv4', data4, layout4);
 
 
 </script>
