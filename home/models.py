@@ -54,6 +54,8 @@ class Congenere(models.Model):
         return self.congenere
 
 class Protocolos(models.Model):
+    created_at = models.DateField(auto_now_add=True)
+    is_active = models.BooleanField(default=True)
     regional = models.ForeignKey(Regional, on_delete=models.CASCADE)
     filial = models.ForeignKey(Filial, on_delete=models.CASCADE)
     comercial = models.ForeignKey(Comercial, on_delete=models.CASCADE)
@@ -73,6 +75,7 @@ class Protocolos(models.Model):
     motivo_perda = models.ForeignKey(MotivoPerda, on_delete=models.CASCADE, null=True, blank=True)
     congenere = models.ForeignKey(Congenere, on_delete=models.CASCADE, null=True, blank=True)
     comentario_perda = models.CharField(max_length=250, null=True, blank=True)
+    detalhe_de_perdas = models.CharField(max_length=400, null=True, blank=True)
     historico_1 = models.CharField(max_length=4000, null=True, blank=True)
     historico_2 = models.CharField(max_length=4000, null=True, blank=True)
     historico_3 = models.CharField(max_length=4000, null=True, blank=True)

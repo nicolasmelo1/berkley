@@ -5,4 +5,5 @@ from django.http import HttpResponseRedirect
 
 
 def dashboard(request):
+
     return render(request, 'dashboard/dashboard_base.html', {'dashboard': dashboard})

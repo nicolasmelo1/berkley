@@ -62,36 +62,36 @@ def temp(request):
         return render(request, 'home/home_base.html', {'form': form})
 # Create your views here.
 
-def consulta(request, pk):
-    consulta = Protocolos.objects.get(pk=pk)
 
+def consulta(request, pk):
+
+    protocolo = Protocolos.objects.get(pk=pk)
 
     form = PipelineComercial(initial={
-        'regional': consulta.regional,
-        'filial': consulta.filial,
-        'comercial': consulta.comercial,
-        'corretor': consulta.corretor,
-        'cliente': consulta.cliente,
-        'produto': consulta.produto,
-        'recebimento': consulta.recebimento.strftime('%d/%m/%Y'),
-        'fechamento': consulta.fechamento.strftime('%d/%m/%Y'),
-        'vencimento': consulta.vencimento.strftime('%d/%m/%Y'),
-        'premio': consulta.premio,
-        'tipo_de_seguro': consulta.tipo_de_seguro,
-        'expectativa': consulta.expectativa,
-        'status': consulta.status,
-        'subscritor': consulta.subscritor,
-        'historico_1': consulta.historico_1,
-        'historico_2': consulta.historico_2,
-        'historico_3': consulta.historico_3,
-        'historico_4': consulta.historico_4,
-        'historico_5': consulta.historico_5,
-        'historico_6': consulta.historico_6,
-        'historico_7': consulta.historico_7,
-        'historico_8': consulta.historico_8,
-        'historico_9': consulta.historico_9,
-        'historico_10': consulta.historico_10,
+        'regional': protocolo.regional,
+        'filial': protocolo.filial,
+        'comercial': protocolo.comercial,
+        'corretor': protocolo.corretor,
+        'cliente': protocolo.cliente,
+        'produto': protocolo.produto,
+        'recebimento': protocolo.recebimento.strftime('%d/%m/%Y'),
+        'fechamento': protocolo.fechamento.strftime('%d/%m/%Y'),
+        'vencimento': protocolo.vencimento.strftime('%d/%m/%Y'),
+        'premio': protocolo.premio,
+        'tipo_de_seguro': protocolo.tipo_de_seguro,
+        'expectativa': protocolo.expectativa,
+        'status': protocolo.status,
+        'subscritor': protocolo.subscritor,
+        'historico_1': protocolo.historico_1,
+        'historico_2': protocolo.historico_2,
+        'historico_3': protocolo.historico_3,
+        'historico_4': protocolo.historico_4,
+        'historico_5': protocolo.historico_5,
+        'historico_6': protocolo.historico_6,
+        'historico_7': protocolo.historico_7,
+        'historico_8': protocolo.historico_8,
+        'historico_9': protocolo.historico_9,
+        'historico_10': protocolo.historico_10,
         })
-
 
     return render(request, 'home/home_base.html', {'form': form})
