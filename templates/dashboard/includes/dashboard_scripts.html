@@ -1,25 +1,26 @@
 {% block content %}
 <!-- Chart code -->
 <script>
+var plot1 = document.getElementById("plot1");
+var plot2 = document.getElementById("plot2");
+var plot3 = document.getElementById("plot3");
+var plot4 = document.getElementById("plot4");
 
-   var xValue = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
-   var yValue = [1, 2, 3, 2, 3, 4, 3, 6, 7, 8, 9, 3];
 
-   var trace1 ={
+window.onresize = function() {
+    Plotly.Plots.resize("myDiv");
+    Plotly.Plots.resize("myDiv2");
+    Plotly.Plots.resize("myDiv3");
+    Plotly.Plots.resize("myDiv4");
+};
+var xValue = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
+var yValue = [1, 2, 3, 2, 3, 4, 3, 6, 7, 8, 9, 3];
+
+var trace1 ={
   x: xValue,
   y: yValue,
-    textfont: {
-    family: 'sans serif',
-    size: 18,
-    color: 'rgba(245,246,249)'
-  },
   type: 'bar',
   text: yValue,
-       font: {
-      family: 'Arial',
-      size: 29,
-      color: 'rgba(245,246,249,1)'
-    },
   textposition: 'outside',
   hovertext: ['Ganho: 1.000.000<br>Perdido: 200.000<br>Pendente: 1.400.000', 'Ganho: 1.000.000<br>Perdido: 200.000<br>Pendente: 1.400.000', 'Ganho: 1.000.000<br>Perdido: 200.000<br>Pendente: 1.400.000', 'Ganho: 1.000.000<br>Perdido: 200.000<br>Pendente: 1.400.000', 'Ganho: 1.000.000<br>Perdido: 200.000<br>Pendente: 1.400.000', 'Ganho: 1.000.000<br>Perdido: 200.000<br>Pendente: 1.400.000', 'Ganho: 1.000.000<br>Perdido: 200.000<br>Pendente: 1.400.000', 'Ganho: 1.000.000<br>Perdido: 200.000<br>Pendente: 1.400.000', 'Ganho: 1.000.000<br>Perdido: 200.000<br>Pendente: 1.400.000', 'Ganho: 1.000.000<br>Perdido: 200.000<br>Pendente: 1.400.000', 'Ganho: 1.000.000<br>Perdido: 200.000<br>Pendente: 1.400.000', 'Ganho: 1.000.000<br>Perdido: 200.000<br>Pendente: 1.400.000', 'Ganho: 1.000.000<br>Perdido: 200.000<br>Pendente: 1.400.000'],
   hoverinfo: 'text',
@@ -28,30 +29,21 @@
     font: {color: '#e6e6e6'}
   },
   marker: {
-    color: '#0e5741',
-    opacity: 0.5,
+    color: '#004d40',
+    opacity: 1,
     line: {
-      color: '#003300',
-      width: 2
+      color: '#e0f2f1',
+      width: 1
     }
   }
 };
 var data1 = [trace1];
 
 var layout = {
-  title:'Número de Contas por Previsão de Fechamento',
-  titlefont:{color: '#0e5741', size: 24 },
+title:'Previsão de Fechamento',
+  titlefont:{color: '#0e5741', size: 24},
   hovermode:'closest',
   autosize: true,
-  width: 1410,
-  height: 400,
-  margin: {
-    l: 20,
-    r: 30,
-    b: 50,
-    t: 50,
-    pad: 4
-  },
   paper_bgcolor: '#f2f2f2',
   plot_bgcolor: '#f2f2f2',
   xaxis: {
@@ -74,38 +66,7 @@ var layout = {
   }
 };
 
-Plotly.newPlot('myDiv', data1, layout, {displayModeBar: false});
-
-/*myPlot.on('plotly_hover', function(data){
-  var pn='',
-      tn='',
-      colors=[];
-  for(var i=0; i < data.points.length; i++){
-    pn = data.points[i].pointNumber;
-    tn = data.points[i].curveNumber;
-    colors = data.points[i].data.marker.color;
-  }
-  colors[pn] = '#0e5741';
-
-  var update = {'marker':{color: colors, size:16}};
-  Plotly.restyle('myDiv', update, [tn]);
-});
-
-myPlot.on('plotly_unhover', function(data){
-  var pn='',
-      tn='',
-      colors=[];
-  for(var i=0; i < data.points.length; i++){
-    pn = data.points[i].pointNumber;
-    tn = data.points[i].curveNumber;
-    colors = data.points[i].data.marker.color;
-  }
-  colors[pn] = '#00cc66';
-
-  var update = {'marker':{color: colors, size:16}};
-  Plotly.restyle('myDiv', update, [tn]);
-});
-*/
+Plotly.newPlot("myDiv", data1, layout, {displayModeBar: false});
 
 //Gráfico 2
    var xValue2 = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31'];
@@ -125,11 +86,11 @@ myPlot.on('plotly_unhover', function(data){
   },
   marker: {
 
-    color: '#0e5741',
-    opacity: 0.5,
+    color: '#00695c',
+    opacity: 1,
     line: {
-      color: '#003300',
-      width: 2
+      color: '#e0f2f1',
+      width: 1
     }
   }
 };
@@ -140,15 +101,6 @@ var layout2 = {
   titlefont:{color: '#0e5741', size: 24 },
   hovermode:'closest',
   autosize: true,
-  width: 700,
-  height: 400,
-  margin: {
-    l: 20,
-    r: 30,
-    b: 50,
-    t: 50,
-    pad: 4
-  },
   paper_bgcolor: '#f2f2f2',
   plot_bgcolor: '#f2f2f2',
   xaxis: {
@@ -178,7 +130,7 @@ var data = [{
   values: [20, 10, 20, 40, 10 ],
   labels: ['Em negociação', 'Análise Técnica', 'Prospecção', 'Perdido', 'Fechado'],
   marker: {
-      colors: ['#ff8000', '#003300', '#999999', '#cca300', '#ffb84d'],
+      colors: ['#ff8000', '#757575', '#ffb300', '#b71c1c', '#004d40'],
   },
   textfont: {
     family: 'sans serif',
@@ -195,15 +147,6 @@ var layout3 = {
   titlefont:{color: '#0e5741', size: 24 },
   hovermode:'closest',
   autosize: true,
-  width: 310,
-  height: 400,
-  margin: {
-    l: 10,
-    r: 30,
-    b: 5,
-    t: 50,
-    pad: 4
-  },
   paper_bgcolor: '#f2f2f2',
   plot_bgcolor: '#f2f2f2',
   xaxis: {
@@ -234,7 +177,7 @@ var data4 = [{
   values: [20, 10, 20 ],
   labels: ['Alta', 'Média', 'Baixa'],
   marker: {
-      colors: ['#ff8000', '#003300', '#999999'],
+      colors: ['#004d40', '#ffb300', '#b71c1c'],
   },
   textfont: {
     family: 'sans serif',
@@ -251,15 +194,6 @@ var layout4 = {
   titlefont:{color: '#0e5741', size: 24 },
   hovermode:'closest',
   autosize: true,
-  width: 315,
-  height: 400,
-  margin: {
-    l: 10,
-    r: 30,
-    b: 5,
-    t: 50,
-    pad: 4
-  },
   paper_bgcolor: '#f2f2f2',
   plot_bgcolor: '#f2f2f2',
   xaxis: {
@@ -283,7 +217,6 @@ var layout4 = {
 };
 
 Plotly.newPlot('myDiv4', data4, layout4);
-
 
 </script>
 {% endblock %}
