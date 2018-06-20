@@ -174,7 +174,7 @@
             <div class="col-sm-12" id="perda" style="display: none; background-color: #ffebcc; border: 1px solid#bfbfbf ">
                 <h2 class="display-1" style="color: #b30000; font-weight: bold">Informação de Contas Perdidas</h2>
                 <div class="row">
-                    <div class="col-sm-3">
+                    <div class="col-sm-2">
                         <div class="form-group">
                             <label for="" style="color: #a41515">Motivo da Perda</label>
                             <div>
@@ -182,11 +182,19 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-3">
+                    <div class="col-sm-2">
                         <div class="form-group">
                             <label for="" style="color: #a41515">Congênere</label>
                             <div>
                                 {{ form.congenere }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-8">
+                        <div class="form-group">
+                            <label for="" style="color: #a41515">Detalhe da Perda</label>
+                            <div>
+                                {{ form.motivo_perda }}
                             </div>
                         </div>
                     </div>
