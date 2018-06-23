@@ -114,6 +114,15 @@ class PipelineComercial(forms.ModelForm):
             'id': 'motivo_perda'
         }
     ))
+    comentario_perda = forms.CharField(required=False,max_length=200, widget=forms.Textarea(
+        attrs={
+            'class': 'form-control',
+            'id': 'comentario_perda',
+            'rows': '1',
+            'placeholder': 'Comente brevemente o motivo da perda',
+            'style': 'resize: none'
+        }
+    ))
     historico_1 = forms.CharField(required=False,max_length=3000, widget=forms.Textarea(
         attrs={
             'class': 'form-control',
