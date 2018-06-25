@@ -14,26 +14,28 @@
         </head>
 
         <body>
-            <div class="container-fluid" style="background-color: #0e5741">
-                <nav class="navbar navbar-default" style="background-color: #0e5741;border-color: #0e5741; border-width: 0px">
+            <div class="container-fluid">
+                <nav class="navbar navbar-default" style="background-color: #777777;border-color: #777777; border-width: 0px">
                     <div class="container-fluid">
-                        <button type="button" style="border-width: 0px; padding-top: 30px; background-color: #0e5741" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <button type="button" style="border-width: 0px; padding-top: 30px; background-color: #777777" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                             <span class="icon-bar" style="background-color: #000000"></span>
                             <span class="icon-bar" style="background-color: #000000"></span>
                             <span class="icon-bar" style="background-color: #000000"></span>
                         </button>
                         {% load static %}
-                        <a class="navbar-brand" href="{% url 'home' %}" style="text-decoration: none"><img src="https://www.berkley.com.br/Institucional/img/logo.png" style="display: inline-block;border-radius: 20px" alt="" width="340" height="76"><strong style="color: #ffffff"><p style="display: inline-block;  margin-left:20px">Pipeline Comercial</p></strong></a
+                        <a class="navbar-brand" href="{% url 'home' %}" style="text-decoration: none"><img src="https://i.imgur.com/najM1Bw.png" style="display: inline-block;border-radius: 20px" alt="" width=150px height=70px><strong style="color: #ffffff">
+
+                            <p style="display: inline-block;  margin-left:20px">Pipeline Comercial</p></strong></a>
                         <div id="navbar" class="navbar-collapse collapse" aria-expanded="false" style="border-width: 0px";>
                             <ul class="nav navbar-nav navbar-right" style="padding-top: 10px">
                                 <li class="active">
-                                    <a href="{% url 'home' %}" style="background-color: #0e5741"><p style="padding-top: 10px; color: #ffffff">Formulário</p></a>
+                                    <a href="{% url 'home' %}" style="background-color: #777777"><p style="padding-top: 10px; color: #ffffff">Formulário</p></a>
                                 <li class="active">
-                                    <a href="{% url 'protocolos' %}" style="background-color: #0e5741"><p style="padding-top: 10px; color: #ffffff">Protocolos</p></a>
+                                    <a href="{% url 'protocolos' %}" style="background-color: #777777"><p style="padding-top: 10px; color: #ffffff">Protocolos</p></a>
                                 <li class="active">
-                                    <a href="{% url 'dashboard' %}" style="background-color: #0e5741"><p style="padding-top: 10px; color: #ffffff">Dashboard</p></a>
+                                    <a href="{% url 'dashboard' %}" style="background-color: #777777"><p style="padding-top: 10px; color: #ffffff">Dashboard</p></a>
                                 <li class="active">
-                                    <a href="{% url 'logout' %}" style="background-color: #0e5741"><p style="padding-top: 10px; color: #ffffff">Logout</p></a>
+                                    <a href="{% url 'logout' %}" style="background-color: #777777"><p style="padding-top: 10px; color: #ffffff">Logout</p></a>
                                 </li>
                             </ul>
                         </div>
