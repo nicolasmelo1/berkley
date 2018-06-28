@@ -1,15 +1,16 @@
 {% block content %}
 
 
-<div class="row">
-    <form id="insert" method="post" action={% url 'home' %}>
-        <div class="col-sm-12" style="padding-top: 5px; padding-bottom: 10px;">
-            {% csrf_token %}
+    <div class="row">
+        <form id="insert" method="post" action={% url 'home' %}>
+                {% csrf_token %}
             <div class="col-sm-12" style="background-color: #CDC9C9">
-                <button id="button" onclick="" class="btn" style="background-color: #0dbf7e; color: #f0f5f5; margin-top: 10px; margin-bottom: 10px">Editar opções de formulário</button>
+                <div class="col-sm-2">
+                    <button id="button" onclick="" class="btn" style="background-color: #444444; color: #FFFFFF; margin: 10px">Editar opções de formulário</button>
+                </div>
             </div>
             <div class="col-sm-12" style="background-color: #e5e5e5">
-                <h2 class="display-1" style="color: #0e5741; border-bottom: 2px solid#0dbf7e"><strong>Informações Gerais</strong> </h2>
+                <h2 class="display-1" style="color: #0e5741; border-bottom: 2px solid#0dbf7e">Informações Gerais</h2>
                 <div class="row">
                     <div class="col-sm-4">
                         <div class="form-group">
@@ -62,7 +63,7 @@
                 </div>
             </div>
             <div class="col-sm-12" style="background-color: #e5e5e5">
-                <h2 class="display-1" style="color: #0e5741; border-bottom: 2px solid#0dbf7e"> <strong>Informações da Conta</strong> </h2>
+                <h2 class="display-1" style="color: #0e5741; border-bottom: 2px solid#0dbf7e">Informações da Conta</h2>
                 <div class="row">
                     <div class="col-sm-3">
                         <div class="form-group">
@@ -138,7 +139,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="col-sm-3">
                         <div class="form-group">
                             <label for="">Tipo de Seguro</label>
@@ -173,8 +173,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-12" id="perda" style="display: none; background-color: #444444; border: 1px solid#bfbfbf ">
-                <h2 class="display-1" style="color: #0dbf7e; font-weight: bold">Informação de Contas Perdidas</h2>
+            <div class="col-sm-12" id="perda" style="display: none; background-color: #444444">
+                <h2 class="display-1" style="color: #0dbf7e; border-bottom: 2px solid#bfbfbf ">Informação de Contas Perdidas</h2>
                 <div class="row">
                     <div class="col-sm-2">
                         <div class="form-group">
@@ -202,69 +202,64 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-12" style="background-color: #e5e5e5; border: 1px solid#bfbfbf ">
-                <h2 class="display-1" style="color: #0e5741; border-bottom: 2px solid#0dbf7e"> <strong>Histórico de Negociação</strong> </h2>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="form-group">
-                                {{ form.historico_1 }}
-                            </div>
+            <div class="col-sm-12" style="background-color: #e5e5e5">
+                <h2 class="display-1" style="color: #0e5741; border-bottom: 2px solid#0dbf7e">Histórico de Negociação</h2>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            {{ form.historico_1 }}
                         </div>
-                        <div class="col-sm-12">
-                            <div class="form-group">
-                                {{ form.historico_2 }}
-                            </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            {{ form.historico_2 }}
                         </div>
-                        <div class="col-sm-12">
-                            <div class="form-group">
-                                {{ form.historico_3 }}
-                            </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            {{ form.historico_3 }}
                         </div>
-                        <div class="col-sm-12">
-                            <div class="form-group">
-                                {{ form.historico_4 }}
-                            </div>
-                        </div><div class="col-sm-12">
-                            <div class="form-group">
-                                {{ form.historico_5 }}
-                            </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            {{ form.historico_4 }}
                         </div>
-                        <div class="col-sm-12">
-                            <div class="form-group">
-                                {{ form.historico_6 }}
-                            </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            {{ form.historico_5 }}
                         </div>
-                        <div class="col-sm-12">
-                            <div class="form-group">
-                                {{ form.historico_7 }}
-                            </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            {{ form.historico_6 }}
                         </div>
-                        <div class="col-sm-12">
-                            <div class="form-group">
-                                {{ form.historico_8 }}
-                            </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            {{ form.historico_7 }}
                         </div>
-                        <div class="col-sm-12">
-                            <div class="form-group">
-                                {{ form.historico_9 }}
-                            </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            {{ form.historico_8 }}
                         </div>
-                        <div class="col-sm-12">
-                            <div class="form-group">
-                                {{ form.historico_10 }}
-                            </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            {{ form.historico_9 }}
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            {{ form.historico_10 }}
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-sm-12">
-                    <input type="submit" name="salvar" style="background-color: #ff9900;" class="btn btn-outline-secondary btn-block" value="Salvar"/>
-                </div>
-            </div>
-        </div>
-    </form>
-
+            <input type="submit" name="salvar" style="background-color: #444444;color: #FFFFFF; border-radius: 0" class="btn btn-outline-secondary btn-block" value="Salvar"/>
+        </form>
+    </div>
     <script language="javascript" type="text/javascript">
         var perda = document.getElementById("perda");
         var motivoPerda = document.getElementById("motivo_perda");
