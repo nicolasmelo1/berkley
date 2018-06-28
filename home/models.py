@@ -10,53 +10,73 @@ from django.contrib.auth.models import User
 # Create your models here.
 class Regional(models.Model):
     regional = models.CharField(max_length=200)
+
     def __str__(self):
         return self.regional
 
+
 class Filial(models.Model):
     filial = models.CharField(max_length=200)
+
     def __str__(self):
         return self.filial
 
+
 class Comercial(models.Model):
     comercial = models.CharField(max_length=200)
+
     def __str__(self):
         return self.comercial
 
+
 class Produto(models.Model):
     produto = models.CharField(max_length=200)
+
     def __str__(self):
         return self.produto
 
+
 class TipodeSeguro(models.Model):
     tipo = models.CharField(max_length=200)
+
     def __str__(self):
         return self.tipo
 
+
 class Expectativa(models.Model):
     expectativa = models.CharField(max_length=200)
+
     def __str__(self):
         return self.expectativa
 
+
 class Status(models.Model):
     status = models.CharField(max_length=200)
+
     def __str__(self):
         return self.status
 
+
 class MotivoPerda(models.Model):
     motivo = models.CharField(max_length=200)
+
     def __str__(self):
         return self.motivo
 
+
 class Congenere(models.Model):
     congenere = models.CharField(max_length=300)
+
     def __str__(self):
         return self.congenere
 
+
 class Detalhe(models.Model):
     comentario_perda = models.CharField(max_length=300)
+
     def __str__(self):
         return self.comentario_perda
+
 
 class Protocolos(models.Model):
     created_at = models.DateField(auto_now_add=True)
@@ -91,4 +111,9 @@ class Protocolos(models.Model):
     historico_8 = models.CharField(max_length=4000, null=True, blank=True)
     historico_9 = models.CharField(max_length=4000, null=True, blank=True)
     historico_10 = models.CharField(max_length=4000, null=True, blank=True)
+
+
+class Historico(models.Model):
+    protocolo_id = models.ForeignKey(Protocolos, on_delete=models.CASCADE)
+    historico = models.CharField(max_length=4000, null=True, blank=True)
 
