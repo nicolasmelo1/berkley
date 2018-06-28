@@ -32,8 +32,8 @@ var trace1 ={
     color: '#004d40',
     opacity: 1,
     line: {
-      color: '#e0f2f1',
-      width: 1
+      color: '#80cbc4',
+      width: 2
     }
   }
 };
@@ -44,6 +44,13 @@ title:'Previsão de Fechamento',
   titlefont:{color: '#0e5741', size: 24},
   hovermode:'closest',
   autosize: true,
+  margin: {
+    l: 10,
+    r: 10,
+    b: 100,
+    t: 100,
+    pad: 4
+  },
   paper_bgcolor: '#f2f2f2',
   plot_bgcolor: '#f2f2f2',
   xaxis: {
@@ -89,7 +96,7 @@ Plotly.newPlot("myDiv", data1, layout, {displayModeBar: false});
     color: '#00695c',
     opacity: 1,
     line: {
-      color: '#e0f2f1',
+      color: '#80cbc4',
       width: 1
     }
   }
@@ -101,6 +108,13 @@ var layout2 = {
   titlefont:{color: '#0e5741', size: 24 },
   hovermode:'closest',
   autosize: true,
+  margin: {
+    l: 10,
+    r: 10,
+    b: 100,
+    t: 100,
+    pad: 4
+  },
   paper_bgcolor: '#f2f2f2',
   plot_bgcolor: '#f2f2f2',
   xaxis: {
@@ -142,11 +156,18 @@ var data = [{
 
 var layout3 = {
   showlegend: true,
-    legend: {"orientation": "h"},
+    legend: {xanchor: 'center', x:0.5, orientation: 'h'},
   title:'Share por Status',
   titlefont:{color: '#0e5741', size: 24 },
   hovermode:'closest',
   autosize: true,
+  margin: {
+    l: 10,
+    r: 10,
+    b: 100,
+    t: 100,
+    pad: 4
+  },
   paper_bgcolor: '#f2f2f2',
   plot_bgcolor: '#f2f2f2',
   xaxis: {
@@ -189,11 +210,18 @@ var data4 = [{
 
 var layout4 = {
   showlegend: true,
-    legend: {"orientation": "h"},
+    legend: {xanchor: 'center', x:0.5, orientation: 'h'},
   title:'Share por Expectativa',
   titlefont:{color: '#0e5741', size: 24 },
   hovermode:'closest',
   autosize: true,
+  margin: {
+    l: 10,
+    r: 10,
+    b: 100,
+    t: 100,
+    pad: 4
+  },
   paper_bgcolor: '#f2f2f2',
   plot_bgcolor: '#f2f2f2',
   xaxis: {

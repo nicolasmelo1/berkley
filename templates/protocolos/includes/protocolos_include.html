@@ -3,30 +3,30 @@
         <div class="row">
             {% csrf_token %}
             <div class="col-sm-12" style="padding-top: 5px; padding-bottom: 10px;background-color: #ffffff">
-            <br><div id="valorPremio" style="margin-bottom: 10px; font-size: 20px">
-                    <em><strong><p style="color: #ff8000"></p></strong></em>
+            <div id="valorPremio" style="margin-bottom: 10px; font-size: 20px; border-bottom: 2px solid#0dbf7e">
+                    <em><strong><p style="color: #0e5741"></p></strong></em>
                 </div>
                 <div class="form-group input-group" id="duplicate" style="padding-top: 10px">
                     <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
                     <input name="consulta" id="txt_consulta" placeholder="Consultar" type="text" class="form-control" onkeyup="searchTable()">
                 </div>
-                <div><button id="button" onclick="duplicate()" class="btn btn-success">Add</button></div><br>
+                <div style=""><button id="button" onclick="duplicate()" class="btn btn-success">Add</button></div><br>
                 <form method="post" action="/protocolos/delete/">
             {% csrf_token %}
                 <table id="full-table" class="table table-hover" style="background-color: #ffffff;">
-                    <thead class="thead-dark" style="background-color: #ff9900;">
+                    <thead class="thead-dark" style="background-color: #CDC9C9">
                         <tr>
-                        <th onclick="sortTable(0)" class="text-center" style="color: #ffffff" scope="col">Regional<img style="width: 20px; height: 20px; display: none" src="#"></th>
-                        <th onclick="sortTable(1)" class="text-center" style="color: #ffffff" scope="col">Filial<img style="width: 20px; height: 20px; display: none" src="#"></th>
-                        <th onclick="sortTable(2)" class="text-center" style="color: #ffffff" scope="col">Comercial<img style="width: 20px; height: 20px; display: none" src="#"></th>
-                        <th onclick="sortTable(3)" class="text-center" style="color: #ffffff" scope="col">Cliente<img style="width: 20px; height: 20px; display: none" src="#"></th>
-                        <th onclick="sortTable(4)" class="text-center" style="color: #ffffff" scope="col">Produto<img style="width: 20px; height: 20px; display: none" src="#"></th>
-                        <th onclick="sortTable(5)" class="text-center" style="color: #ffffff" scope="col">Previsão de Fechamento<img style="width: 20px; height: 20px; display: none" src="#"></th>
-                        <th onclick="sortTable(6)" class="text-center" style="color: #ffffff" scope="col">Prêmio<img style="width: 20px; height: 20px; display: none" src="#"></th>
-                        <th onclick="sortTable(7)" class="text-center" style="color: #ffffff" scope="col">Status<img style="width: 20px; height: 20px; display: none" src="#"></th>
-                        <th onclick="sortTable(8)" class="text-center" style="color: #ffffff" scope="col">Expectativa<img style="width: 20px; height: 20px; display: none" src="#"></th>
-                        <th class="text-center" style="color: #ffffff" scope="col">Editar</th>
-                        <th class="text-center" style="color: #ffffff" scope="col">Deletar</th>
+                        <th onclick="sortTable(0)" class="text-center" style="color: #0e5741" scope="col">Regional<img style="width: 20px; height: 20px; display: none" src="#"></th>
+                        <th onclick="sortTable(1)" class="text-center" style="color: #0e5741" scope="col">Filial<img style="width: 20px; height: 20px; display: none" src="#"></th>
+                        <th onclick="sortTable(2)" class="text-center" style="color: #0e5741" scope="col">Comercial<img style="width: 20px; height: 20px; display: none" src="#"></th>
+                        <th onclick="sortTable(3)" class="text-center" style="color: #0e5741" scope="col">Cliente<img style="width: 20px; height: 20px; display: none" src="#"></th>
+                        <th onclick="sortTable(4)" class="text-center" style="color: #0e5741" scope="col">Produto<img style="width: 20px; height: 20px; display: none" src="#"></th>
+                        <th onclick="sortTable(5)" class="text-center" style="color: #0e5741" scope="col">Previsão de Fechamento<img style="width: 20px; height: 20px; display: none" src="#"></th>
+                        <th onclick="sortTable(6)" class="text-center" style="color: #0e5741" scope="col">Prêmio<img style="width: 20px; height: 20px; display: none" src="#"></th>
+                        <th onclick="sortTable(7)" class="text-center" style="color: #0e5741" scope="col">Status<img style="width: 20px; height: 20px; display: none" src="#"></th>
+                        <th onclick="sortTable(8)" class="text-center" style="color: #0e5741" scope="col">Expectativa<img style="width: 20px; height: 20px; display: none" src="#"></th>
+                        <th class="text-center" style="color: #0e5741" scope="col">Editar</th>
+                        <th class="text-center" style="color: #0e5741" scope="col">Deletar</th>
                         </tr>
                     </thead>
                     <tbody id="tabela">

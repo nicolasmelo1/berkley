@@ -53,6 +53,11 @@ class Congenere(models.Model):
     def __str__(self):
         return self.congenere
 
+class Detalhe(models.Model):
+    comentario_perda = models.CharField(max_length=300)
+    def __str__(self):
+        return self.comentario_perda
+
 class Protocolos(models.Model):
     created_at = models.DateField(auto_now_add=True)
     is_active = models.BooleanField(default=True)
