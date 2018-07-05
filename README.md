@@ -22,8 +22,8 @@ Você pode rodar o programa dentro de um docker usando um banco de dados postgre
 + Rode os seguintes comandos:
 
     
-    $ docker-compose run web python manage.py makemigrations
-    $ docker-compose run web python manage.py migrate
+        $ docker-compose run web python manage.py makemigrations
+        $ docker-compose run web python manage.py migrate
     
 #### Sem Docker
 + Faça a seguinte modificação na variável estática DATABASES no arquivo `settings.py` na pasta **berkley**
@@ -48,7 +48,7 @@ DATABASES = {
 #####Web
 Você pode rodar sua aplicação através do terminal usando o seguinte comando
 
-     $ docker-compose run web python manage.py runserver
+        $ docker-compose run web python manage.py runserver
 
 Sua aplicação poderá ser acessada em um dos seguintes endereços:
 + **localhost:8000**
