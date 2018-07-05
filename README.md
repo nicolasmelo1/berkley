@@ -44,8 +44,10 @@ DATABASES = {
 }
 ```
 ## Running
-###Docker
-#####Web
+
+### Docker
+
+##### Web
 Você pode rodar sua aplicação através do terminal usando o seguinte comando
 
         $ docker-compose run web python manage.py runserver
@@ -54,7 +56,7 @@ Sua aplicação poderá ser acessada em um dos seguintes endereços:
 + **localhost:8000**
 + **127.0.0.1:8000**
 
-#####Database
+##### Database
 Para acessar o banco de dados via terminal use o seguinte comando:
 
     $ docker exec -it berkley_db_1 psql -U postgres
