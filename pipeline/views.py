@@ -3,7 +3,8 @@ from __future__ import unicode_literals
 
 from .forms import PipelineComercial
 from django.shortcuts import render
-from .models import Regional,Filial,Comercial,Protocolos,TipodeSeguro,Produto,Expectativa,Status,MotivoPerda
+from .models import Regionals, Commercials, Subsidiaries, Products, InsuranceType, Expectations, Status, ReasonsForLoss, Congeners
+from protocolos.models import Protocols
 from django.http import HttpResponseRedirect
 from datetime import datetime, timedelta
 
@@ -27,7 +28,6 @@ def temp(request):
                 save.tipo_de_seguro = form.cleaned_data['tipo_de_seguro']
                 save.expectativa = form.cleaned_data['expectativa']
                 save.status = form.cleaned_data['status']
-                save.status = form.cleaned_data['status']
                 save.subscritor = form['subscritor'].value()
                 save.save()
                 form = PipelineComercial(initial={
@@ -45,16 +45,6 @@ def temp(request):
                     'expectativa': form.cleaned_data['expectativa'],
                     'status': form.cleaned_data['status'],
                     'subscritor': form['subscritor'].value(),
-                    'historico_1': form['historico_1'].value(),
-                    'historico_2': form['historico_2'].value(),
-                    'historico_3': form['historico_3'].value(),
-                    'historico_4': form['historico_4'].value(),
-                    'historico_5': form['historico_5'].value(),
-                    'historico_6': form['historico_6'].value(),
-                    'historico_7': form['historico_7'].value(),
-                    'historico_8': form['historico_8'].value(),
-                    'historico_9': form['historico_9'].value(),
-                    'historico_10': form['historico_10'].value()
                 })
                 return render(request, 'home/home_base.html', {'form': form})
     else:
@@ -65,7 +55,7 @@ def temp(request):
 
 def consulta(request, pk):
 
-    protocolo = Protocolos.objects.get(pk=pk)
+    protocolo = Protocols.objects.get(pk=pk)
 
     form = PipelineComercial(initial={
         'regional': protocolo.regional,
@@ -82,16 +72,6 @@ def consulta(request, pk):
         'expectativa': protocolo.expectativa,
         'status': protocolo.status,
         'subscritor': protocolo.subscritor,
-        'historico_1': protocolo.historico_1,
-        'historico_2': protocolo.historico_2,
-        'historico_3': protocolo.historico_3,
-        'historico_4': protocolo.historico_4,
-        'historico_5': protocolo.historico_5,
-        'historico_6': protocolo.historico_6,
-        'historico_7': protocolo.historico_7,
-        'historico_8': protocolo.historico_8,
-        'historico_9': protocolo.historico_9,
-        'historico_10': protocolo.historico_10,
         })
 
     return render(request, 'home/home_base.html', {'form': form})

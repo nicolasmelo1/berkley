@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from home.models import Protocolos
-from home.forms import PipelineComercial
+from protocolos.models import Protocols
+from pipeline.forms import PipelineComercial
 from django.http import HttpResponseRedirect
 
 

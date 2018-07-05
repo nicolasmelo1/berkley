@@ -32,12 +32,14 @@ ALLOWED_HOSTS = []
 
 AUTHENTICATION_BACKENDS = (
     'login.models.EmailBackend',
-    'django.contrib.auth.backends.ModelBackend',
 )
 
+AUTH_USER_MODEL = 'login.UserExtended'
 
 INSTALLED_APPS = [
-    'home',
+    'pipeline',
+    'dashboard',
+    'protocolos',
     'login',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -89,6 +91,10 @@ DATABASES = {
         'USER': 'postgres',
         'HOST': 'db',
         'PORT': 5432
+    },
+    'sqlite3': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 

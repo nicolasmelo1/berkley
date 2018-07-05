@@ -32,7 +32,7 @@
                         </thead>
                         <tbody id="tabela">
                             {% for protocolo in protocolos %}
-                            <tr class="clickable-row" name="table-row" onclick="window.location='/home/{{ protocolo.id }}'">
+                            <tr class="clickable-row" name="table-row" onclick="window.location='../../../pipeline/{{ protocolo.id }}'">
                                 <td style="text-align: center">{{ protocolo.regional }}</td>
                                 <td style="text-align: center">{{ protocolo.filial }}</td>
                                 <td style="text-align: center">{{ protocolo.comercial }}</td>

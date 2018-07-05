@@ -11,7 +11,7 @@ from django.contrib.auth import logout
 # Create your views here.
 def login_view(request):
     if request.user.is_authenticated:
-        return HttpResponseRedirect('/home/')
+        return HttpResponseRedirect('/pipeline/')
     else:
         if request.method == 'POST':
             email = request.POST['email']
@@ -20,7 +20,7 @@ def login_view(request):
             user = authenticate(username=email, password=password)
             if user:
                 login(request, user)
-                return HttpResponseRedirect('/home/')
+                return HttpResponseRedirect('/pipeline/')
             else:
                 return render(request, 'login/login.html', {'login_message': 'Esse usuário não existe'})
         else:
