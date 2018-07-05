@@ -50,7 +50,7 @@ DATABASES = {
 ##### Web
 Você pode rodar sua aplicação através do terminal usando o seguinte comando
 
-        $ docker-compose run web python manage.py runserver
+    $ docker-compose run web python manage.py runserver
 
 Sua aplicação poderá ser acessada em um dos seguintes endereços:
 + **localhost:8000**
