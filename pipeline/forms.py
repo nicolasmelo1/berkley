@@ -1,24 +1,25 @@
 from django import forms
-from .models import Regional, Filial, Comercial, Produto, MotivoPerda,TipodeSeguro, Status, Expectativa, Protocolos, Congenere
+from .models import Regionals, Commercials, Subsidiaries, Products, InsuranceType, Expectations, Status, ReasonsForLoss, Congeners
+from protocolos.models import Protocols
 
 class PipelineComercial(forms.ModelForm):
     error_css_class='error'
 
-    regional = forms.ModelChoiceField(queryset=Regional.objects.all(), widget=forms.Select(
+    regional = forms.ModelChoiceField(queryset=Regionals.objects.all(), widget=forms.Select(
         attrs={
             'class': 'form-control',
             'id': 'regional',
             'style': 'background-color: #f2f2f2; border:1px solid #444444'
         }
     ))
-    filial = forms.ModelChoiceField(queryset=Filial.objects.all(), widget=forms.Select(
+    filial = forms.ModelChoiceField(queryset=Subsidiaries.objects.all(), widget=forms.Select(
         attrs={
             'class': 'form-control',
             'id': 'filial',
             'style': 'background-color: #f2f2f2; border:1px solid #444444'
         }
     ))
-    comercial = forms.ModelChoiceField(queryset=Comercial.objects.all(), widget=forms.Select(
+    comercial = forms.ModelChoiceField(queryset=Commercials.objects.all(), widget=forms.Select(
         attrs={
             'class': 'form-control',
             'id': 'comercial',
@@ -44,7 +45,7 @@ class PipelineComercial(forms.ModelForm):
 
         }
     ))
-    produto = forms.ModelChoiceField(queryset=Produto.objects.all(), widget=forms.Select(
+    produto = forms.ModelChoiceField(queryset=Products.objects.all(), widget=forms.Select(
         attrs={
             'class': 'form-control',
             'placeholder': 'Esolha o produto',
@@ -95,21 +96,21 @@ class PipelineComercial(forms.ModelForm):
             'style': 'background-color: #f2f2f2; border:1px solid #444444'
         }
     ))
-    tipo_de_seguro = forms.ModelChoiceField(queryset=TipodeSeguro.objects.all(), widget=forms.Select(
+    tipo_de_seguro = forms.ModelChoiceField(queryset=InsuranceType.objects.all(), widget=forms.Select(
         attrs={
             'class': 'form-control',
             'id': 'tipo_de_seguro',
             'style': 'background-color: #f2f2f2; border:1px solid #444444'
         }
     ))
-    congenere = forms.ModelChoiceField(required=False, queryset=Congenere.objects.all(), widget=forms.Select(
+    congenere = forms.ModelChoiceField(required=False, queryset=Congeners.objects.all(), widget=forms.Select(
         attrs={
             'class': 'form-control',
             'id': 'congenere',
             'style': 'background-color: #f2f2f2; border:1px solid #0dbf7e'
         }
     ))
-    expectativa = forms.ModelChoiceField(queryset=Expectativa.objects.all(), widget=forms.Select(
+    expectativa = forms.ModelChoiceField(queryset=Expectations.objects.all(), widget=forms.Select(
         attrs={
             'class': 'form-control',
             'id': 'expectativa',
@@ -123,7 +124,7 @@ class PipelineComercial(forms.ModelForm):
             'style': 'background-color: #f2f2f2; border:1px solid #444444'
         }
     ))
-    motivo_perda = forms.ModelChoiceField(required=False, queryset=MotivoPerda.objects.all(), widget=forms.Select(
+    motivo_perda = forms.ModelChoiceField(required=False, queryset=ReasonsForLoss.objects.all(), widget=forms.Select(
         attrs={
             'class': 'form-control',
             'id': 'motivo_perda',
@@ -139,7 +140,7 @@ class PipelineComercial(forms.ModelForm):
             'style': 'resize: none; background-color: #f2f2f2; border:1px solid #0dbf7e'
         }
     ))
-    historico_1 = forms.CharField(required=False,max_length=3000, widget=forms.Textarea(
+    historico_1 = forms.CharField(required=False, max_length=3000, widget=forms.Textarea(
         attrs={
             'class': 'form-control',
             'id': 'historico_1',
@@ -148,88 +149,6 @@ class PipelineComercial(forms.ModelForm):
             'style': 'resize: none; background-color: #f2f2f2; border:1px solid #444444'
         }
     ))
-    historico_2 = forms.CharField(required=False,max_length=3000, widget=forms.Textarea(
-        attrs={
-            'class': 'form-control',
-            'id': 'historico_2',
-            'rows': '2',
-            'placeholder': 'Historico 2',
-            'style': 'resize: none; background-color: #f2f2f2; border:1px solid #444444'
-
-        }
-    ))
-    historico_3 = forms.CharField(required=False,max_length=3000, widget=forms.Textarea(
-        attrs={
-            'class': 'form-control',
-            'id': 'historico_3',
-            'rows': '2',
-            'placeholder': 'Historico 3',
-            'style': 'resize: none;  background-color: #f2f2f2; border:1px solid #444444'
-        }
-    ))
-    historico_4 = forms.CharField(required=False,max_length=3000, widget=forms.Textarea(
-        attrs={
-            'class': 'form-control',
-            'id': 'historico_4',
-            'rows': '2',
-            'placeholder': 'Historico 4',
-            'style': 'resize: none;  background-color: #f2f2f2; border:1px solid #444444'
-        }
-    ))
-    historico_5 = forms.CharField(required=False,max_length=3000, widget=forms.Textarea(
-        attrs={
-            'class': 'form-control',
-            'id': 'historico_5',
-            'rows': '2',
-            'placeholder': 'Historico 5',
-            'style': 'resize: none;  background-color: #f2f2f2; border:1px solid #444444'
-        }
-    ))
-    historico_6 = forms.CharField(required=False,max_length=3000, widget=forms.Textarea(
-        attrs={
-            'class': 'form-control',
-            'id': 'historico_6',
-            'rows': '2',
-            'placeholder': 'Historico 6',
-            'style': 'resize: none;  background-color: #f2f2f2; border:1px solid #444444'
-        }
-    ))
-    historico_7 = forms.CharField(required=False,max_length=3000, widget=forms.Textarea(
-        attrs={
-            'class': 'form-control',
-            'id': 'historico_7',
-            'rows': '2',
-            'placeholder': 'Historico 7',
-            'style': 'resize: none;  background-color: #f2f2f2; border:1px solid #444444'
-        }
-    ))
-    historico_8 = forms.CharField(required=False,max_length=3000, widget=forms.Textarea(
-        attrs={
-            'class': 'form-control',
-            'id': 'historico_8',
-            'rows': '2',
-            'placeholder': 'Historico 8',
-            'style': 'resize: none;  background-color: #f2f2f2; border:1px solid #444444'
-        }
-    ))
-    historico_9 = forms.CharField(required=False,max_length=3000, widget=forms.Textarea(
-        attrs={
-            'class': 'form-control',
-            'id': 'historico_9',
-            'rows': '2',
-            'placeholder': 'Historico 9',
-            'style': 'resize: none;  background-color: #f2f2f2; border:1px solid #444444'
-        }
-    ))
-    historico_10 = forms.CharField(required=False,max_length=3000, widget=forms.Textarea(
-        attrs={
-            'class': 'form-control',
-            'id': 'historico_10',
-            'rows': '2',
-            'placeholder': 'Historico 10',
-            'style': 'resize: none;  background-color: #f2f2f2; border:1px solid #444444'
-        }
-    ))
     class Meta:
-        model = Protocolos
+        model = Protocols
         exclude = ('comentario_perda', 'motivo_perda', 'congenere')

@@ -2,13 +2,12 @@
 from __future__ import unicode_literals
 
 from django.db import models
-from django.contrib.auth.backends import ModelBackend
-from django.contrib.auth import get_user_model
+from django.contrib.auth.models import AbstractUser
 
 
-class EmailBackend(ModelBackend):
+class EmailBackend:
     def authenticate(self, username=None, password=None, **kwargs):
-        UserModel = get_user_model()
+        UserModel = UserExtended
         try:
             user = UserModel.objects.get(email=username)
         except UserModel.DoesNotExist:
@@ -17,4 +16,25 @@ class EmailBackend(ModelBackend):
             if getattr(user, 'is_active', False) and user.check_password(password):
                 return user
         return None
-# Create your models here.
+
+
+class Companies(models.Model):
+    name = models.CharField(max_length=400)
+
+    class Meta:
+        db_table = 'companies'
+
+
+class Profiles(models.Model):
+    name = models.CharField(max_length=200)
+
+    class Meta:
+        db_table = 'profiles'
+
+
+class UserExtended(AbstractUser):
+    company = models.ForeignKey(Companies, on_delete=models.CASCADE)
+    profile = models.ForeignKey(Profiles, on_delete=models.CASCADE)
+
+    class Meta:
+        db_table = 'users'

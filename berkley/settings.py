@@ -32,12 +32,14 @@ ALLOWED_HOSTS = []
 
 AUTHENTICATION_BACKENDS = (
     'login.models.EmailBackend',
-    'django.contrib.auth.backends.ModelBackend',
 )
 
+AUTH_USER_MODEL = 'login.UserExtended'
 
 INSTALLED_APPS = [
-    'home',
+    'pipeline',
+    'dashboard',
+    'protocolos',
     'login',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -84,6 +86,13 @@ WSGI_APPLICATION = 'berkley.wsgi.application'
 
 DATABASES = {
     'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres',
+        'USER': 'postgres',
+        'HOST': 'db',
+        'PORT': 5432
+    },
+    'sqlite3': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
