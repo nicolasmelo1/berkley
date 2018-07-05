@@ -101,19 +101,10 @@ class Protocolos(models.Model):
     congenere = models.ForeignKey(Congenere, on_delete=models.CASCADE, null=True, blank=True)
     comentario_perda = models.CharField(max_length=250, null=True, blank=True)
     detalhe_de_perdas = models.CharField(max_length=400, null=True, blank=True)
-    historico_1 = models.CharField(max_length=4000, null=True, blank=True)
-    historico_2 = models.CharField(max_length=4000, null=True, blank=True)
-    historico_3 = models.CharField(max_length=4000, null=True, blank=True)
-    historico_4 = models.CharField(max_length=4000, null=True, blank=True)
-    historico_5 = models.CharField(max_length=4000, null=True, blank=True)
-    historico_6 = models.CharField(max_length=4000, null=True, blank=True)
-    historico_7 = models.CharField(max_length=4000, null=True, blank=True)
-    historico_8 = models.CharField(max_length=4000, null=True, blank=True)
-    historico_9 = models.CharField(max_length=4000, null=True, blank=True)
-    historico_10 = models.CharField(max_length=4000, null=True, blank=True)
 
 
 class Historico(models.Model):
-    protocolo_id = models.ForeignKey(Protocolos, on_delete=models.CASCADE)
+    protocolo = models.ForeignKey(Protocolos, on_delete=models.CASCADE)
     historico = models.CharField(max_length=4000, null=True, blank=True)
-
+    created_at = models.DateField(auto_now_add=True)
+    updated_at = models.DateField(auto_now=True)

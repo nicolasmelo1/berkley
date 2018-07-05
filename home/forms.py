@@ -1,6 +1,7 @@
 from django import forms
 from .models import Regional, Filial, Comercial, Produto, MotivoPerda,TipodeSeguro, Status, Expectativa, Protocolos, Congenere
 
+
 class PipelineComercial(forms.ModelForm):
     error_css_class='error'
 
