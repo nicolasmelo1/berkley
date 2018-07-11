@@ -5,7 +5,6 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
-# Create your models here.
 class Regionals(models.Model):
     regional = models.CharField(max_length=200)
 
@@ -104,15 +103,3 @@ class Detail(models.Model):
 
     class Meta:
         db_table = 'loss_detail'
-
-
-class History(models.Model):
-    from protocolos.models import Protocols
-
-    protocol = models.ForeignKey(Protocols, on_delete=models.CASCADE)
-    history = models.CharField(max_length=4000, null=True, blank=True)
-    created_at = models.DateField(auto_now_add=True)
-    updated_at = models.DateField(auto_now=True)
-
-    class Meta:
-        db_table = 'history'

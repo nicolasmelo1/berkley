@@ -29,3 +29,14 @@ class Protocols(models.Model):
 
     class Meta:
         db_table = 'protocols'
+
+
+class History(models.Model):
+
+    protocol = models.ForeignKey(Protocols, on_delete=models.CASCADE)
+    history = models.CharField(max_length=4000, null=True, blank=True)
+    created_at = models.DateField(auto_now_add=True)
+    updated_at = models.DateField(auto_now=True)
+
+    class Meta:
+        db_table = 'history'

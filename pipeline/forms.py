@@ -1,6 +1,8 @@
 from django import forms
+from django.forms import formset_factory
 from .models import Regionals, Commercials, Subsidiaries, Products, InsuranceType, Expectations, Status, ReasonsForLoss, Congeners
-from protocolos.models import Protocols
+from protocolos.models import Protocols, History
+
 
 class PipelineComercial(forms.ModelForm):
     error_css_class='error'
@@ -12,108 +14,108 @@ class PipelineComercial(forms.ModelForm):
             'style': 'background-color: #f2f2f2; border:1px solid #444444'
         }
     ))
-    filial = forms.ModelChoiceField(queryset=Subsidiaries.objects.all(), widget=forms.Select(
+    subsidiary = forms.ModelChoiceField(queryset=Subsidiaries.objects.all(), widget=forms.Select(
         attrs={
             'class': 'form-control',
-            'id': 'filial',
+            'id': 'subsidiary',
             'style': 'background-color: #f2f2f2; border:1px solid #444444'
         }
     ))
-    comercial = forms.ModelChoiceField(queryset=Commercials.objects.all(), widget=forms.Select(
+    commercial = forms.ModelChoiceField(queryset=Commercials.objects.all(), widget=forms.Select(
         attrs={
             'class': 'form-control',
-            'id': 'comercial',
+            'id': 'commercial',
             'style': 'background-color: #f2f2f2; border:1px solid #444444'
         }
     ))
-    corretor = forms.CharField(max_length=200, widget=forms.TextInput(
+    broker = forms.CharField(max_length=200, widget=forms.TextInput(
         attrs={
             'class': 'form-control',
-            'id': 'corretor',
+            'id': 'broker',
             'placeholder': 'Escreva aqui o nome do corretor',
             'type': 'text',
             'style': 'background-color: #f2f2f2; border:1px solid #444444'
         }
     ))
-    premio = forms.CharField(max_length=200, widget=forms.TextInput(
+    prize = forms.CharField(max_length=200, widget=forms.TextInput(
         attrs={
             'class': 'form-control',
-            'id': 'premio',
+            'id': 'prize',
             'placeholder': 'Insira o valor mensal da conta',
             'type': 'number',
             'style': '-webkit-appearance: none;-moz-appearance: textfield; background-color: #f2f2f2; border:1px solid #444444',
 
         }
     ))
-    produto = forms.ModelChoiceField(queryset=Products.objects.all(), widget=forms.Select(
+    product = forms.ModelChoiceField(queryset=Products.objects.all(), widget=forms.Select(
         attrs={
             'class': 'form-control',
             'placeholder': 'Esolha o produto',
-            'id': 'produto',
+            'id': 'product',
             'style': 'background-color: #f2f2f2; border:1px solid #444444'
         }
     ))
-    cliente = forms.CharField(max_length=200, widget=forms.TextInput(
+    client = forms.CharField(max_length=200, widget=forms.TextInput(
         attrs={
             'class': 'form-control',
-            'id': 'cliente',
+            'id': 'client',
             'placeholder': 'Escreva aqui o nome da empresa cliente',
             'type': 'text',
             'style': 'background-color: #f2f2f2; border:1px solid #444444'
         }
     ))
-    subscritor = forms.CharField(max_length=200, widget=forms.TextInput(
+    subscriber = forms.CharField(max_length=200, widget=forms.TextInput(
         attrs={
             'class': 'form-control',
-            'id': 'subscritor',
+            'id': 'subscriber',
             'type': 'text',
             'style': 'background-color: #f2f2f2; border:1px solid #444444'
         }
     ))
-    recebimento = forms.DateField(input_formats=['%d/%m/%Y'], widget=forms.TextInput(
+    receipt = forms.DateField(input_formats=['%d/%m/%Y'], widget=forms.TextInput(
         attrs={
             'class': 'form-control',
-            'id': 'recebimento',
+            'id': 'receipt',
             'type': 'text',
             'style': 'background-color: #f2f2f2; border:1px solid #444444'
         }
     ))
-    fechamento = forms.DateField(input_formats=['%d/%m/%Y'], widget=forms.TextInput(
+    closure = forms.DateField(input_formats=['%d/%m/%Y'], widget=forms.TextInput(
         attrs={
             'class': 'form-control',
-            'id': 'fechamento',
+            'id': 'closure',
             'placeholder': 'Data prevista para fechamento',
             'type': 'text',
             'style': 'background-color: #f2f2f2; border:1px solid #444444'
         }
     ))
-    vencimento = forms.DateField(input_formats=['%d/%m/%Y'], widget=forms.TextInput(
+    maturity = forms.DateField(input_formats=['%d/%m/%Y'], widget=forms.TextInput(
         attrs={
             'class': 'form-control',
-            'id': 'vencimento',
+            'id': 'maturity',
             'placeholder': 'Data de vencimento da apólice',
             'type': 'text',
             'style': 'background-color: #f2f2f2; border:1px solid #444444'
         }
     ))
-    tipo_de_seguro = forms.ModelChoiceField(queryset=InsuranceType.objects.all(), widget=forms.Select(
+    insurance_type = forms.ModelChoiceField(queryset=InsuranceType.objects.all(), widget=forms.Select(
         attrs={
             'class': 'form-control',
-            'id': 'tipo_de_seguro',
+            'id': 'insurance_type',
             'style': 'background-color: #f2f2f2; border:1px solid #444444'
         }
     ))
-    congenere = forms.ModelChoiceField(required=False, queryset=Congeners.objects.all(), widget=forms.Select(
+    congener = forms.ModelChoiceField(required=False, queryset=Congeners.objects.all(), widget=forms.Select(
         attrs={
             'class': 'form-control',
-            'id': 'congenere',
+            'id': 'congener',
             'style': 'background-color: #f2f2f2; border:1px solid #0dbf7e'
         }
     ))
-    expectativa = forms.ModelChoiceField(queryset=Expectations.objects.all(), widget=forms.Select(
+    expectation = forms.ModelChoiceField(queryset=Expectations.objects.all(), widget=forms.Select(
         attrs={
             'class': 'form-control',
-            'id': 'expectativa',
+            'id': 'expectation',
             'style': 'background-color: #f2f2f2; border:1px solid #444444'
         }
     ))
@@ -124,14 +126,14 @@ class PipelineComercial(forms.ModelForm):
             'style': 'background-color: #f2f2f2; border:1px solid #444444'
         }
     ))
-    motivo_perda = forms.ModelChoiceField(required=False, queryset=ReasonsForLoss.objects.all(), widget=forms.Select(
+    reason_for_loss = forms.ModelChoiceField(required=False, queryset=ReasonsForLoss.objects.all(), widget=forms.Select(
         attrs={
             'class': 'form-control',
-            'id': 'motivo_perda',
+            'id': 'loss_detail',
             'style': 'background-color: #f2f2f2; border:1px solid #0dbf7e'
         }
     ))
-    comentario_perda = forms.CharField(required=False,max_length=200, widget=forms.Textarea(
+    loss_comment = forms.CharField(required=False,max_length=200, widget=forms.Textarea(
         attrs={
             'class': 'form-control',
             'id': 'comentario_perda',
@@ -140,15 +142,26 @@ class PipelineComercial(forms.ModelForm):
             'style': 'resize: none; background-color: #f2f2f2; border:1px solid #0dbf7e'
         }
     ))
-    historico_1 = forms.CharField(required=False, max_length=3000, widget=forms.Textarea(
-        attrs={
-            'class': 'form-control',
-            'id': 'historico_1',
-            'rows': '2',
-            'placeholder': 'Historico 1',
-            'style': 'resize: none; background-color: #f2f2f2; border:1px solid #444444'
-        }
-    ))
+
+
     class Meta:
         model = Protocols
-        exclude = ('comentario_perda', 'motivo_perda', 'congenere')
+        exclude = ('loss_comment', 'loss_detail', 'congener', 'reason_for_loss')
+
+
+class Historico(forms.ModelForm):
+    history = forms.CharField(required=False, max_length=3000, widget=forms.Textarea(
+            attrs={
+                'class': 'form-control',
+                'rows': '2',
+                'placeholder': 'Historico #1',
+                'style': 'resize: none; background-color: #f2f2f2; border:1px solid #444444;'
+            }
+        ))
+
+    class Meta:
+        model = History
+        exclude = ('protocol',)
+
+
+HistoryFormset = formset_factory(Historico, extra=1)

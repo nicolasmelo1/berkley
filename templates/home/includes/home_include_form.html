@@ -24,7 +24,7 @@
                         <div class="form-group">
                             <label for="">Filial</label>
                             <div>
-                                {{ form.filial }}
+                                {{ form.subsidiary }}
                             </div>
                         </div>
                     </div>
@@ -32,7 +32,7 @@
                         <div class="form-group">
                             <label for="">Comercial</label>
                             <div>
-                                {{ form.comercial }}
+                                {{ form.commercial }}
                             </div>
                         </div>
                     </div>
@@ -40,7 +40,7 @@
                         <div class="form-group">
                             <label for="">Corretor</label>
                             <div>
-                                {{ form.corretor }}
+                                {{ form.broker }}
                             </div>
                         </div>
                     </div>
@@ -48,7 +48,7 @@
                         <div class="form-group">
                             <label for="">Cliente</label>
                             <div>
-                                {{ form.cliente }}
+                                {{ form.client }}
                             </div>
                         </div>
                     </div>
@@ -56,7 +56,7 @@
                         <div class="form-group">
                             <label for="">Produto</label>
                             <div>
-                                {{ form.produto }}
+                                {{ form.product }}
                             </div>
                         </div>
                     </div>
@@ -69,10 +69,10 @@
                         <div class="form-group">
                             <label for="">Data de Recebimento</label>
                             <div>
-                                {{ form.recebimento }}
+                                {{ form.receipt }}
                                 <script>
                                     $(document).ready(function(){
-                                        var date_input = $('input[name="recebimento"]'); //our date input has the name "date"
+                                        var date_input = $('input[name="receipt"]'); //our date input has the name "date"
                                         var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
                                         var options = {
                                             format: 'dd/mm/yyyy',
@@ -91,10 +91,10 @@
                         <div class="form-group">
                             <label for="">Previsão de Fechamento</label>
                             <div>
-                                {{ form.fechamento }}
+                                {{ form.closure }}
                                 <script>
                                     $(document).ready(function(){
-                                        var date_input = $('input[name="fechamento"]'); //our date input has the name "date"
+                                        var date_input = $('input[name="closure"]'); //our date input has the name "date"
                                         var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
                                         var options = {
                                             format: 'dd/mm/yyyy',
@@ -113,10 +113,10 @@
                         <div class="form-group">
                             <label for="">Vencimento da Apólice</label>
                             <div>
-                                {{ form.vencimento }}
+                                {{ form.maturity }}
                                 <script>
                                     $(document).ready(function(){
-                                        var date_input = $('input[name="vencimento"]'); //our date input has the name "date"
+                                        var date_input = $('input[name="maturity"]'); //our date input has the name "date"
                                         var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
                                         var options = {
                                             format: 'dd/mm/yyyy',
@@ -135,7 +135,7 @@
                         <div class="form-group">
                             <label for="">Prêmio</label>
                             <div>
-                                {{ form.premio }}
+                                {{ form.prize }}
                             </div>
                         </div>
                     </div>
@@ -143,7 +143,7 @@
                         <div class="form-group">
                             <label for="">Tipo de Seguro</label>
                             <div>
-                                {{ form.tipo_de_seguro }}
+                                {{ form.insurance_type }}
                             </div>
                         </div>
                     </div>
@@ -151,7 +151,7 @@
                         <div class="form-group">
                             <label for="">Expectativa</label>
                             <div>
-                                {{ form.expectativa }}
+                                {{ form.expectation }}
                             </div>
                         </div>
                     </div>
@@ -167,7 +167,7 @@
                         <div class="form-group">
                             <label for="">Subscritor</label>
                             <div>
-                                {{ form.subscritor }}
+                                {{ form.subscriber }}
                             </div>
                         </div>
                     </div>
@@ -205,33 +205,100 @@
             <div class="col-sm-12" style="background-color: #e5e5e5">
                 <h2 class="display-1" style="color: #0e5741; border-bottom: 2px solid#0dbf7e">Histórico de Negociação</h2>
                 <div class="row">
+                    {{ formset.management_form }}
+                    {% for historyform in formset %}
                     <div class="col-sm-12">
-                        <div class="form-group">
-                            {{ form.historico_1 }}
-                        </div>
+                        {% if forloop.counter is 1 %}
+                        <button class="btn add-form-row" style="color: #ffffff;background-color: #0dbf7e; margin-bottom: 10px; width: 100%">Adicionar novo Historico</button>
+                        {% endif %}
+                            {{ historyform.history }}
+                        <button class="btn btn-danger remove-form-row" style="margin-bottom: 10px; width: 100%">Apagar Historico</button>
                     </div>
+                    {% endfor %}
                 </div>
             </div>
             <input type="submit" name="salvar" style="background-color: #444444;color: #FFFFFF; border-radius: 0" class="btn btn-outline-secondary btn-block" value="Salvar"/>
         </form>
     </div>
     <script language="javascript" type="text/javascript">
-        var perda = document.getElementById("perda");
-        var motivoPerda = document.getElementById("motivo_perda");
-        var congenere = document.getElementById("congenere");
-        document.getElementById("status").addEventListener("click", displayTextField);
-          function displayTextField() {
-            var motivo =  document.getElementById("status").value;
-            console.log(motivo);
-            if (motivo === "4") {
-              perda.style.display = "";
-              motivoPerda.required = true;
-              congenere.required = true;
-            } else {
-              perda.style.display = "none";
-              motivoPerda.required = false;
-              congenere.required = false;
+        function deleteHistory(div) {
+             var totalForms = document.querySelector('[id$="-TOTAL_FORMS"]');
+             console.log(parseInt(totalForms.value));
+             if (parseInt(totalForms.value) > 1){
+                 var insertButton = null;
+                 // Check if it's first item
+                 for (var x = 0; x<div.childNodes.length; x++){
+                     try {
+                         if (div.childNodes[x].tagName.toLowerCase() === 'button') {
+                             if (div.childNodes[x].className.toLowerCase().includes('add-form-row')) {
+                                 insertButton = div.childNodes[x];
+                                 break;
+                             }
+                         }
+                     } catch (e) {
+                         continue;
+                     }
+                 }
+                 div.remove();
+                 var historyForms = document.querySelectorAll('[id$="-history"]');
+                 console.log(historyForms);
+                 for (var y = 0; y<historyForms.length; y++){
+                     var r = /\d+/;
+                    historyForms[y].id = historyForms[y].id.replace(historyForms[y].id.match(r)[0], historyForms.length - 1 - y);
+                    historyForms[y].name = historyForms[y].name.replace(historyForms[y].name.match(r)[0], historyForms.length - 1 - y);
+                    historyForms[y].placeholder = historyForms[y].placeholder.replace(historyForms[y].placeholder.match(r)[0], historyForms.length - y);
+                    if (insertButton){
+                        historyForms[0].parentNode.insertBefore(insertButton,historyForms[0].parentNode.firstChild);
+                    }
+                 }
+             }
+             totalForms.value = parseInt(totalForms.value)-1;
+        }
+
+
+        function addHistory(div) {
+            var totalForms = document.querySelector('[id$="-TOTAL_FORMS"]');
+            var clone = div.cloneNode(true);
+            totalForms.value = parseInt(totalForms.value)+1;
+            var nodes = clone.childNodes;
+            for (var i = 0; i<nodes.length; i++){
+                try {
+                    if (nodes[i].tagName.toLowerCase() === 'textarea') {
+                        var r = /\d+/;
+                        clone.childNodes[i].id = clone.childNodes[i].id.replace(clone.childNodes[i].id.match(r)[0], parseInt(clone.childNodes[i].id.match(r)[0]) + 1);
+                        clone.childNodes[i].name = clone.childNodes[i].name.replace(clone.childNodes[i].name.match(r)[0], parseInt(clone.childNodes[i].name.match(r)[0]) + 1);
+                        clone.childNodes[i].placeholder = clone.childNodes[i].placeholder.replace(clone.childNodes[i].placeholder.match(r)[0], parseInt(clone.childNodes[i].placeholder.match(r)[0]) + 1);
+                        clone.childNodes[i].value = '';
+                    }
+                } catch (e) {
+                    continue;
+                }
             }
-          }
+            for (var x = 0; x<div.childNodes.length; x++){
+                try {
+                    if (div.childNodes[x].tagName.toLowerCase() === 'button') {
+                        if (div.childNodes[x].className.toLowerCase().includes('add-form-row')) {
+                            div.childNodes[x].remove();
+                            break;
+                        }
+
+                    }
+                } catch (e) {
+                    continue;
+                }
+            }
+            div.parentNode.insertBefore(clone, div.parentNode.firstChild)
+        }
+
+        $(document).on('click', '.add-form-row', function(e){
+            e.preventDefault();
+            addHistory(this.parentNode);
+            return false;
+        });
+        $(document).on('click', '.remove-form-row', function(e){
+            e.preventDefault();
+            deleteHistory(this.parentNode);
+            return false;
+        });
     </script>
 {% endblock %}
