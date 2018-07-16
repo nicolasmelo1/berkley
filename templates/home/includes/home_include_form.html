@@ -221,38 +221,45 @@
         </form>
     </div>
     <script language="javascript" type="text/javascript">
+        function historyOnload() {
+            var historyForms = document.querySelectorAll('[id$="-history"]');
+            for (var y = 0; y<historyForms.length; y++){
+                var r = /\d+/;
+                historyForms[y].placeholder = historyForms[y].placeholder.replace(historyForms[y].placeholder.match(r)[0], historyForms.length - y);
+            }
+        }
         function deleteHistory(div) {
-             var totalForms = document.querySelector('[id$="-TOTAL_FORMS"]');
-             console.log(parseInt(totalForms.value));
-             if (parseInt(totalForms.value) > 1){
-                 var insertButton = null;
-                 // Check if it's first item
-                 for (var x = 0; x<div.childNodes.length; x++){
-                     try {
-                         if (div.childNodes[x].tagName.toLowerCase() === 'button') {
-                             if (div.childNodes[x].className.toLowerCase().includes('add-form-row')) {
-                                 insertButton = div.childNodes[x];
-                                 break;
-                             }
-                         }
-                     } catch (e) {
-                         continue;
-                     }
-                 }
-                 div.remove();
-                 var historyForms = document.querySelectorAll('[id$="-history"]');
-                 console.log(historyForms);
-                 for (var y = 0; y<historyForms.length; y++){
-                     var r = /\d+/;
+            var totalForms = document.querySelector('[id$="-TOTAL_FORMS"]');
+            console.log(parseInt(totalForms.value));
+            if (parseInt(totalForms.value) > 1){
+                var insertButton = null;
+                // Check if it's first item
+                for (var x = 0; x<div.childNodes.length; x++){
+                    try {
+                        if (div.childNodes[x].tagName.toLowerCase() === 'button') {
+                            if (div.childNodes[x].className.toLowerCase().includes('add-form-row')) {
+                                insertButton = div.childNodes[x];
+                                break;
+                            }
+                        }
+                    } catch (e) {
+                        continue;
+                    }
+                }
+                div.remove();
+                var historyForms = document.querySelectorAll('[id$="-history"]');
+                console.log(historyForms);
+                for (var y = 0; y<historyForms.length; y++){
+                    var r = /\d+/;
                     historyForms[y].id = historyForms[y].id.replace(historyForms[y].id.match(r)[0], historyForms.length - 1 - y);
                     historyForms[y].name = historyForms[y].name.replace(historyForms[y].name.match(r)[0], historyForms.length - 1 - y);
                     historyForms[y].placeholder = historyForms[y].placeholder.replace(historyForms[y].placeholder.match(r)[0], historyForms.length - y);
                     if (insertButton){
                         historyForms[0].parentNode.insertBefore(insertButton,historyForms[0].parentNode.firstChild);
                     }
-                 }
-             }
-             totalForms.value = parseInt(totalForms.value)-1;
+                }
+                totalForms.value = parseInt(totalForms.value)-1;
+            }
         }
 
 
@@ -264,10 +271,6 @@
             for (var i = 0; i<nodes.length; i++){
                 try {
                     if (nodes[i].tagName.toLowerCase() === 'textarea') {
-                        var r = /\d+/;
-                        clone.childNodes[i].id = clone.childNodes[i].id.replace(clone.childNodes[i].id.match(r)[0], parseInt(clone.childNodes[i].id.match(r)[0]) + 1);
-                        clone.childNodes[i].name = clone.childNodes[i].name.replace(clone.childNodes[i].name.match(r)[0], parseInt(clone.childNodes[i].name.match(r)[0]) + 1);
-                        clone.childNodes[i].placeholder = clone.childNodes[i].placeholder.replace(clone.childNodes[i].placeholder.match(r)[0], parseInt(clone.childNodes[i].placeholder.match(r)[0]) + 1);
                         clone.childNodes[i].value = '';
                     }
                 } catch (e) {
@@ -287,9 +290,18 @@
                     continue;
                 }
             }
-            div.parentNode.insertBefore(clone, div.parentNode.firstChild)
+            div.parentNode.insertBefore(clone, div.parentNode.firstChild);
+            var historyForms = document.querySelectorAll('[id$="-history"]');
+            for (var y = 0; y<historyForms.length; y++){
+                var r = /\d+/;
+                historyForms[y].id = historyForms[y].id.replace(historyForms[y].id.match(r)[0], y);
+                historyForms[y].name = historyForms[y].name.replace(historyForms[y].name.match(r)[0], y);
+                historyForms[y].placeholder = historyForms[y].placeholder.replace(historyForms[y].placeholder.match(r)[0], historyForms.length - y);
+            }
         }
-
+        $(document).ready(function(e){
+            historyOnload();
+        });
         $(document).on('click', '.add-form-row', function(e){
             e.preventDefault();
             addHistory(this.parentNode);

@@ -164,4 +164,4 @@ class Historico(forms.ModelForm):
         exclude = ('protocol',)
 
 
-HistoryFormset = formset_factory(Historico, extra=1)
+HistoryFormset = formset_factory(Historico, extra=0, min_num=1, can_order=True)

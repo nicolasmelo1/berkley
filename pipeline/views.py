@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 from .forms import PipelineComercial, HistoryFormset, Historico
 from django.shortcuts import render
 from .models import Regionals, Commercials, Subsidiaries, Products, InsuranceType, Expectations, Status, ReasonsForLoss, Congeners
-from protocolos.models import Protocols
+from protocolos.models import Protocols, History
 from django.http import HttpResponseRedirect
 from datetime import datetime, timedelta
 
@@ -12,10 +12,8 @@ def temp(request):
     if request.method == 'POST':
         form = PipelineComercial(request.POST)
         formset = HistoryFormset(request.POST)
-
         if request.POST.get('salvar'):
-            print(formset.errors)
-            print(form.errors)
+
             if form.is_valid() and formset.is_valid():
                 protocol = form.save(commit=False)
                 protocol.regional = form.cleaned_data['regional']
@@ -33,7 +31,7 @@ def temp(request):
                 protocol.status = form.cleaned_data['status']
                 protocol.subscriber = form['subscriber'].value()
                 protocol = form.save()
-                for index, history_form in enumerate(formset):
+                for history_form in reversed(formset):
                     history = history_form.save(commit=False)
                     history.protocol = protocol
                     history.save()
@@ -42,28 +40,36 @@ def temp(request):
         form = PipelineComercial(request.POST or None)
         formset = HistoryFormset
         return render(request, 'home/home_base.html', {'form': form, 'formset': formset})
-# Create your views here.
 
 
 def consulta(request, pk):
 
     protocolo = Protocols.objects.get(pk=pk)
+    historicos = History.objects.filter(protocol=pk)
 
     form = PipelineComercial(initial={
         'regional': protocolo.regional,
-        'filial': protocolo.filial,
-        'comercial': protocolo.comercial,
-        'corretor': protocolo.corretor,
-        'cliente': protocolo.cliente,
-        'produto': protocolo.produto,
-        'recebimento': protocolo.recebimento.strftime('%d/%m/%Y'),
-        'fechamento': protocolo.fechamento.strftime('%d/%m/%Y'),
-        'vencimento': protocolo.vencimento.strftime('%d/%m/%Y'),
-        'premio': protocolo.premio,
-        'tipo_de_seguro': protocolo.tipo_de_seguro,
-        'expectativa': protocolo.expectativa,
+        'subsidiary': protocolo.subsidiary,
+        'commercial': protocolo.commercial,
+        'broker': protocolo.broker,
+        'client': protocolo.client,
+        'product': protocolo.product,
+        'receipt': protocolo.receipt.strftime('%d/%m/%Y'),
+        'closure': protocolo.closure.strftime('%d/%m/%Y'),
+        'maturity': protocolo.maturity.strftime('%d/%m/%Y'),
+        'prize': protocolo.prize,
+        'insurance_type': protocolo.insurance_type,
+        'expectation': protocolo.expectation,
         'status': protocolo.status,
-        'subscritor': protocolo.subscritor,
+        'subscriber': protocolo.subscriber,
         })
 
-    return render(request, 'home/home_base.html', {'form': form})
+    formset = HistoryFormset(initial=[{
+        'history': historico.history
+    } for historico in historicos])
+
+    return render(request, 'home/home_base.html', {
+        'form': form,
+        'formset': formset,
+        'type': 'consulta'
+    })
