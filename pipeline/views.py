@@ -13,7 +13,8 @@ def temp(request):
         form = PipelineComercial(request.POST)
         formset = HistoryFormset(request.POST)
         if request.POST.get('salvar'):
-
+            print(form.errors)
+            print(formset.errors)
             if form.is_valid() and formset.is_valid():
                 protocol = form.save(commit=False)
                 protocol.regional = form.cleaned_data['regional']
@@ -66,7 +67,7 @@ def consulta(request, pk):
 
     formset = HistoryFormset(initial=[{
         'history': historico.history
-    } for historico in historicos])
+    } for historico in reversed(historicos)])
 
     return render(request, 'home/home_base.html', {
         'form': form,

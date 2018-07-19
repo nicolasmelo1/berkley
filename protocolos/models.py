@@ -4,7 +4,7 @@ from pipeline.models import \
 
 
 class Protocols(models.Model):
-    created_at = models.DateField(auto_now_add=True)
+    created_at = models.DateTimeField(auto_now_add=True)
     is_active = models.BooleanField(default=True)
     regional = models.ForeignKey(Regionals, on_delete=models.CASCADE)
     subsidiary = models.ForeignKey(Subsidiaries, on_delete=models.CASCADE)
@@ -14,7 +14,7 @@ class Protocols(models.Model):
     product = models.ForeignKey(Products, on_delete=models.CASCADE)
     client = models.CharField(max_length=250)
     prize = models.IntegerField()
-    updated_at = models.DateField(auto_now=True)
+    updated_at = models.DateTimeField(auto_now=True)
     receipt = models.DateField()
     maturity = models.DateField()
     closure = models.DateField()
