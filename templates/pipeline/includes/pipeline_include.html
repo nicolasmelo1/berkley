@@ -1,7 +1,7 @@
 {% block content %}
 
     <div class="row">
-        <form id="insert" method="post" action={% url 'pipeline' %}>
+        <form id="insert" method="post" action={% url 'pipeline' company_name %}>
                 {% csrf_token %}
             <div class="col-sm-12" style="background-color: #CDC9C9">
                 <div class="col-sm-2">
@@ -219,97 +219,5 @@
             <input type="submit" name="salvar" style="background-color: #444444;color: #FFFFFF; border-radius: 0" class="btn btn-outline-secondary btn-block" value="Salvar"/>
         </form>
     </div>
-    <script language="javascript" type="text/javascript">
-        function historyOnload() {
-            var historyForms = document.querySelectorAll('[id$="-history"]');
-            for (var y = 0; y<historyForms.length; y++){
-                var r = /\d+/;
-                historyForms[y].placeholder = historyForms[y].placeholder.replace(historyForms[y].placeholder.match(r)[0], historyForms.length - y);
-            }
-        }
-        function deleteHistory(div) {
-            var totalForms = document.querySelector('[id$="-TOTAL_FORMS"]');
-            console.log(parseInt(totalForms.value));
-            if (parseInt(totalForms.value) > 1){
-                var insertButton = null;
-                // Check if it's first item
-                for (var x = 0; x<div.childNodes.length; x++){
-                    try {
-                        if (div.childNodes[x].tagName.toLowerCase() === 'button') {
-                            if (div.childNodes[x].className.toLowerCase().includes('add-form-row')) {
-                                insertButton = div.childNodes[x];
-                                break;
-                            }
-                        }
-                    } catch (e) {
-                        continue;
-                    }
-                }
-                div.remove();
-                var historyForms = document.querySelectorAll('[id$="-history"]');
-                console.log(historyForms);
-                for (var y = 0; y<historyForms.length; y++){
-                    var r = /\d+/;
-                    historyForms[y].id = historyForms[y].id.replace(historyForms[y].id.match(r)[0], historyForms.length - 1 - y);
-                    historyForms[y].name = historyForms[y].name.replace(historyForms[y].name.match(r)[0], historyForms.length - 1 - y);
-                    historyForms[y].placeholder = historyForms[y].placeholder.replace(historyForms[y].placeholder.match(r)[0], historyForms.length - y);
-                    if (insertButton){
-                        historyForms[0].parentNode.insertBefore(insertButton,historyForms[0].parentNode.firstChild);
-                    }
-                }
-                totalForms.value = parseInt(totalForms.value)-1;
-            }
-        }
-
-
-        function addHistory(div) {
-            var totalForms = document.querySelector('[id$="-TOTAL_FORMS"]');
-            var clone = div.cloneNode(true);
-            totalForms.value = parseInt(totalForms.value)+1;
-            var nodes = clone.childNodes;
-            for (var i = 0; i<nodes.length; i++){
-                try {
-                    if (nodes[i].tagName.toLowerCase() === 'textarea') {
-                        clone.childNodes[i].value = '';
-                    }
-                } catch (e) {
-                    continue;
-                }
-            }
-            for (var x = 0; x<div.childNodes.length; x++){
-                try {
-                    if (div.childNodes[x].tagName.toLowerCase() === 'button') {
-                        if (div.childNodes[x].className.toLowerCase().includes('add-form-row')) {
-                            div.childNodes[x].remove();
-                            break;
-                        }
-
-                    }
-                } catch (e) {
-                    continue;
-                }
-            }
-            div.parentNode.insertBefore(clone, div.parentNode.firstChild);
-            var historyForms = document.querySelectorAll('[id$="-history"]');
-            for (var y = 0; y<historyForms.length; y++){
-                var r = /\d+/;
-                historyForms[y].id = historyForms[y].id.replace(historyForms[y].id.match(r)[0], y);
-                historyForms[y].name = historyForms[y].name.replace(historyForms[y].name.match(r)[0], y);
-                historyForms[y].placeholder = historyForms[y].placeholder.replace(historyForms[y].placeholder.match(r)[0], historyForms.length - y);
-            }
-        }
-        $(document).ready(function(e){
-            historyOnload();
-        });
-        $(document).on('click', '.add-form-row', function(e){
-            e.preventDefault();
-            addHistory(this.parentNode);
-            return false;
-        });
-        $(document).on('click', '.remove-form-row', function(e){
-            e.preventDefault();
-            deleteHistory(this.parentNode);
-            return false;
-        });
-    </script>
+    {% include 'pipeline/includes/pipeline_scripts.html' %}
 {% endblock %}

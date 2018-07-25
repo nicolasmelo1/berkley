@@ -1,30 +1,31 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+from berkley.defaults import PermissionHandler
+
 from django.contrib.auth import authenticate, login
 
 from django.http import HttpResponseRedirect
-from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth import logout
+
 
 # Create your views here.
 def login_view(request):
-    if request.user.is_authenticated:
-        return HttpResponseRedirect('/pipeline/')
-    else:
-        if request.method == 'POST':
-            email = request.POST['email']
-            password = request.POST['password']
+    if request.method == 'POST':
+        email = request.POST['email']
+        password = request.POST['password']
 
-            user = authenticate(username=email, password=password)
-            if user:
-                login(request, user)
-                return HttpResponseRedirect('/pipeline/')
-            else:
-                return render(request, 'login/login.html', {'login_message': 'Esse usuário não existe'})
+        user = authenticate(username=email, password=password)
+        permissions = PermissionHandler(user)
+        if user:
+            login(request, user)
+            company = permissions.get_user_company()
+            return redirect('/{}/pipeline/'.format(company.endpoint))
         else:
-            return render(request, 'login/login.html')
+            return render(request, 'login/login_base.html', {'login_message': 'Esse usuário não existe'})
+    else:
+        return render(request, 'login/login_base.html')
 
 
 def logout_view(request):

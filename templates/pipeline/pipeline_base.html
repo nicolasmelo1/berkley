@@ -17,7 +17,7 @@
             <nav class="navbar navbar-default" style="border-radius: 0; background-color: #777777; border-color: #777777; min-height: 80px">
                 <div class="navbar-header">
                     {% load static %}
-                    <a class="navbar-brand" href="{% url 'pipeline' %}" style="height: 80px">
+                    <a class="navbar-brand" href="{% url 'pipeline' company_name %}" style="height: 80px">
                         <span>
                             <img style="height: 70%;display: inline-block" class="img-responsive" src="https://i.imgur.com/ocwGRJl.png">
                             <p style="margin-top: 12px; font-weight: bold; color: #ffffff; display: inline-block; margin-left:20px">Pipeline</p>
@@ -33,11 +33,11 @@
 
                     <ul class="nav navbar-nav navbar-right" style="padding-top: 13px">
                         <li class="active">
-                            <a href="{% url 'pipeline' %}" style="background-color: #777777; color: #FFFFFF;">Formulário</a>
+                            <a href="{% url 'pipeline' company_name %}" style="background-color: #777777; color: #FFFFFF;">Formulário</a>
                         <li class="active">
-                            <a href="{% url 'protocolos' %}" style="background-color: #777777; color: #FFFFFF">Protocolos</a>
+                            <a href="{% url 'protocolos' company_name %}" style="background-color: #777777; color: #FFFFFF">Protocolos</a>
                         <li class="active">
-                            <a href="{% url 'dashboard' %}" style="background-color: #777777; color: #FFFFFF">Dashboard</a>
+                            <a href="{% url 'dashboard' company_name %}" style="background-color: #777777; color: #FFFFFF">Dashboard</a>
                         <li class="active">
                             <a href="{% url 'logout' %}" style="background-color: #777777; color: #FFFFFF">Logout</a>
                         </li>
@@ -45,7 +45,7 @@
                 </div>
             </nav>
             <div class="container-fluid">
-                {% include 'home/includes/home_include_form.html' %}
+                {% include 'pipeline/includes/pipeline_include.html' %}
             </div>
         </body>
         {% endblock %}

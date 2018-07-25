@@ -1,0 +1,19 @@
+{% block content %}
+    <div class="row">
+        <form id="insert" method="post" action={% url 'login' %}>
+            {% csrf_token %}
+            <div class="col-sm-6" style="transform: translate(-50%, -50%);position: absolute; top: 50%; left: 50%;">
+                <img style="height: 40%;display: block; width: 40%; margin-left: auto; margin-right: auto; margin-bottom: 50px" class="img-responsive" src="https://i.imgur.com/ocwGRJl.png">
+                <div class="row">
+                    <div class="form-group">
+                        <input type="email" class="form-control" name="email" aria-describedby="emailHelpId" placeholder="Insira o Email">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" name="password" style="margin: 0;" placeholder="Senha">
+                    </div>
+                    <input type="submit" value="Login" style="color:#000000 ;background-color: #0dbf7e; border-color: #0dbf7e; border-width: thin" class="btn btn-primary btn-block" />
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}

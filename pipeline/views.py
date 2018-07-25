@@ -3,14 +3,17 @@ from __future__ import unicode_literals
 
 from .forms import PipelineComercial, HistoryFormset, Historico
 from django.shortcuts import render
-from .models import Regionals, Commercials, Subsidiaries, Products, InsuranceType, Expectations, Status, ReasonsForLoss, Congeners
 from protocolos.models import Protocols, History
-from django.http import HttpResponseRedirect
-from datetime import datetime, timedelta
+from login.models import Companies
+from berkley.defaults import PermissionHandler
 
-def temp(request):
+
+def temp(request, company):
+    user = request.user
+    companies = Companies.objects.get(endpoint=company)
+
     if request.method == 'POST':
-        form = PipelineComercial(request.POST)
+        form = PipelineComercial(request.POST, user=user, company=companies)
         formset = HistoryFormset(request.POST)
         if request.POST.get('salvar'):
             print(form.errors)
@@ -36,19 +39,21 @@ def temp(request):
                     history = history_form.save(commit=False)
                     history.protocol = protocol
                     history.save()
-                return render(request, 'home/home_base.html', {'form': form, 'formset': formset})
+                return render(request, 'pipeline/pipeline_base.html', {'form': form,
+                                                                       'formset': formset,
+                                                                       'company_name': company})
     else:
-        form = PipelineComercial(request.POST or None)
+        form = PipelineComercial(request.POST or None, user=user, company=companies)
         formset = HistoryFormset
-        return render(request, 'home/home_base.html', {'form': form, 'formset': formset})
+        return render(request, 'pipeline/pipeline_base.html', {'form': form, 'formset': formset, 'company_name': company})
 
 
 def consulta(request, pk):
-
+    user = request.user
     protocolo = Protocols.objects.get(pk=pk)
     historicos = History.objects.filter(protocol=pk)
 
-    form = PipelineComercial(initial={
+    form = PipelineComercial(user=user, initial={
         'regional': protocolo.regional,
         'subsidiary': protocolo.subsidiary,
         'commercial': protocolo.commercial,
@@ -69,7 +74,7 @@ def consulta(request, pk):
         'history': historico.history
     } for historico in reversed(historicos)])
 
-    return render(request, 'home/home_base.html', {
+    return render(request, 'pipeline/pipeline_base.html', {
         'form': form,
         'formset': formset,
         'type': 'consulta'

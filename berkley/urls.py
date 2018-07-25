@@ -17,9 +17,11 @@ from django.conf.urls import url, include
 from django.contrib import admin
 
 urlpatterns = [
+    url('(?P<company>[\w-]+)/', include([
+        url(r'^protocolos/', include('protocolos.urls'), name='protocolos_app'),
+        url(r'^dashboard/', include('dashboard.urls'), name='dashboard_app'),
+        url(r'^pipeline/', include('pipeline.urls'), name='pipeline_app'),
+    ]), name='company_includes'),
     url(r'^admin/', admin.site.urls),
-    url(r'^pipeline/', include('pipeline.urls'), name='pipeline'),
-    url(r'^login/', include('login.urls'), name='login'),
-    url(r'^protocolos/', include('protocolos.urls'), name='protocolos'),
-    url(r'^dashboard/', include('dashboard.urls'), name='dashboard'),
+    url(r'^login/', include('login.urls'), name='login_app'),
 ]

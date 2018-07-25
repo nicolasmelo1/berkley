@@ -7,16 +7,25 @@ from django.contrib.auth.models import AbstractUser
 
 
 class EmailBackend:
-    def authenticate(self, username=None, password=None, **kwargs):
-        UserModel = UserExtended
+    """
+    User logs in using email and password as default, not by
+    username and password.
+    """
+    def authenticate(self, request,  username=None, password=None):
         try:
-            user = UserModel.objects.get(email=username)
-        except UserModel.DoesNotExist:
+            user = UserExtended.objects.get(email=username, is_active=True)
+        except UserExtended.DoesNotExist:
             return None
         else:
-            if getattr(user, 'is_active', False) and user.check_password(password):
+            if user.check_password(password):
                 return user
         return None
+
+    def get_user(self, user_id):
+        try:
+            return UserExtended.objects.get(id=user_id)
+        except UserExtended.DoesNotExist:
+            return None
 
 
 class Companies(models.Model):

@@ -1,26 +1,31 @@
 from django import forms
 from django.forms import formset_factory
-from .models import Regionals, Commercials, Subsidiaries, Products, InsuranceType, Expectations, Status, ReasonsForLoss, Congeners
+from .models import Regionals, Commercials, Subsidiaries, Products, InsuranceType, Expectations, Status, ReasonsForLoss, Congeners, SubsidiariesAccessedBy
 from protocolos.models import Protocols, History
 
 
 class PipelineComercial(forms.ModelForm):
-    error_css_class='error'
 
-    regional = forms.ModelChoiceField(queryset=Regionals.objects.all(), widget=forms.Select(
-        attrs={
-            'class': 'form-control',
-            'id': 'regional',
-            'style': 'background-color: #f2f2f2; border:1px solid #444444'
-        }
-    ))
-    subsidiary = forms.ModelChoiceField(queryset=Subsidiaries.objects.all(), widget=forms.Select(
-        attrs={
-            'class': 'form-control',
-            'id': 'subsidiary',
-            'style': 'background-color: #f2f2f2; border:1px solid #444444'
-        }
-    ))
+    error_css_class = 'error'
+
+    regional = forms.ModelChoiceField(
+        queryset=Regionals.objects.all(),
+        widget=forms.Select(
+            attrs={
+                'class': 'form-control',
+                'id': 'regional',
+                'style': 'background-color: #f2f2f2; border:1px solid #444444'
+            }
+        ))
+    subsidiary = forms.ModelChoiceField(
+        queryset=Subsidiaries.objects.all(),
+        widget=forms.Select(
+            attrs={
+                'class': 'form-control',
+                'id': 'subsidiary',
+                'style': 'background-color: #f2f2f2; border:1px solid #444444'
+            }
+        ))
     commercial = forms.ModelChoiceField(queryset=Commercials.objects.all(), widget=forms.Select(
         attrs={
             'class': 'form-control',
@@ -143,6 +148,15 @@ class PipelineComercial(forms.ModelForm):
         }
     ))
 
+    def __init__(self, *args, **kwargs):
+        self.user = kwargs.pop('user')
+        self.company = kwargs.pop('company')
+        super(self.__class__, self).__init__(*args, **kwargs)
+        subsidiaries = Subsidiaries.objects.filter(subsidiariesaccessedby__user_id=self.user.id,
+                                                   company_id=self.company.id)
+        regionals = Regionals.objects.filter(regionalsaccessedby__user_id=self.user.id, company_id=self.company.id)
+        self.fields['subsidiary'].queryset = subsidiaries
+        self.fields['regional'].queryset = regionals
 
     class Meta:
         model = Protocols
