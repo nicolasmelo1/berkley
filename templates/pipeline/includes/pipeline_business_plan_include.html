@@ -1,0 +1,47 @@
+{% block content %}
+    <div class="col-sm-12" style="background-color: #e5e5e5">
+        <h2 class="display-1" style="color: #0e5741; border-bottom: 2px solid#0dbf7e">Business Plan</h2>
+        <div class="row">
+            <div class="col-sm-8">
+                <div class="form-group">
+                    <label for="">Cliente</label>
+                    <div>
+                        {{ business_plan_form.client }}
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="">Faturamento Anual</label>
+                    <div>
+                        {{ business_plan_form.revenues }}
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="">Data de Fundação</label>
+                    <div>
+                        {{ business_plan_form.foundation_date }}
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="">Funcionários</label>
+                    <div>
+                        {{ business_plan_form.employees }}
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="">Endereço</label>
+                    <div>
+                        {{ business_plan_form.address }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

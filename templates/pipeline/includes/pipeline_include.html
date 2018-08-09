@@ -1,223 +1,25 @@
 {% block content %}
 
-    <div class="row">
+    <div class="row" id="pipeline_form">
+        <div class="col-sm-12" style="background-color: #CDC9C9">
+            <div class="col-sm-2">
+                <button id="button" onclick="businessPlan()" class="btn" style="background-color: #444444; color: #FFFFFF; margin: 10px">Editar Business Plan</button>
+            </div>
+        </div>
         <form id="insert" method="post" action={% url 'pipeline' company_name %}>
                 {% csrf_token %}
-            <div class="col-sm-12" style="background-color: #CDC9C9">
-                <div class="col-sm-2">
-                    <button id="button" onclick="" class="btn" style="background-color: #444444; color: #FFFFFF; margin: 10px">Editar opções de formulário</button>
-                </div>
-            </div>
-            <div class="col-sm-12" style="background-color: #e5e5e5">
-                <h2 class="display-1" style="color: #0e5741; border-bottom: 2px solid#0dbf7e">Informações Gerais</h2>
-                <div class="row">
-                    <div class="col-sm-4">
-                        <div class="form-group">
-                            <label for="">Regional</label>
-                            <div>
-                                {{ form.regional }}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="form-group">
-                            <label for="">Filial</label>
-                            <div>
-                                {{ form.subsidiary }}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="form-group">
-                            <label for="">Comercial</label>
-                            <div>
-                                {{ form.commercial }}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-12">
-                        <div class="form-group">
-                            <label for="">Corretor</label>
-                            <div>
-                                {{ form.broker }}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-8">
-                        <div class="form-group">
-                            <label for="">Cliente</label>
-                            <div>
-                                {{ form.client }}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="form-group">
-                            <label for="">Produto</label>
-                            <div>
-                                {{ form.product }}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-12" style="background-color: #e5e5e5">
-                <h2 class="display-1" style="color: #0e5741; border-bottom: 2px solid#0dbf7e">Informações da Conta</h2>
-                <div class="row">
-                    <div class="col-sm-3">
-                        <div class="form-group">
-                            <label for="">Data de Recebimento</label>
-                            <div>
-                                {{ form.receipt }}
-                                <script>
-                                    $(document).ready(function(){
-                                        var date_input = $('input[name="receipt"]'); //our date input has the name "date"
-                                        var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
-                                        var options = {
-                                            format: 'dd/mm/yyyy',
-                                            language: "pt-BR",
-                                            container: container,
-                                            todayHighlight: true,
-                                            autoclose: true
-                                        };
-                                        date_input.datepicker(options);
-                                    })
-                                </script>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="form-group">
-                            <label for="">Previsão de Fechamento</label>
-                            <div>
-                                {{ form.closure }}
-                                <script>
-                                    $(document).ready(function(){
-                                        var date_input = $('input[name="closure"]'); //our date input has the name "date"
-                                        var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
-                                        var options = {
-                                            format: 'dd/mm/yyyy',
-                                            language: "pt-BR",
-                                            container: container,
-                                            todayHighlight: true,
-                                            autoclose: true
-                                        };
-                                        date_input.datepicker(options);
-                                    })
-                                </script>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="form-group">
-                            <label for="">Vencimento da Apólice</label>
-                            <div>
-                                {{ form.maturity }}
-                                <script>
-                                    $(document).ready(function(){
-                                        var date_input = $('input[name="maturity"]'); //our date input has the name "date"
-                                        var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
-                                        var options = {
-                                            format: 'dd/mm/yyyy',
-                                            language: "pt-BR",
-                                            container: container,
-                                            todayHighlight: true,
-                                            autoclose: true
-                                        };
-                                        date_input.datepicker(options);
-                                    })
-                                </script>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="form-group">
-                            <label for="">Prêmio</label>
-                            <div>
-                                {{ form.prize }}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="form-group">
-                            <label for="">Tipo de Seguro</label>
-                            <div>
-                                {{ form.insurance_type }}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="form-group">
-                            <label for="">Expectativa</label>
-                            <div>
-                                {{ form.expectation }}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="form-group">
-                            <label for="">Status</label>
-                            <div>
-                                {{ form.status }}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="form-group">
-                            <label for="">Subscritor</label>
-                            <div>
-                                {{ form.subscriber }}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-12" id="perda" style="display: none; background-color: #444444">
-                <h2 class="display-1" style="color: #0dbf7e; border-bottom: 2px solid#bfbfbf ">Informação de Contas Perdidas</h2>
-                <div class="row">
-                    <div class="col-sm-2">
-                        <div class="form-group">
-                            <label for="" style="color: #0dbf7e">Motivo da Perda</label>
-                            <div>
-                                {{ form.motivo_perda }}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-2">
-                        <div class="form-group">
-                            <label for="" style="color: #0dbf7e">Congênere</label>
-                            <div>
-                                {{ form.congenere }}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-8">
-                        <div class="form-group">
-                            <label for="" style="color: #0dbf7e">Detalhe da Perda</label>
-                            <div>
-                                {{ form.comentario_perda }}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-12" style="background-color: #e5e5e5">
-                <h2 class="display-1" style="color: #0e5741; border-bottom: 2px solid#0dbf7e">Histórico de Negociação</h2>
-                <div class="row">
-                    {{ formset.management_form }}
-                    {% for historyform in formset %}
-                    <div class="col-sm-12">
-                        {% if forloop.counter is 1 %}
-                        <button class="btn add-form-row" style="color: #ffffff;background-color: #0dbf7e; margin-bottom: 10px; width: 100%">Adicionar novo Historico</button>
-                        {% endif %}
-                            {{ historyform.history }}
-                        <button class="btn btn-danger remove-form-row" style="margin-bottom: 10px; width: 100%">Apagar Historico</button>
-                    </div>
-                    {% endfor %}
-                </div>
-            </div>
+            {% include 'pipeline/includes/pipeline_general_information_include.html' %}
+            {% include 'pipeline/includes/pipeline_account_information_include.html' %}
+            {% include 'pipeline/includes/pipeline_lost_accounts_information_include.html' %}
+            {% include 'pipeline/includes/pipeline_negotiation_history_include.html' %}
             <input type="submit" name="salvar" style="background-color: #444444;color: #FFFFFF; border-radius: 0" class="btn btn-outline-secondary btn-block" value="Salvar"/>
         </form>
+        <form id="business_plan_form" method="post" action='{{company_name}}/pipeline/add_bp' style="display: none">
+            {% csrf_token %}
+            {% include 'pipeline/includes/pipeline_business_plan_include.html' %}
+            {% include 'pipeline/includes/pipeline_business_plan_add_people_include.html' %}
+        </form>
     </div>
+
     {% include 'pipeline/includes/pipeline_scripts.html' %}
 {% endblock %}

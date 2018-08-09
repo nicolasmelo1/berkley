@@ -11,7 +11,7 @@
                     <input name="consulta" id="txt_consulta" placeholder="Consultar" type="text" class="form-control" onkeyup="searchTable()">
                 </div>
                 <div style=""><button id="button" onclick="duplicate()" class="btn btn-success">Add</button></div><br>
-                <form method="post" action="/protocolos/delete/">
+                <form method="post" action={% url 'protocolos_delete' company_name %}>
             {% csrf_token %}
                 <div class="table-responsive">
                     <table id="full-table" class="table table-hover" style="background-color: #ffffff;">
@@ -32,16 +32,16 @@
                         </thead>
                         <tbody id="tabela">
                             {% for protocolo in protocolos %}
-                            <tr class="clickable-row" name="table-row" onclick="window.location='../../../pipeline/{{ protocolo.id }}'">
+                            <tr class="clickable-row" name="table-row" onclick="window.location='{% url 'consulta' company_name protocolo.id %}'">
                                 <td style="text-align: center">{{ protocolo.regional }}</td>
-                                <td style="text-align: center">{{ protocolo.filial }}</td>
-                                <td style="text-align: center">{{ protocolo.comercial }}</td>
-                                <td style="text-align: center">{{ protocolo.cliente }}</td>
-                                <td style="text-align: center">{{ protocolo.produto }}</td>
-                                <td style="text-align: center">{{ protocolo.fechamento }}</td>
-                                <td style="text-align: center" id="premio" name="premio">{{ protocolo.premio }}</td>
+                                <td style="text-align: center">{{ protocolo.subsidiary }}</td>
+                                <td style="text-align: center">{{ protocolo.commercial }}</td>
+                                <td style="text-align: center">{{ protocolo.client }}</td>
+                                <td style="text-align: center">{{ protocolo.product }}</td>
+                                <td style="text-align: center">{{ protocolo.closure }}</td>
+                                <td style="text-align: center" id="premio" name="premio">{{ protocolo.prize }}</td>
                                 <td style="text-align: center">{{ protocolo.status }}</td>
-                                <td style="text-align: center" class="danger" name="expectativa">{{ protocolo.expectativa }}</td>
+                                <td style="text-align: center" class="danger" name="expectativa">{{ protocolo.expectation }}</td>
                                 <td style="text-align: center"><button type="button" class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="glyphicon glyphicon-pencil"></span></button></td>
                                 <td style="text-align: center"><button name="delete" class="btn btn-danger btn-xs" value="{{ protocolo.id }}" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></td>
                             </tr>

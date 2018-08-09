@@ -1,0 +1,113 @@
+{% block content %}
+    <div class="col-sm-12" style="background-color: #e5e5e5">
+        <h2 class="display-1" style="color: #0e5741; border-bottom: 2px solid#0dbf7e">Informações da Conta</h2>
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label for="">Data de Recebimento</label>
+                    <div>
+                        {{ form.receipt }}
+                        <script>
+                            $(document).ready(function(){
+                                var date_input = $('input[name="receipt"]'); //our date input has the name "date"
+                                var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
+                                var options = {
+                                    format: 'dd/mm/yyyy',
+                                    language: "pt-BR",
+                                    container: container,
+                                    todayHighlight: true,
+                                    autoclose: true
+                                };
+                                date_input.datepicker(options);
+                            })
+                        </script>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label for="">Previsão de Fechamento</label>
+                    <div>
+                        {{ form.closure }}
+                        <script>
+                            $(document).ready(function(){
+                                var date_input = $('input[name="closure"]'); //our date input has the name "date"
+                                var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
+                                var options = {
+                                    format: 'dd/mm/yyyy',
+                                    language: "pt-BR",
+                                    container: container,
+                                    todayHighlight: true,
+                                    autoclose: true
+                                };
+                                date_input.datepicker(options);
+                            })
+                        </script>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label for="">Vencimento da Apólice</label>
+                    <div>
+                        {{ form.maturity }}
+                        <script>
+                            $(document).ready(function(){
+                                var date_input = $('input[name="maturity"]'); //our date input has the name "date"
+                                var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
+                                var options = {
+                                    format: 'dd/mm/yyyy',
+                                    language: "pt-BR",
+                                    container: container,
+                                    todayHighlight: true,
+                                    autoclose: true
+                                };
+                                date_input.datepicker(options);
+                            })
+                        </script>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label for="">Prêmio</label>
+                    <div>
+                        {{ form.prize }}
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label for="">Tipo de Seguro</label>
+                    <div>
+                        {{ form.insurance_type }}
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label for="">Expectativa</label>
+                    <div>
+                        {{ form.expectation }}
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label for="">Status</label>
+                    <div>
+                        {{ form.status }}
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label for="">Subscritor</label>
+                    <div>
+                        {{ form.subscriber }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

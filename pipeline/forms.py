@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import formset_factory
-from .models import Regionals, Commercials, Subsidiaries, Products, InsuranceType, Expectations, Status, ReasonsForLoss, Congeners, SubsidiariesAccessedBy
+from .models import Regionals, Commercials, Subsidiaries, Products, InsuranceType, Expectations, Status, ReasonsForLoss, Congeners, SubsidiariesAccessedBy, Clients, Persons
 from protocolos.models import Protocols, History
 
 
@@ -138,7 +138,7 @@ class PipelineComercial(forms.ModelForm):
             'style': 'background-color: #f2f2f2; border:1px solid #0dbf7e'
         }
     ))
-    loss_comment = forms.CharField(required=False,max_length=200, widget=forms.Textarea(
+    loss_commentary = forms.CharField(required=False,max_length=200, widget=forms.Textarea(
         attrs={
             'class': 'form-control',
             'id': 'comentario_perda',
@@ -179,3 +179,107 @@ class Historico(forms.ModelForm):
 
 
 HistoryFormset = formset_factory(Historico, extra=0, min_num=1, can_order=True)
+
+
+class ClientsForm(forms.ModelForm):
+    client = forms.CharField(required=True, max_length=300, widget=forms.TextInput(
+        attrs={
+            'class': 'form-control',
+            'id': 'client',
+            'style': 'resize: none; background-color: #f2f2f2; border:1px solid #444444'
+        }
+    ))
+
+    revenues = forms.CharField(max_length=200, widget=forms.TextInput(
+        attrs={
+            'class': 'form-control',
+            'id': 'revenue',
+            'type': 'number',
+            'style': '-webkit-appearance: none;-moz-appearance: textfield; background-color: #f2f2f2; border:1px solid #444444',
+        }
+    ))
+
+    foundation_date = forms.DateField(input_formats=['%d/%m/%Y'], widget=forms.TextInput(
+        attrs={
+            'class': 'form-control',
+            'id': 'foundation_date',
+            'placeholder': 'Data prevista para fechamento',
+            'type': 'text',
+            'style': 'background-color: #f2f2f2; border:1px solid #444444'
+        }
+    ))
+
+    employees = forms.CharField(max_length=200, widget=forms.TextInput(
+        attrs={
+            'class': 'form-control',
+            'id': 'employees',
+            'type': 'number',
+            'style': '-webkit-appearance: none;-moz-appearance: textfield; background-color: #f2f2f2; border:1px solid #444444',
+        }
+    ))
+
+    address = forms.CharField(max_length=500, widget=forms.TextInput(
+        attrs={
+            'class': 'form-control',
+            'id': 'address',
+            'type': 'text',
+            'style': 'background-color: #f2f2f2; border:1px solid #444444',
+        }
+    ))
+
+    class Meta:
+        model = Clients
+        exclude = ('user', 'created_at', 'updated_at',)
+
+
+class Persons(forms.ModelForm):
+    name = forms.CharField(max_length=300, widget=forms.TextInput(
+        attrs={
+            'class': 'form-control',
+            'type': 'text',
+            'style': 'background-color: #f2f2f2; border:1px solid #444444',
+        }
+    ))
+    email = forms.CharField(max_length=240, widget=forms.TextInput(
+        attrs={
+            'class': 'form-control',
+            'type': 'text',
+            'style': 'background-color: #f2f2f2; border:1px solid #444444',
+        }
+    ))
+    cellphone_number = forms.CharField(max_length=20, widget=forms.TextInput(
+        attrs={
+            'class': 'form-control',
+            'type': 'number',
+            'style': '-webkit-appearance: none;-moz-appearance: textfield; background-color: #f2f2f2; border:1px solid #444444',
+        }
+    ))
+    birthday = forms.DateField(input_formats=['%d/%m/%Y'], widget=forms.TextInput(
+        attrs={
+            'class': 'form-control',
+            'placeholder': 'DD/MM/AAAA',
+            'type': 'text',
+            'style': 'background-color: #f2f2f2; border:1px solid #444444'
+        }
+    ))
+    occupation = forms.CharField(max_length=300, widget=forms.TextInput(
+        attrs={
+            'class': 'form-control',
+            'type': 'text',
+            'style': 'background-color: #f2f2f2; border:1px solid #444444',
+        }
+    ))
+    hobby = forms.CharField(max_length=500, widget=forms.TextInput(
+        attrs={
+            'class': 'form-control',
+            'type': 'text',
+            'style': 'background-color: #f2f2f2; border:1px solid #444444',
+        }
+    ))
+
+    class Meta:
+        model = Persons
+        exclude = ('client',)
+
+
+PersonsFormset = formset_factory(Persons, extra=0, min_num=1, can_order=True)

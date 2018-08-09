@@ -9,10 +9,10 @@ services:
     command: python manage.py migrate --noinput
     command: python manage.py runserver 0.0.0.0:8000
     environment:
-    - CONFIG=dev
+      - CONFIG=dev
     volumes:
       - .:/code
     ports:
       - "8000:8000"
     depends_on:
-    - db
+      - db

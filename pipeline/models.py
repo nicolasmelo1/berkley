@@ -103,10 +103,10 @@ class Congeners(models.Model):
 
 
 class Detail(models.Model):
-    loss_comentary = models.CharField(max_length=300)
+    loss_commentary = models.CharField(max_length=300)
 
     def __str__(self):
-        return self.loss_comentary
+        return self.loss_commentary
 
     class Meta:
         db_table = 'loss_detail'
@@ -127,3 +127,33 @@ class SubsidiariesAccessedBy(models.Model):
 
     class Meta:
         db_table = 'subsidiaries_accessed_by'
+
+
+class Clients(models.Model):
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    user = models.ForeignKey(UserExtended, on_delete=models.CASCADE)
+    name = models.CharField(max_length=300)
+    revenues = models.BigIntegerField()
+    foundation_date = models.DateField()
+    employees = models.BigIntegerField()
+    address = models.CharField(max_length=1000)
+
+    class Meta:
+        db_table = 'clients'
+
+
+class Persons(models.Model):
+    client = models.ForeignKey(Clients, on_delete=models.CASCADE)
+    name = models.CharField(max_length=300)
+    email = models.CharField(max_length=240)
+    cellphone_number = models.IntegerField()
+    birthday = models.DateField()
+    occupation = models.CharField(max_length=300)
+    hobby = models.CharField(max_length=500)
+
+    class Meta:
+        db_table = 'persons'
+
+
+

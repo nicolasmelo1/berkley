@@ -1,0 +1,31 @@
+{% block content %}
+    <div class="col-sm-12" id="perda" style="display: none; background-color: #444444">
+        <h2 class="display-1" style="color: #0dbf7e; border-bottom: 2px solid#bfbfbf ">Informação de Contas Perdidas</h2>
+        <div class="row">
+            <div class="col-sm-2">
+                <div class="form-group">
+                    <label for="" style="color: #0dbf7e">Motivo da Perda</label>
+                    <div>
+                        {{ form.reason_for_loss }}
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="form-group">
+                    <label for="" style="color: #0dbf7e">Congênere</label>
+                    <div>
+                        {{ form.congener }}
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="form-group">
+                    <label for="" style="color: #0dbf7e">Detalhe da Perda</label>
+                    <div>
+                        {{ form.loss_commentary }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

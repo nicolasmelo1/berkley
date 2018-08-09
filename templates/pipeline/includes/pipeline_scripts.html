@@ -1,10 +1,59 @@
 {% block content %}
     <script language="javascript" type="text/javascript">
-        function historyOnload() {
-            var historyForms = document.querySelectorAll('[id$="-history"]');
-            for (var y = 0; y<historyForms.length; y++){
-                var r = /\d+/;
-                historyForms[y].placeholder = historyForms[y].placeholder.replace(historyForms[y].placeholder.match(r)[0], historyForms.length - y);
+        //Show dialog "Informações de Contas Perdidas"
+        var show_pipeline = true;
+        var perda = document.getElementById("perda");
+        var motivoPerda = document.getElementById("loss_detail");
+        var congenere = document.getElementById("congener");
+        document.getElementById("status").addEventListener("click", displayTextField);
+        function displayTextField() {
+            var motivo =  document.getElementById("status");
+            motivo = motivo.options[motivo.selectedIndex];
+            if (motivo.text === "Perdido") {
+                perda.style.display = "";
+                motivoPerda.required = true;
+                congenere.required = true;
+            } else {
+                perda.style.display = "none";
+                motivoPerda.required = false;
+                congenere.required = false;
+            }
+        }
+        //Business Plan Behaviour
+        function businessPlan() {
+            var businessPlanForm = document.getElementById("business_plan_form");
+            var pipelineForm = document.getElementById("insert");
+            if (show_pipeline) {
+                pipelineForm.style.display = "none";
+                businessPlanForm.style.display="";
+                show_pipeline = false
+            } else {
+                pipelineForm.style.display = "";
+                businessPlanForm.style.display="none";
+                show_pipeline = true
+            }
+        }
+        //Add or delete history dialogs
+        function onLoad() {
+            var ignore_elements_by_name=['form-TOTAL_FORMS','form-INITIAL_FORMS','form-MIN_NUM_FORMS','form-MAX_NUM_FORMS'];
+            var forms = document.querySelectorAll('form');
+            for (var index_of_forms = 0; index_of_forms<forms.length; index_of_forms++) {
+                var formset_elements = Array.prototype.slice.call(forms[index_of_forms].querySelectorAll('[id^="id_form-"]'));
+                // First for loop is used to delete default django hidden inputs inside formset_elements
+                for (index_of_formset_elements = formset_elements.length; -1 < index_of_formset_elements; index_of_formset_elements--) {
+                    if (formset_elements[index_of_formset_elements] != null) {
+                        if (ignore_elements_by_name.indexOf(formset_elements[index_of_formset_elements].name) > -1) {
+                           formset_elements.splice(index_of_formset_elements, 1);
+                        }
+                    }
+                }
+                // Second loop adds placeholders of elements on load but you can use it for other parameters
+                for (index_of_formset_elements=0; index_of_formset_elements<formset_elements.length; index_of_formset_elements++){
+                    var r = /\d+/;
+                    if (formset_elements[index_of_formset_elements].placeholder.match(r) != null) {
+                        formset_elements[index_of_formset_elements].placeholder = formset_elements[index_of_formset_elements].placeholder.replace(formset_elements[index_of_formset_elements].placeholder.match(r)[0], formset_elements.length - index_of_formset_elements);
+                    }
+                }
             }
         }
         function deleteHistory(div) {
@@ -42,48 +91,69 @@
         }
 
 
-        function addHistory(div) {
-            var totalForms = document.querySelector('[id$="-TOTAL_FORMS"]');
+        function addFormset(div, options) {
+            var ignore_elements_by_name=['form-TOTAL_FORMS','form-INITIAL_FORMS','form-MIN_NUM_FORMS','form-MAX_NUM_FORMS'];
+            var totalForms = div.closest('form').querySelector('[id$="-TOTAL_FORMS"]');
             var clone = div.cloneNode(true);
             totalForms.value = parseInt(totalForms.value)+1;
-            var nodes = clone.childNodes;
+            var nodes = clone.querySelectorAll('textarea, input, selector');
             for (var i = 0; i<nodes.length; i++){
-                try {
-                    if (nodes[i].tagName.toLowerCase() === 'textarea') {
-                        clone.childNodes[i].value = '';
-                    }
-                } catch (e) {
-                    continue;
+                nodes[i].value=''
+            }
+            nodes = div.querySelectorAll('button');
+            for (var x = 0; x<nodes.length; x++){
+                if (nodes[x].className.toLowerCase().includes('add-form-row')) {
+                    nodes[x].remove();
+                    break;
                 }
             }
-            for (var x = 0; x<div.childNodes.length; x++){
-                try {
-                    if (div.childNodes[x].tagName.toLowerCase() === 'button') {
-                        if (div.childNodes[x].className.toLowerCase().includes('add-form-row')) {
-                            div.childNodes[x].remove();
-                            break;
-                        }
-
-                    }
-                } catch (e) {
-                    continue;
-                }
-            }
+            var auxiliar = [];
             div.parentNode.insertBefore(clone, div.parentNode.firstChild);
-            var historyForms = document.querySelectorAll('[id$="-history"]');
-            for (var y = 0; y<historyForms.length; y++){
-                var r = /\d+/;
-                historyForms[y].id = historyForms[y].id.replace(historyForms[y].id.match(r)[0], y);
-                historyForms[y].name = historyForms[y].name.replace(historyForms[y].name.match(r)[0], y);
-                historyForms[y].placeholder = historyForms[y].placeholder.replace(historyForms[y].placeholder.match(r)[0], historyForms.length - y);
+            var forms = div.closest('form').querySelectorAll('[id^="id_form-"]');
+            for (var y = 0; y<forms.length; y++){
+                if (ignore_elements_by_name.indexOf(forms[y].name) === -1) {
+                    var r = /\d+/;
+                    if (auxiliar.indexOf(forms[y].id) === -1){
+                         auxiliar.push(forms[y].id);
+                    } else {
+                        aux_index = auxiliar.indexOf(forms[y].id);
+                        forms[y].id = forms[y].id.replace(auxiliar[aux_index].match(r)[0], String(parseInt(auxiliar[aux_index].match(r)[0])+1));
+                        auxiliar[aux_index]=forms[y].id
+                    }
+                    if (auxiliar.indexOf(forms[y].name) === -1){
+                         auxiliar.push(forms[y].name);
+                    } else {
+                        aux_index = auxiliar.indexOf(forms[y].name);
+                        forms[y].name = forms[y].name.replace(auxiliar[aux_index].match(r)[0], String(parseInt(auxiliar[aux_index].match(r)[0])+1));
+                        auxiliar[aux_index]=forms[y].name
+                    }
+
+                    /*if (auxiliar.indexOf(forms[(forms.length - 1) - y].placeholder) === -1){
+                        auxiliar.push(forms[(forms.length - 1) - y].placeholder);
+                    } else {
+                        aux_index = auxiliar.indexOf(forms[(forms.length - 1) - y].placeholder);
+                        forms[(forms.length - 1) - y].placeholder = forms[(forms.length - 1) - y].placeholder.replace(forms[(forms.length - 1) - y].placeholder.match(r)[0], String(parseInt(forms[(forms.length - 1) - y].placeholder.match(r)[0]) + 1));
+                        auxiliar[aux_index] = forms[(forms.length - 1) - y].placeholder
+                    }*/
+                    console.log(auxiliar);
+                }
             }
         }
+
+
         $(document).ready(function(e){
-            historyOnload();
+            onLoad();
         });
         $(document).on('click', '.add-form-row', function(e){
             e.preventDefault();
-            addHistory(this.parentNode);
+            // defaults are default configurations, arrays are used for storing data, the rest are configuration
+            defaults={
+                changePlaceholder:false,
+            };
+            if (this.id === 'historico'){
+                defaults.changePlaceholder = true;
+            }
+            addFormset(this.parentNode, defaults);
             return false;
         });
         $(document).on('click', '.remove-form-row', function(e){

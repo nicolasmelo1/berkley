@@ -1,0 +1,55 @@
+{% block content %}
+    <div class="col-sm-12" style="background-color: #e5e5e5">
+        <h2 class="display-1" style="color: #0e5741; border-bottom: 2px solid#0dbf7e">Informações Gerais</h2>
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="">Regional</label>
+                    <div>
+                        {{ form.regional }}
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="">Filial</label>
+                    <div>
+                        {{ form.subsidiary }}
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="">Comercial</label>
+                    <div>
+                        {{ form.commercial }}
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label for="">Corretor</label>
+                    <div>
+                        {{ form.broker }}
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="form-group">
+                    <label for="">Cliente</label>
+                    <div>
+                        {{ form.client }}
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="">Produto</label>
+                    <div>
+                        {{ form.product }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
