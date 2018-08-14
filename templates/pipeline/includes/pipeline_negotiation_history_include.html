@@ -1,15 +1,15 @@
 {% block content %}
-    <div class="col-sm-12" style="background-color: #e5e5e5">
+    <div class="col-sm-12 formset" style="background-color: #e5e5e5">
         <h2 class="display-1" style="color: #0e5741; border-bottom: 2px solid#0dbf7e">Histórico de Negociação</h2>
         <div class="row">
             {{ formset.management_form }}
             {% for historyform in formset %}
-            <div class="col-sm-12">
+            <div class="col-sm-12 formset-row">
                 {% if forloop.counter is 1 %}
-                <button class="btn add-form-row" style="color: #ffffff;background-color: #0dbf7e; margin-bottom: 10px; width: 100%">Adicionar novo Historico</button>
+                <button class="btn add form-button history" style="color: #ffffff;background-color: #0dbf7e; margin-bottom: 10px; width: 100%">Adicionar novo Historico</button>
                 {% endif %}
                     {{ historyform.history }}
-                <button class="btn btn-danger remove-form-row" style="margin-bottom: 10px; width: 100%">Apagar Historico</button>
+                <button class="btn btn-danger remove form-button history" style="margin-bottom: 10px; width: 100%">Apagar Historico</button>
             </div>
             {% endfor %}
         </div>

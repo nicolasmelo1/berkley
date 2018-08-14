@@ -2,24 +2,45 @@
 from __future__ import unicode_literals
 
 from .forms import PipelineComercial, HistoryFormset, ClientsForm, PersonsFormset
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from protocolos.models import Protocols, History
 from login.models import Companies
 from berkley.defaults import PermissionHandler
+from datetime import datetime
+from django.views import View
 from django.contrib.auth.decorators import login_required
 
 
-@login_required()
-def temp(request, company):
-    user = request.user
-    companies = Companies.objects.get(endpoint=company)
-    if request.method == 'POST':
-        pipeline_form = PipelineComercial(request.POST, user=user, company=companies)
-        pipeline_history_formset = HistoryFormset(request.POST)
-        business_plan_formset = PersonsFormset(request.POST)
-        business_plan_form = ClientsForm(request.POST or None)
+class Form(View):
+    template_name = 'pipeline/pipeline_base.html'
+    pipeline_history_formset = HistoryFormset()
+    business_plan_formset = PersonsFormset()
+    business_plan_form = ClientsForm()
+
+    def get_pipeline(self, user, company):
+        companies = Companies.objects.get(endpoint=company)
+        pipeline_form = PipelineComercial(user=user, company=companies)
+        return pipeline_form
+
+
+class Pipeline(Form):
+    def get(self, request, company, *args, **kwargs):
+        user = request.user
+        pipeline_form = self.get_pipeline(user, company)
+        return render(request, self.template_name,
+                      {
+                          'form': pipeline_form,
+                          'formset': self.pipeline_history_formset,
+                          'business_plan_form': self.business_plan_form,
+                          'business_plan_formset': self.business_plan_formset,
+                          'company_name': company
+                      })
+
+    def post(self, request, company, *args, **kwargs):
+        user = request.user
+        pipeline_form = self.get_pipeline(user, company)
         if request.POST.get('salvar'):
-            if pipeline_form.is_valid() and pipeline_history_formset.is_valid():
+            if pipeline_form.is_valid() and self.pipeline_history_formset.is_valid():
                 protocol = pipeline_form.save(commit=False)
                 protocol.regional = pipeline_form.cleaned_data['regional']
                 protocol.subsidiary = pipeline_form.cleaned_data['subsidiary']
@@ -36,61 +57,76 @@ def temp(request, company):
                 protocol.status = pipeline_form.cleaned_data['status']
                 protocol.subscriber = pipeline_form['subscriber'].value()
                 protocol = pipeline_form.save()
-                for history_form in reversed(pipeline_history_formset):
+                for history_form in reversed(self.pipeline_history_formset):
                     history = history_form.save(commit=False)
                     history.protocol = protocol
                     history.save()
-                return render(request, 'pipeline/pipeline_base.html', {'form': pipeline_form,
-                                                                       'formset': pipeline_history_formset,
-                                                                       'business_plan_form': business_plan_form,
-                                                                       'business_plan_formset': business_plan_formset,
-                                                                       'company_name': company})
-    else:
-        form = PipelineComercial(request.POST or None, user=user, company=companies)
-        business_plan_form = ClientsForm(request.POST or None)
-        formset = HistoryFormset
-        business_plan_formset = PersonsFormset
-        return render(request, 'pipeline/pipeline_base.html',
-                      {
-                          'form': form,
-                          'formset': formset,
-                          'business_plan_form': business_plan_form,
-                          'business_plan_formset': business_plan_formset,
-                          'company_name': company
-                      })
+                return render(request, self.template_name,
+                              {
+                                  'form': pipeline_form,
+                                  'formset': self.pipeline_history_formset,
+                                  'business_plan_form': self.business_plan_form,
+                                  'business_plan_formset': self.business_plan_formset,
+                                  'render_business_plan_first': False,
+                                  'company_name': company
+                              })
 
 
-@login_required()
-def consulta(request, pk, company):
-    user = request.user
-    companies = Companies.objects.get(endpoint=company)
+class PipelineEdit(Form):
+    def get(self, request, pk, company):
+        user = request.user
+        companies = Companies.objects.get(endpoint=company)
+        protocolo = Protocols.objects.get(pk=pk)
+        historicos = History.objects.filter(protocol=pk)
 
-    protocolo = Protocols.objects.get(pk=pk)
-    historicos = History.objects.filter(protocol=pk)
-
-    pipeline_form = PipelineComercial(user=user, company=companies, initial={
-        'regional': protocolo.regional,
-        'subsidiary': protocolo.subsidiary,
-        'commercial': protocolo.commercial,
-        'broker': protocolo.broker,
-        'client': protocolo.client,
-        'product': protocolo.product,
-        'receipt': protocolo.receipt.strftime('%d/%m/%Y'),
-        'closure': protocolo.closure.strftime('%d/%m/%Y'),
-        'maturity': protocolo.maturity.strftime('%d/%m/%Y'),
-        'prize': protocolo.prize,
-        'insurance_type': protocolo.insurance_type,
-        'expectation': protocolo.expectation,
-        'status': protocolo.status,
-        'subscriber': protocolo.subscriber,
+        pipeline_form = PipelineComercial(user=user, company=companies, initial={
+            'regional': protocolo.regional,
+            'subsidiary': protocolo.subsidiary,
+            'commercial': protocolo.commercial,
+            'broker': protocolo.broker,
+            'client': protocolo.client,
+            'product': protocolo.product,
+            'receipt': protocolo.receipt.strftime('%d/%m/%Y'),
+            'closure': protocolo.closure.strftime('%d/%m/%Y'),
+            'maturity': protocolo.maturity.strftime('%d/%m/%Y'),
+            'prize': protocolo.prize,
+            'insurance_type': protocolo.insurance_type,
+            'expectation': protocolo.expectation,
+            'status': protocolo.status,
+            'subscriber': protocolo.subscriber,
         })
 
-    pipeline_history_formset = HistoryFormset(initial=[{
-        'history': historico.history
-    } for historico in reversed(historicos)])
+        pipeline_history_formset = HistoryFormset(initial=[{
+            'history': historico.history
+        } for historico in reversed(historicos)])
 
-    return render(request, 'pipeline/pipeline_base.html', {
-        'pipeline_form': pipeline_form,
-        'pipeline_formset': pipeline_history_formset,
-        'company_name': company
-    })
+        return render(request,  self.template_name, {
+            'pipeline_form': pipeline_form,
+            'pipeline_formset': pipeline_history_formset,
+            'company_name': company
+        })
+
+
+class BusinessPlan(Form):
+    def post(self, request, company):
+        user = request.user
+        if self.business_plan_form.is_valid() and self.business_plan_formset.is_valid():
+            business_plan_save = self.business_plan_form.save(commit=False)
+            business_plan_save.name = self.business_plan_form['name'].value()
+            business_plan_save.revenues = self.business_plan_form['revenues'].value()
+            business_plan_save.foundation_date = self.business_plan_form.cleaned_data['foundation_date']
+            business_plan_save.employees = self.business_plan_form['employees'].value()
+            business_plan_save.address = self.business_plan_form['address'].value()
+            business_plan_save.user = user
+            business_plan_save = self.business_plan_form.save()
+            for persons_form in reversed(self.business_plan_formset):
+                persons_save = persons_form.save(commit=False)
+                persons_save.client = business_plan_save
+                persons_save.name = persons_form['name'].value()
+                persons_save.email = persons_form['email'].value()
+                persons_save.cellphone_number = persons_form['cellphone_number'].value()
+                persons_save.birthday = datetime.strptime(persons_form['birthday'].value(), '%d/%m/%Y')
+                persons_save.occupation = persons_form['occupation'].value()
+                persons_save.hobby = persons_form['hobby'].value()
+                persons_save.save()
+            return redirect('pipeline', company)

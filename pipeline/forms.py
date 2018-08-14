@@ -182,10 +182,10 @@ HistoryFormset = formset_factory(Historico, extra=0, min_num=1, can_order=True)
 
 
 class ClientsForm(forms.ModelForm):
-    client = forms.CharField(required=True, max_length=300, widget=forms.TextInput(
+    name = forms.CharField(required=True, max_length=300, widget=forms.TextInput(
         attrs={
             'class': 'form-control',
-            'id': 'client',
+            'id': 'name',
             'style': 'resize: none; background-color: #f2f2f2; border:1px solid #444444'
         }
     ))

@@ -3,7 +3,7 @@
     <div class="row" id="pipeline_form">
         <div class="col-sm-12" style="background-color: #CDC9C9">
             <div class="col-sm-2">
-                <button id="button" onclick="businessPlan()" class="btn" style="background-color: #444444; color: #FFFFFF; margin: 10px">Editar Business Plan</button>
+                <button id="businessPlanButton" class="btn change-to-business-plan" style="background-color: #444444; color: #FFFFFF; margin: 10px">Editar Business Plan</button>
             </div>
         </div>
         <form id="insert" method="post" action={% url 'pipeline' company_name %}>
@@ -14,10 +14,11 @@
             {% include 'pipeline/includes/pipeline_negotiation_history_include.html' %}
             <input type="submit" name="salvar" style="background-color: #444444;color: #FFFFFF; border-radius: 0" class="btn btn-outline-secondary btn-block" value="Salvar"/>
         </form>
-        <form id="business_plan_form" method="post" action='{{company_name}}/pipeline/add_bp' style="display: none">
+        <form id="business_plan_form" method="post" style="display: none" action={% url 'business_plan_add' company_name %}>
             {% csrf_token %}
             {% include 'pipeline/includes/pipeline_business_plan_include.html' %}
             {% include 'pipeline/includes/pipeline_business_plan_add_people_include.html' %}
+            <input type="submit" name="salvar_business_plan" style="background-color: #444444;color: #FFFFFF; border-radius: 0" class="btn btn-outline-secondary btn-block" value="Salvar"/>
         </form>
     </div>
 

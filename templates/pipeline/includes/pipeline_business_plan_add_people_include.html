@@ -1,12 +1,12 @@
 {% block content %}
-    <div class="col-sm-12" style="background-color: #e5e5e5">
+    <div class="col-sm-12 formset" style="background-color: #e5e5e5">
         <h2 class="display-1" style="color: #0e5741; border-bottom: 2px solid#0dbf7e">Pessoas</h2>
         <div class="row">
             {{ business_plan_formset.management_form }}
             {% for peopleform in business_plan_formset %}
-            <div class="col-sm-12">
+            <div class="col-sm-12 formset-row">
                 {% if forloop.counter is 1 %}
-                <button class="btn add-form-row" style="color: #ffffff;background-color: #0dbf7e; margin-bottom: 10px; width: 100%">Adicionar nova Pessoa</button>
+                <button class="btn add form-button" style="color: #ffffff;background-color: #0dbf7e; margin-bottom: 10px; width: 100%">Adicionar nova Pessoa</button>
                 {% endif %}
                 <div class="row">
                     <div class="col-sm-4">
@@ -48,7 +48,7 @@
                         </div>
                     </div>
                 </div>
-                <button class="btn btn-danger remove-form-row" style="margin-bottom: 10px; width: 100%">Apagar Pessoa</button>
+                <button class="btn btn-danger remove form-button" style="margin-bottom: 10px; width: 100%">Apagar Pessoa</button>
             </div>
             {% endfor %}
         </div>

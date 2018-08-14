@@ -23,143 +23,109 @@
         function businessPlan() {
             var businessPlanForm = document.getElementById("business_plan_form");
             var pipelineForm = document.getElementById("insert");
+            var businessPlanButton = document.getElementById("businessPlanButton");
+
             if (show_pipeline) {
                 pipelineForm.style.display = "none";
                 businessPlanForm.style.display="";
+                businessPlanButton.firstChild.data = 'Editar Pipeline';
                 show_pipeline = false
             } else {
                 pipelineForm.style.display = "";
                 businessPlanForm.style.display="none";
+                businessPlanButton.firstChild.data = 'Editar Business Plan';
                 show_pipeline = true
             }
         }
-        //Add or delete history dialogs
-        function onLoad() {
-            var ignore_elements_by_name=['form-TOTAL_FORMS','form-INITIAL_FORMS','form-MIN_NUM_FORMS','form-MAX_NUM_FORMS'];
-            var forms = document.querySelectorAll('form');
-            for (var index_of_forms = 0; index_of_forms<forms.length; index_of_forms++) {
-                var formset_elements = Array.prototype.slice.call(forms[index_of_forms].querySelectorAll('[id^="id_form-"]'));
-                // First for loop is used to delete default django hidden inputs inside formset_elements
-                for (index_of_formset_elements = formset_elements.length; -1 < index_of_formset_elements; index_of_formset_elements--) {
-                    if (formset_elements[index_of_formset_elements] != null) {
-                        if (ignore_elements_by_name.indexOf(formset_elements[index_of_formset_elements].name) > -1) {
-                           formset_elements.splice(index_of_formset_elements, 1);
-                        }
-                    }
-                }
-                // Second loop adds placeholders of elements on load but you can use it for other parameters
-                for (index_of_formset_elements=0; index_of_formset_elements<formset_elements.length; index_of_formset_elements++){
-                    var r = /\d+/;
-                    if (formset_elements[index_of_formset_elements].placeholder.match(r) != null) {
-                        formset_elements[index_of_formset_elements].placeholder = formset_elements[index_of_formset_elements].placeholder.replace(formset_elements[index_of_formset_elements].placeholder.match(r)[0], formset_elements.length - index_of_formset_elements);
-                    }
+
+        function formset_recounter(formset, form, defaults, operation, insertButton) {
+            insertButton = typeof insertButton !== 'undefined' ? insertButton : insertButton;
+            var totalForms = form.querySelector('[id$="-TOTAL_FORMS"]');
+            var r = /\d+/;
+            var forms = formset.querySelectorAll('.formset-row');
+            for (var y = 0; y<forms.length; y++) {
+                var row = forms[y].querySelectorAll('[id^="id_form-"]');
+                for (var i = 0; i<row.length; i++) {
+                    row[i].id = row[i].id.replace(row[i].id.match(r)[0], y);
+                    row[i].name = row[i].name.replace(row[i].name.match(r)[0], y);
+                    row[i].placeholder = defaults.changePlaceholder ? row[i].placeholder.replace(row[i].placeholder.match(r)[0], forms.length-y) : row[i].placeholder;
                 }
             }
+            if (insertButton){
+                forms[0].insertAdjacentElement('afterbegin',insertButton);
+            }
+            forms = formset.querySelectorAll('.formset-row');
+            totalForms.value = forms.length;
         }
-        function deleteHistory(div) {
-            var totalForms = document.querySelector('[id$="-TOTAL_FORMS"]');
-            console.log(parseInt(totalForms.value));
-            if (parseInt(totalForms.value) > 1){
+        //Add or delete history dialogs
+        function onLoad(defaults) {
+            var forms = document.querySelectorAll('form');
+            for(var i=0; i<forms.length; i++){
+                var formset = forms[i].querySelector('.formset');
+                defaults.changePlaceholder = formset.querySelectorAll('.history').length > 0;
+                formset_recounter(formset, forms[i], defaults)
+            }
+
+        }
+        function deleteFormset(div, defaults) {
+            var form = div.closest('form');
+            var formset = div.closest('.formset');
+
+            if (formset.querySelectorAll('.formset-row').length > 1){
                 var insertButton = null;
                 // Check if it's first item
-                for (var x = 0; x<div.childNodes.length; x++){
-                    try {
-                        if (div.childNodes[x].tagName.toLowerCase() === 'button') {
-                            if (div.childNodes[x].className.toLowerCase().includes('add-form-row')) {
-                                insertButton = div.childNodes[x];
-                                break;
-                            }
-                        }
-                    } catch (e) {
-                        continue;
-                    }
+                var nodes = div.querySelectorAll('.add');
+                if (nodes.length > 0) {
+                    insertButton = nodes[0];
                 }
                 div.remove();
-                var historyForms = document.querySelectorAll('[id$="-history"]');
-                console.log(historyForms);
-                for (var y = 0; y<historyForms.length; y++){
-                    var r = /\d+/;
-                    historyForms[y].id = historyForms[y].id.replace(historyForms[y].id.match(r)[0], historyForms.length - 1 - y);
-                    historyForms[y].name = historyForms[y].name.replace(historyForms[y].name.match(r)[0], historyForms.length - 1 - y);
-                    historyForms[y].placeholder = historyForms[y].placeholder.replace(historyForms[y].placeholder.match(r)[0], historyForms.length - y);
-                    if (insertButton){
-                        historyForms[0].parentNode.insertBefore(insertButton,historyForms[0].parentNode.firstChild);
-                    }
-                }
-                totalForms.value = parseInt(totalForms.value)-1;
+                formset_recounter(formset, form, defaults, -1, insertButton)
             }
         }
 
 
-        function addFormset(div, options) {
-            var ignore_elements_by_name=['form-TOTAL_FORMS','form-INITIAL_FORMS','form-MIN_NUM_FORMS','form-MAX_NUM_FORMS'];
-            var totalForms = div.closest('form').querySelector('[id$="-TOTAL_FORMS"]');
+        function addFormset(div, defaults) {
+            var form = div.closest('form');
+            var formset = div.closest('.formset');
+
             var clone = div.cloneNode(true);
-            totalForms.value = parseInt(totalForms.value)+1;
-            var nodes = clone.querySelectorAll('textarea, input, selector');
-            for (var i = 0; i<nodes.length; i++){
-                nodes[i].value=''
+            if (div.getElementsByClassName('form-button')){
+                div.querySelector('.form-button').remove()
             }
-            nodes = div.querySelectorAll('button');
-            for (var x = 0; x<nodes.length; x++){
-                if (nodes[x].className.toLowerCase().includes('add-form-row')) {
-                    nodes[x].remove();
-                    break;
-                }
+            var row = clone.querySelectorAll('[id^="id_form-"]');
+            for (var i = 0; i<row.length; i++) {
+                row[i].value = null;
             }
-            var auxiliar = [];
             div.parentNode.insertBefore(clone, div.parentNode.firstChild);
-            var forms = div.closest('form').querySelectorAll('[id^="id_form-"]');
-            for (var y = 0; y<forms.length; y++){
-                if (ignore_elements_by_name.indexOf(forms[y].name) === -1) {
-                    var r = /\d+/;
-                    if (auxiliar.indexOf(forms[y].id) === -1){
-                         auxiliar.push(forms[y].id);
-                    } else {
-                        aux_index = auxiliar.indexOf(forms[y].id);
-                        forms[y].id = forms[y].id.replace(auxiliar[aux_index].match(r)[0], String(parseInt(auxiliar[aux_index].match(r)[0])+1));
-                        auxiliar[aux_index]=forms[y].id
-                    }
-                    if (auxiliar.indexOf(forms[y].name) === -1){
-                         auxiliar.push(forms[y].name);
-                    } else {
-                        aux_index = auxiliar.indexOf(forms[y].name);
-                        forms[y].name = forms[y].name.replace(auxiliar[aux_index].match(r)[0], String(parseInt(auxiliar[aux_index].match(r)[0])+1));
-                        auxiliar[aux_index]=forms[y].name
-                    }
-
-                    /*if (auxiliar.indexOf(forms[(forms.length - 1) - y].placeholder) === -1){
-                        auxiliar.push(forms[(forms.length - 1) - y].placeholder);
-                    } else {
-                        aux_index = auxiliar.indexOf(forms[(forms.length - 1) - y].placeholder);
-                        forms[(forms.length - 1) - y].placeholder = forms[(forms.length - 1) - y].placeholder.replace(forms[(forms.length - 1) - y].placeholder.match(r)[0], String(parseInt(forms[(forms.length - 1) - y].placeholder.match(r)[0]) + 1));
-                        auxiliar[aux_index] = forms[(forms.length - 1) - y].placeholder
-                    }*/
-                    console.log(auxiliar);
-                }
-            }
+            formset_recounter(formset, form, defaults, +1)
         }
 
 
+
+        defaults={
+            changePlaceholder:false
+        };
+        // ACTIONS BEHAVIOUR
         $(document).ready(function(e){
-            onLoad();
+            onLoad(defaults);
         });
-        $(document).on('click', '.add-form-row', function(e){
+        $(document).on('click', 'button', function(e){
             e.preventDefault();
             // defaults are default configurations, arrays are used for storing data, the rest are configuration
-            defaults={
-                changePlaceholder:false,
-            };
-            if (this.id === 'historico'){
-                defaults.changePlaceholder = true;
+            var buttonClasses = this.classList;
+            if (buttonClasses.contains('form-button')) {
+                var formset = this.closest('.formset-row');
+                defaults.changePlaceholder = buttonClasses.contains('history');
+                if (buttonClasses.contains('add')) {
+                    addFormset(formset, defaults)
+                } else if (buttonClasses.contains('remove')) {
+                    deleteFormset(formset, defaults)
+                }
+            } else if (buttonClasses.contains('change-to-business-plan')) {
+                businessPlan()
             }
-            addFormset(this.parentNode, defaults);
-            return false;
         });
-        $(document).on('click', '.remove-form-row', function(e){
-            e.preventDefault();
-            deleteHistory(this.parentNode);
-            return false;
-        });
+
+
     </script>
 {% endblock %}
